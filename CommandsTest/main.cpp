@@ -3,6 +3,7 @@
 #include <FEHUtility.h>
 #include <math.h>
 
+#include "drive.h"
 #include "command.h"
 #include "printcommand.h"
 #include "util/script.h"
@@ -25,6 +26,8 @@ int script_position;
 ButtonBoard *button_board;
 IO *io;
 Timer *print_timer;
+Drive *drive;
+FEHMotor *drive_left, *drive_right;
 
 int main(void)
 {
@@ -36,6 +39,9 @@ int main(void)
     io = new IO(button_board);
     print_timer = new Timer();
     scripts = new Script*[NUM_SCRIPTS];
+    drive_left = new FEHMotor(FEHMotor::Motor0);
+    drive_right = new FEHMotor(FEHMotor::Motor1);
+    drive = new Drive(drive_left, drive_right);
 
     // Main Loop, allows for multiple scripts to be run back to back. Does not stop. Ever.
     // Make sure scripts are re-initialized every iteration
@@ -87,6 +93,7 @@ int main(void)
                 lcd->WriteLine(script->name);
                 lcd->WriteLine("Side buttons --> choose");
                 lcd->WriteLine("Middle button --> run");
+                print_timer->Reset();
             }
         } // Script choose loop
 
@@ -107,7 +114,11 @@ int main(void)
             // TODO: Add IO.UserInterrupt to kill single command
             io->Update();
             current->Run();
-            current->PrintStatus();
+            if(print_timer->GetTime() > PRINT_TIMEOUT)
+            {
+                current->PrintStatus();
+                print_timer->Reset();
+            }
             if(current->EndCondition())
             {
                 current->Finish();

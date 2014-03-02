@@ -3,16 +3,15 @@
 
 #include <FEHIO.h>
 
-typdef enum
-{
-    LEFT = 0,
-    MIDDLE,
-    RIGHT
-} Button;
-
 class IO
 {
 public:
+    typedef enum
+    {
+        LEFT = 0,
+        MIDDLE,
+        RIGHT
+    } Button;
     IO(ButtonBoard *button_board_in);
     void Update();
     bool ButtonBoardGetPressedEvent(Button button);
