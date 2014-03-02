@@ -1,13 +1,20 @@
 #include "script.h"
 
 template<class T>
-Script<T>::Script(char* name_in)
+Script<T>::Script()
 {
     commands = new T*[QUEUE_SIZE];
     buffer = new T*[QUEUE_SIZE];
     tmp = new T*[QUEUE_SIZE];
     commands_size = 0;
     buffer_size = 0;
+    name = "[Script Name]";
+    is_new_current_command = false;
+}
+
+template<class T>
+void Script<T>::SetName(char* name_in)
+{
     name = name_in;
 }
 
@@ -35,11 +42,13 @@ void Script<T>::MergeQueue()
     }
     commands_size = commands_size + buffer_size;
     buffer_size = 0;
+    is_new_current_command = true;
 }
 
 template<class T>
 T* Script<T>::GetCurrentCommand()
 {
+    is_new_current_command = false;
     return commands[0];
 }
 
@@ -55,4 +64,5 @@ void Script<T>::NextCommand()
     {
         commands[j] = tmp[j];
     }
+    is_new_current_command = true;
 }

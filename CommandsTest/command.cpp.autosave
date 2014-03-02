@@ -1,9 +1,0 @@
-#include "command.h"
-#include <FEHUtility.h>
-
-FEHLCD* Command::lcd;
-
-void Command::Init(FEHLCD *lcd_in)
-{
-    lcd = lcd_in;
-}

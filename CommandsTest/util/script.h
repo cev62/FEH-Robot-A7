@@ -8,7 +8,8 @@ template<class T>
 class Script
 {
 public:
-    Script(char *name_in);
+    Script();
+    void SetName(char* name_in);
     void AddSequential(T *command);
     void MergeQueue();
     void NextCommand();
@@ -16,6 +17,7 @@ public:
     T **commands, **buffer, **tmp;
     int commands_size, buffer_size;
     char *name;
+    bool is_new_current_command;
 };
 
 #endif // SCRIPT_H

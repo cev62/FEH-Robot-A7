@@ -2,40 +2,14 @@
 #include <FEHUtility.h>
 
 FEHLCD* Command::lcd;
+Script Command::script;
 
 void Command::Init(FEHLCD *lcd_in)
 {
     lcd = lcd_in;
 }
 
-/*void Command::Init()
+void Command::SetScript(Scipt *script_in)
 {
-    lcd->WriteLine("Default Command");
-    Sleep(1.0);
+    script = script_in;
 }
-
-void Command::Run()
-{
-
-}
-
-bool Command::EndCondition()
-{
-    return true;
-}
-
-void Command::Finish()
-{
-
-}
-
-bool Command::FailedCondition()
-{
-    return false;
-}
-
-void Command::Failure()
-{
-
-}
-*/

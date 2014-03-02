@@ -19,7 +19,9 @@ public:
 
     //static Drive *drive;
     static FEHLCD *lcd;
+    static Script *script;
     static void Init(FEHLCD *lcd_in);
+    static void SetScript(Script *script_in);
 private:
 };
 
