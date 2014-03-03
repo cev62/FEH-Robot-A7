@@ -38,7 +38,7 @@ FEHWONKA RPS;
 int button_presses;
 
 const int ARM_STORE = 45;
-const int ARM_APPROACH_SKID = 170;
+const int ARM_APPROACH_SKID = 165;
 const int ARM_PICKUP_SKID = 90;
 const int ARM_SENSE_PIN = 120;
 const int ARM_APPROACH_PIN = 130;
@@ -126,7 +126,10 @@ void PT5(){
     drive->SetDriveTime(70, 0, 1.0);
     Sleep(1.0);
     arm->SetDegree(ARM_PICKUP_SKID);
-    drive->SetDriveTime(-100, 0, 0.5);
+    drive->SetDriveTime(-100, 0, 0.3);
+    Sleep(1.0);
+    drive->SetDriveTime(100, 0, 0.5);
+    drive->SetDriveTime(-100, 0, 0.3);
     Sleep(3.0);
     drive->TurnAngle(0, Drive::LEFT, Drive::LEFT);
     drive->TurnAngle(90, Drive::LEFT, Drive::LEFT);

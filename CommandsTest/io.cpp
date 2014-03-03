@@ -1,22 +1,5 @@
 #include "io.h"
 
-IO::IO(ButtonBoard *button_board_in, FEHWONKA *rps_in)
-{
-    button_board = button_board_in;
-
-    button_board_current_states = new bool[3];
-    button_board_prev_states = new bool[3];
-
-    for(int i = 0; i < 3; i++)
-    {
-        button_board_current_states[i] = false;
-        button_board_prev_states[i] = false;
-    }
-
-    rps = rps_in;
-
-}
-
 void IO::Update()
 {
     // Store all of the current button board states in the previous states array
@@ -39,4 +22,16 @@ bool IO::ButtonBoardGetButton(Button button)
 bool IO::ButtonBoardGetPressedEvent(Button button)
 {
     return button_board_current_states[button] && ! button_board_prev_states[button];
+}
+
+void IO::ResetEncoders()
+{
+    left_encoder->ResetCounts();
+    right_encoder->ResetCounts();
+}
+
+// Returns the average distance travelled by the two encoders IN INCHES
+float IO::GetDistTravelled()
+{
+    return (left_encoder->Counts() + right_encoder->Counts()) / 2.0 / COUNTS_PER_INCH;
 }

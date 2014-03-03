@@ -9,14 +9,25 @@
 #include "commands/drivecommand.h"
 #include "commands/turnamountcommand.h"
 #include "commands/turntoanglecommand.h"
+#include "commands/drivedistcommand.h"
+#include "commands/setarmcommand.h"
 #include "util/script.h"
 #include "util/script.cpp" // Needs to be here to eliminate Template definition madness
 #include "io.h"
 #include <FEHWONKA.h>
+#include <FEHServo.h>
+#include "arm.h"
 
 const float LOOP_TIMEOUT = 0.010;
 const float PRINT_TIMEOUT = 0.100;
 const int NUM_SCRIPTS= 4;
+
+const int ARM_STORE = 45;
+const int ARM_APPROACH_SKID = 170;
+const int ARM_PICKUP_SKID = 90;
+const int ARM_SENSE_PIN = 120;
+const int ARM_APPROACH_PIN = 130;
+const int ARM_PULL_PIN = 90;
 
 // Function Prototypes
 void InitScripts();
@@ -34,6 +45,9 @@ Drive *drive;
 FEHMotor *drive_left, *drive_right;
 bool is_rps_enabled, has_rps_been_initialized;
 FEHWONKA RPS, *rps;
+FEHEncoder *left_encoder, *right_encoder;
+FEHServo *arm_servo;
+Arm *arm;
 
 int main(void)
 {
@@ -51,7 +65,11 @@ int main(void)
     is_rps_enabled = true;
     has_rps_been_initialized = false;
     rps = &RPS;
-    io = new IO(button_board, rps);
+    left_encoder = new FEHEncoder(FEHIO::P1_0);
+    right_encoder = new FEHEncoder(FEHIO::P1_1);
+    io = new IO(button_board, rps, left_encoder, right_encoder);
+    arm_servo = new FEHServo(FEHServo::Servo0);
+    arm = new Arm(arm_servo);
 
     // Main Loop, allows for multiple scripts to be run back to back. Does not stop. Ever.
     // Make sure scripts are re-initialized every iteration
@@ -64,7 +82,7 @@ int main(void)
         Command::SetScript(script);
 
         // Initialize subsystems in the Command class
-        Command::Init(lcd, drive, io);
+        Command::Init(lcd, drive, io, arm);
 
         // Script chooser
         while(true)
@@ -135,7 +153,12 @@ int main(void)
             if(script->is_new_current_command)
             {
                 current = script->GetCurrentCommand();
-                current->Init();
+
+                if(!current->has_been_initialized)
+                {
+                    current->Init();
+                    current->has_been_initialized = true;
+                }
             }
             // TODO: Add IO.UserInterrupt to kill whole script
             // TODO: Add IO.UserInterrupt to kill single command
@@ -152,21 +175,18 @@ int main(void)
             if(current->EndCondition())
             {
                 current->Finish();
-                script->NextCommand();
+                if(!script->is_new_current_command)
+                {
+                    script->NextCommand();
+                }
             }
             else if(current->FailedCondition())
             {
-                script->NextCommand();// Take it of the deque first so new failure commands can be up next
-                current->Failure();
-
-                // Debugging failure commands in script
-                lcd->Clear();
-                for(int i = 0; i < script->commands_size; i++)
+                if(!script->is_new_current_command)
                 {
-                    lcd->WriteLine(script->commands[i]->name);
+                    script->NextCommand();// Take it out of the deque first so new failure commands can be up next
                 }
-                lcd->WriteLine("Done");
-                Sleep(5.0);
+                current->Failure();
             }
 
             Sleep(LOOP_TIMEOUT);
@@ -199,16 +219,14 @@ void InitScripts()
 
 
     // *** TEST *** BEGIN //
-    test->AddSequential(new PrintCommand("Test 1"));
-    test->AddSequential(new PrintCommand("Test 2"));
-    test->AddSequential(new PrintCommand("Test 3"));
+    test->AddSequential(new DriveDistCommand(100, 10));
     test->MergeQueue();
     // *** TEST *** END //
 
 
 
     // *** COMPETTION *** BEGIN //
-    comp->AddSequential(new PrintCommand("Comp 1"));
+    comp->AddSequential(new TurnToAngleCommand(90, Drive::LEFT, Drive::RIGHT));
     comp->AddSequential(new PrintCommand("Comp 2"));
     comp->AddSequential(new PrintCommand("Comp 3"));
     comp->MergeQueue();
@@ -217,9 +235,14 @@ void InitScripts()
 
 
     // *** PT 6 *** BEGIN //
-    pt6->AddSequential(new DriveCommand(100, 0, 2.5));
-    pt6->AddSequential(new TurnAmountCommand(-90, Drive::LEFT));
-    pt6->AddSequential(new PrintCommand("Pt6 3"));
+    pt6->AddSequential(new DriveDistCommand(100, 36));
+    pt6->AddSequential(new TurnToAngleCommand(90, Drive::LEFT, Drive::RIGHT));
+    pt6->AddSequential(new SetArmCommand(ARM_APPROACH_SKID, 2.0));
+    pt6->AddSequential(new DriveCommand(70, 0, 1.0));
+    pt6->AddSequential(new SetArmCommand(ARM_PICKUP_SKID, 0.0));
+    pt6->AddSequential(new DriveCommand(-70, 0, 0.3));
+    pt6->AddSequential(new DriveCommand(70, 0, 0.5));
+    pt6->AddSequential(new DriveCommand(-70, 0, 0.3));
     pt6->MergeQueue();
     // *** PT 6 *** END //
 

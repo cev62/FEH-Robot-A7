@@ -7,6 +7,7 @@
 #include "util/timer.h"
 #include "drive.h"
 #include "io.h"
+#include "arm.h"
 
 class Command
 {
@@ -21,11 +22,14 @@ public:
     virtual void PrintStatus() = 0;
 
     char* name;
+    bool has_been_initialized;
+
     static FEHLCD *lcd;
     static Script<Command> *script;
     static Drive *drive;
     static IO *io;
-    static void Init(FEHLCD *lcd_in, Drive *drive_in, IO *io_in);
+    static Arm *arm;
+    static void Init(FEHLCD *lcd_in, Drive *drive_in, IO *io_in, Arm *arm_in);
     static void SetScript(Script<Command> *script_in);
 
 protected:

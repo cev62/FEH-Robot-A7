@@ -3,6 +3,8 @@
 
 #include "../command.h"
 #include "../drive.h"
+#include "../io.h"
+#include "turnamountcommand.h"
 
 class TurnToAngleCommand : public Command
 {
