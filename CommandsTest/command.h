@@ -1,14 +1,16 @@
 #ifndef COMMAND_H
 #define COMMAND_H
 
-#include <util/script.h>
+#include "util/script.h"
 #include <FEHLCD.h>
 #include <FEHUtility.h>
+#include "util/timer.h"
+#include "drive.h"
 
 class Command
 {
 public:
-    Command() {}
+    Command();
     virtual void Init() = 0;
     virtual void Run() = 0;
     virtual bool EndCondition() = 0;
@@ -19,10 +21,13 @@ public:
 
     //static Drive *drive;
     static FEHLCD *lcd;
-    static Script *script;
-    static void Init(FEHLCD *lcd_in);
-    static void SetScript(Script *script_in);
-private:
+    static Script<Command> *script;
+    static Drive *drive;
+    static void Init(FEHLCD *lcd_in, Drive *drive_in);
+    static void SetScript(Script<Command> *script_in);
+
+protected:
+    Timer *timer;
 };
 
 #endif // COMMAND_H

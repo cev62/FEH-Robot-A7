@@ -6,11 +6,13 @@
 class Timer
 {
 public:
-    Timer();
+    Timer(float timeout_in = 0.0);
     float GetTime();
+    bool IsTimeout();
+    void SetTimeout(float timeout_in);
     void Reset();
 private:
-    float start_time;
+    float start_time, timeout;
 };
 
 #endif // TIMER_H

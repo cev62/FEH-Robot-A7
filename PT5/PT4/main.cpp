@@ -77,8 +77,8 @@ int main(void)
 
 void PT5(){
 
-    RPS.InitializeMenu(); //call the region config menu
-    RPS.Enable(); //enable the RPS
+    //RPS.InitializeMenu(); //call the region config menu
+    //RPS.Enable(); //enable the RPS
 
     control->WaitForMiddleButton();
     control->WaitForStartLight();

@@ -6,6 +6,7 @@
 #include "drive.h"
 #include "command.h"
 #include "printcommand.h"
+#include "commands/drivecommand.h"
 #include "util/script.h"
 #include "util/script.cpp" // Needs to be here to eliminate Template definition madness
 #include "io.h"
@@ -17,11 +18,11 @@ const int NUM_SCRIPTS= 3;
 // Function Prototypes
 void InitScripts();
 
-// Construct Variables
+// Declare Variables
 FEHLCD *lcd;
 Command *current;
-Script<Command> script; // The current script
-Script **scripts; // Array of pointers to scripts
+Script<Command> *script; // The current script
+Script<Command> **scripts; // Array of pointers to scripts
 int script_position;
 ButtonBoard *button_board;
 IO *io;
@@ -36,9 +37,19 @@ int main(void)
     lcd->Clear( FEHLCD::Black );
     lcd->SetFontColor( FEHLCD::White );
     button_board = new ButtonBoard(FEHIO::Bank3);
+
+    lcd->WriteLine(button_board->MiddlePressed());
+    Sleep(2.0);
+
     io = new IO(button_board);
+
+
+    lcd->WriteLine("Success!");
+    Sleep(1.0);
+
     print_timer = new Timer();
-    scripts = new Script*[NUM_SCRIPTS];
+
+    scripts = new Script<Command>*[NUM_SCRIPTS];
     drive_left = new FEHMotor(FEHMotor::Motor0);
     drive_right = new FEHMotor(FEHMotor::Motor1);
     drive = new Drive(drive_left, drive_right);
@@ -55,7 +66,7 @@ int main(void)
         Command::SetScript(script);
 
         // Initialize subsystems in the Command class
-        Command::Init(lcd);
+        Command::Init(lcd, drive);
 
         // Script chooser
         while(true)
@@ -146,9 +157,9 @@ void InitScripts()
     }
 
     // These are just handle for clarity when adding commands below
-    Script *test = scripts[0];
-    Script *comp = scripts[0];
-    Script *pt6 = scripts[0];
+    Script<Command> *test = scripts[0];
+    Script<Command> *comp = scripts[0];
+    Script<Command> *pt6 = scripts[0];
 
 
 
@@ -172,7 +183,7 @@ void InitScripts()
 
     // *** PT 6 *** BEGIN //
     pt6->AddSequential(new PrintCommand("Pt6 1"));
-    pt6->AddSequential(new PrintCommand("Pt6 2"));
+    pt6->AddSequential(new DriveCommand(100, 0, 3.0));
     pt6->AddSequential(new PrintCommand("Pt6 3"));
     pt6->MergeQueue();
     // *** PT 6 *** END //

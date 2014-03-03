@@ -6,7 +6,7 @@ Drive::Drive(FEHMotor *left_in, FEHMotor *right_in)
     right = right_in;
 }
 
-Drive::SetDrive(int forward, int turn)
+void Drive::SetDrive(int forward, int turn)
 {
     // Combine inputs to left and right percentages
     int left_percent = forward + turn;
@@ -23,7 +23,7 @@ Drive::SetDrive(int forward, int turn)
     right->SetPercent(right_percent);
 }
 
-Drive::SetDriveLR(int left_percent_in, int right_percent_in)
+void Drive::SetDriveLR(int left_percent_in, int right_percent_in)
 {
     // Set motor values directly
     left->SetPercent(left_percent_in);

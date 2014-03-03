@@ -1,8 +1,9 @@
-#include <timer.h>
+#include "timer.h"
 
-Timer::Timer()
+Timer::Timer(float timeout_in)
 {
     start_time = TimeNow();
+    timeout = timeout_in;
 }
 
 float Timer::GetTime()
@@ -13,4 +14,14 @@ float Timer::GetTime()
 void Timer::Reset()
 {
     start_time = TimeNow();
+}
+
+void Timer::SetTimeout(float timeout_in)
+{
+    timeout = timeout_in;
+}
+
+bool Timer::IsTimeout()
+{
+    return GetTime() - start_time >= timeout;
 }

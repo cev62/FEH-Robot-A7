@@ -13,3 +13,5 @@ util/timer.h
 util/timer.cpp
 drive.h
 drive.cpp
+commands/drivecommand.h
+commands/divecommand.cpp

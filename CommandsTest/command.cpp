@@ -2,14 +2,21 @@
 #include <FEHUtility.h>
 
 FEHLCD* Command::lcd;
-Script Command::script;
+Script<Command>* Command::script;
+Drive* Command::drive;
 
-void Command::Init(FEHLCD *lcd_in)
+Command::Command()
 {
-    lcd = lcd_in;
+    timer = new Timer();
 }
 
-void Command::SetScript(Scipt *script_in)
+void Command::Init(FEHLCD *lcd_in, Drive *drive_in)
+{
+    lcd = lcd_in;
+    drive = drive_in;
+}
+
+void Command::SetScript(Script<Command> *script_in)
 {
     script = script_in;
 }
