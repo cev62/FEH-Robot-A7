@@ -11,7 +11,8 @@
  C:\fehqt\Proteus/EWL/EWL_C/include/os_enum.h \
  C:\fehqt\Proteus/EWL/EWL_C/include/cstdint \
  C:\fehqt\Proteus/EWL/EWL_C/include/limits_api.h \
- C:\fehqt\Proteus/EWL/EWL_C/include/ewl_lib_ext1.h Drivers/adc16.h
+ C:\fehqt\Proteus/EWL/EWL_C/include/ewl_lib_ext1.h Drivers/adc16.h \
+ Libraries/FEHWONKA.h Drivers/FEHXBee.h
 
 C:\fehqt\Proteus/EWL/EWL_C++/include/lib_ewl_c++.prefix:
 
@@ -46,3 +47,7 @@ C:\fehqt\Proteus/EWL/EWL_C/include/limits_api.h:
 C:\fehqt\Proteus/EWL/EWL_C/include/ewl_lib_ext1.h:
 
 Drivers/adc16.h:
+
+Libraries/FEHWONKA.h:
+
+Drivers/FEHXBee.h:

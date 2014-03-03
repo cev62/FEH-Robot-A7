@@ -15,3 +15,6 @@ drive.h
 drive.cpp
 commands/drivecommand.h
 commands/divecommand.cpp
+commands/turntoanglecommand.h
+commands/turnamountcommand.h
+commands/turnamountcommand.cpp

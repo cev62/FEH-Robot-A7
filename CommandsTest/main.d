@@ -28,8 +28,9 @@
  Libraries/FEHMotor.h Libraries/FEHWONKA.h Drivers/FEHXBee.h \
  ..\/command.h ..\/util/script.h ..\/util/timer.h ..\/drive.h \
  ..\/printcommand.h ../command.h ..\/commands/drivecommand.h \
- ..\/commands/../command.h ..\/util/script.h ..\/util/script.cpp \
- ..\/util/script.h ..\/io.h
+ ..\/commands/../command.h ..\/commands/turnamountcommand.h \
+ ..\/commands/../drive.h ..\/commands/turntoanglecommand.h \
+ ..\/util/script.h ..\/util/script.cpp ..\/util/script.h ..\/io.h
 
 C:\fehqt\Proteus/EWL/EWL_C++/include/lib_ewl_c++.prefix:
 
@@ -114,6 +115,12 @@ Drivers/FEHXBee.h:
 ..\/commands/drivecommand.h:
 
 ..\/commands/../command.h:
+
+..\/commands/turnamountcommand.h:
+
+..\/commands/../drive.h:
+
+..\/commands/turntoanglecommand.h:
 
 ..\/util/script.h:
 

@@ -7,6 +7,8 @@
 #include "command.h"
 #include "printcommand.h"
 #include "commands/drivecommand.h"
+#include "commands/turnamountcommand.h"
+#include "commands/turntoanglecommand.h"
 #include "util/script.h"
 #include "util/script.cpp" // Needs to be here to eliminate Template definition madness
 #include "io.h"
@@ -30,7 +32,7 @@ IO *io;
 Timer *print_timer;
 Drive *drive;
 FEHMotor *drive_left, *drive_right;
-bool is_rps_enabled;
+bool is_rps_enabled, has_rps_been_initialized;
 FEHWONKA RPS, *rps;
 
 int main(void)
@@ -40,7 +42,6 @@ int main(void)
     lcd->Clear( FEHLCD::Black );
     lcd->SetFontColor( FEHLCD::White );
     button_board = new ButtonBoard(FEHIO::Bank3);
-    io = new IO(button_board);
     print_timer = new Timer();
     scripts = new Script<Command>*[NUM_SCRIPTS];
     drive_left = new FEHMotor(FEHMotor::Motor0);
@@ -48,7 +49,9 @@ int main(void)
     drive = new Drive(drive_left, drive_right);
     script_position = 0;
     is_rps_enabled = true;
+    has_rps_been_initialized = false;
     rps = &RPS;
+    io = new IO(button_board, rps);
 
     // Main Loop, allows for multiple scripts to be run back to back. Does not stop. Ever.
     // Make sure scripts are re-initialized every iteration
@@ -110,10 +113,11 @@ int main(void)
         if(script->name == "Toggle RPS")
         {
             is_rps_enabled = !is_rps_enabled;
+            has_rps_been_initialized = false;
         }
 
         // Conditionally init RPS
-        if(is_rps_enabled && (script->name != "Toggle RPS"))
+        if(is_rps_enabled && (script->name != "Toggle RPS") && !has_rps_been_initialized)
         {
             rps->InitializeMenu(); //call the region config menu
             rps->Enable(); //enable the RPS
@@ -175,6 +179,7 @@ void InitScripts()
     Script<Command> *comp = scripts[1];
     Script<Command> *pt6 = scripts[2];
     Script<Command> *toggle_rps = scripts[3];
+    // TODO: add test script to enable the user to manually set command parameters and run them
 
     // Set Names
     test->SetName("Test");

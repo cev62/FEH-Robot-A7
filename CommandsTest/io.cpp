@@ -1,6 +1,6 @@
 #include "io.h"
 
-IO::IO(ButtonBoard *button_board_in)
+IO::IO(ButtonBoard *button_board_in, FEHWONKA *rps_in)
 {
     button_board = button_board_in;
 
@@ -12,6 +12,9 @@ IO::IO(ButtonBoard *button_board_in)
         button_board_current_states[i] = false;
         button_board_prev_states[i] = false;
     }
+
+    rps = rps_in;
+
 }
 
 void IO::Update()
