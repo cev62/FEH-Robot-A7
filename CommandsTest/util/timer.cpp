@@ -11,6 +11,12 @@ float Timer::GetTime()
     return TimeNow() - start_time;
 }
 
+
+float Timer::GetTimeLeft()
+{
+    return timeout - GetTime();
+}
+
 void Timer::Reset()
 {
     start_time = TimeNow();
@@ -23,5 +29,5 @@ void Timer::SetTimeout(float timeout_in)
 
 bool Timer::IsTimeout()
 {
-    return GetTime() - start_time >= timeout;
+    return GetTime() > timeout;
 }

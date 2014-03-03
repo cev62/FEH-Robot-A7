@@ -19,7 +19,7 @@ public:
     virtual void Failure() = 0;
     virtual void PrintStatus() = 0;
 
-    //static Drive *drive;
+    char* name;
     static FEHLCD *lcd;
     static Script<Command> *script;
     static Drive *drive;

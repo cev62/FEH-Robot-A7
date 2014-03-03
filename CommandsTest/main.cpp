@@ -10,10 +10,11 @@
 #include "util/script.h"
 #include "util/script.cpp" // Needs to be here to eliminate Template definition madness
 #include "io.h"
+#include <FEHWONKA.h>
 
 const float LOOP_TIMEOUT = 0.010;
 const float PRINT_TIMEOUT = 0.100;
-const int NUM_SCRIPTS= 3;
+const int NUM_SCRIPTS= 4;
 
 // Function Prototypes
 void InitScripts();
@@ -29,6 +30,8 @@ IO *io;
 Timer *print_timer;
 Drive *drive;
 FEHMotor *drive_left, *drive_right;
+bool is_rps_enabled;
+FEHWONKA RPS, *rps;
 
 int main(void)
 {
@@ -37,22 +40,15 @@ int main(void)
     lcd->Clear( FEHLCD::Black );
     lcd->SetFontColor( FEHLCD::White );
     button_board = new ButtonBoard(FEHIO::Bank3);
-
-    lcd->WriteLine(button_board->MiddlePressed());
-    Sleep(2.0);
-
     io = new IO(button_board);
-
-
-    lcd->WriteLine("Success!");
-    Sleep(1.0);
-
     print_timer = new Timer();
-
     scripts = new Script<Command>*[NUM_SCRIPTS];
     drive_left = new FEHMotor(FEHMotor::Motor0);
     drive_right = new FEHMotor(FEHMotor::Motor1);
     drive = new Drive(drive_left, drive_right);
+    script_position = 0;
+    is_rps_enabled = true;
+    rps = &RPS;
 
     // Main Loop, allows for multiple scripts to be run back to back. Does not stop. Ever.
     // Make sure scripts are re-initialized every iteration
@@ -61,7 +57,6 @@ int main(void)
 
         // Initialize Scripts
         InitScripts();
-        script_position = 0;
         script = scripts[script_position];
         Command::SetScript(script);
 
@@ -105,9 +100,24 @@ int main(void)
                 lcd->WriteLine(script->name);
                 lcd->WriteLine("Side buttons --> choose");
                 lcd->WriteLine("Middle button --> run");
+                lcd->Write("RPS is: ");
+                lcd->WriteLine(is_rps_enabled ? "Enabled" : "Disabled");
                 print_timer->Reset();
             }
         } // Script choose loop
+
+        // If the script is the Toggle RPS script, do so
+        if(script->name == "Toggle RPS")
+        {
+            is_rps_enabled = !is_rps_enabled;
+        }
+
+        // Conditionally init RPS
+        if(is_rps_enabled && (script->name != "Toggle RPS"))
+        {
+            rps->InitializeMenu(); //call the region config menu
+            rps->Enable(); //enable the RPS
+        }
 
         // Scheduler Loop
         while(true)
@@ -129,6 +139,8 @@ int main(void)
             if(print_timer->GetTime() > PRINT_TIMEOUT)
             {
                 lcd->Clear();
+                lcd->Write("Cmd: ");
+                lcd->WriteLine(current->name);
                 current->PrintStatus();
                 print_timer->Reset();
             }
@@ -162,12 +174,13 @@ void InitScripts()
     Script<Command> *test = scripts[0];
     Script<Command> *comp = scripts[1];
     Script<Command> *pt6 = scripts[2];
+    Script<Command> *toggle_rps = scripts[3];
 
     // Set Names
     test->SetName("Test");
     comp->SetName("Competition");
     pt6->SetName("PT 6");
-
+    toggle_rps->SetName("Toggle RPS");
 
 
     // *** TEST *** BEGIN //
@@ -194,6 +207,12 @@ void InitScripts()
     pt6->AddSequential(new PrintCommand("Pt6 3"));
     pt6->MergeQueue();
     // *** PT 6 *** END //
+
+
+
+    // *** Toggle RPS *** BEGIN //
+    // This script is a special case handled in the script selector
+    // *** Toggle RPS *** END //
 
 
 

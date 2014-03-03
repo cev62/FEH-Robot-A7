@@ -8,6 +8,7 @@ Drive* Command::drive;
 Command::Command()
 {
     timer = new Timer();
+    name = "[Command name]";
 }
 
 void Command::Init(FEHLCD *lcd_in, Drive *drive_in)

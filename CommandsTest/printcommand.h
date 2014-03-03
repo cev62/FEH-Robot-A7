@@ -17,6 +17,7 @@ public:
     char *message;
     PrintCommand(char *message_in) : Command()
     {
+        name = "PrintCommand";
         message = message_in;
     }
 
