@@ -100,6 +100,7 @@ int main(void)
             if(print_timer->GetTime() > PRINT_TIMEOUT)
             {
                 // Print status of script choosing
+                lcd->Clear();
                 lcd->Write("Selected: ");
                 lcd->WriteLine(script->name);
                 lcd->WriteLine("Side buttons --> choose");
@@ -127,6 +128,7 @@ int main(void)
             current->Run();
             if(print_timer->GetTime() > PRINT_TIMEOUT)
             {
+                lcd->Clear();
                 current->PrintStatus();
                 print_timer->Reset();
             }
@@ -158,8 +160,13 @@ void InitScripts()
 
     // These are just handle for clarity when adding commands below
     Script<Command> *test = scripts[0];
-    Script<Command> *comp = scripts[0];
-    Script<Command> *pt6 = scripts[0];
+    Script<Command> *comp = scripts[1];
+    Script<Command> *pt6 = scripts[2];
+
+    // Set Names
+    test->SetName("Test");
+    comp->SetName("Competition");
+    pt6->SetName("PT 6");
 
 
 

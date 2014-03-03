@@ -4,7 +4,7 @@ void DriveCommand::Init()
 {
     lcd->Write("HI");
     drive->SetDrive(forward, turn);
-    timer->SetTimeout(time);
+    //timer->SetTimeout(time);
     timer->Reset();
 }
 
@@ -15,7 +15,7 @@ void DriveCommand::Run()
 
 bool DriveCommand::EndCondition()
 {
-    return timer->IsTimeout();
+    return timer->GetTime() > time;
 }
 
 void DriveCommand::Finish()

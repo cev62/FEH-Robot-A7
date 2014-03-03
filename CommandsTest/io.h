@@ -19,7 +19,7 @@ public:
 
 private:
     ButtonBoard *button_board;
-    //bool *button_board_prev_states, *button_board_current_states;
+    bool *button_board_prev_states, *button_board_current_states;
 };
 
 #endif // IO_H
