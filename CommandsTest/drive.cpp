@@ -4,6 +4,8 @@ Drive::Drive(FEHMotor *left_in, FEHMotor *right_in)
 {
     left = left_in;
     right = right_in;
+    P_TURN = 20.0 / 45.0;
+    TURN_MIN_POWER = 60;
 }
 
 void Drive::SetDrive(int forward, int turn)

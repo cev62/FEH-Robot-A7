@@ -14,7 +14,8 @@
  C:\fehqt\Proteus/EWL/EWL_C/include/limits_api.h \
  C:\fehqt\Proteus/EWL/EWL_C/include/ewl_lib_ext1.h Libraries/FEHUtility.h \
  ..\commands/../util/timer.h ..\commands/../drive.h Libraries/FEHMotor.h \
- Libraries/FEHIO.h Drivers/adc16.h Libraries/FEHWONKA.h Drivers/FEHXBee.h
+ Libraries/FEHIO.h Drivers/adc16.h Libraries/FEHWONKA.h Drivers/FEHXBee.h \
+ ..\commands/../io.h
 
 C:\fehqt\Proteus/EWL/EWL_C++/include/lib_ewl_c++.prefix:
 
@@ -67,3 +68,5 @@ Drivers/adc16.h:
 Libraries/FEHWONKA.h:
 
 Drivers/FEHXBee.h:
+
+..\commands/../io.h:

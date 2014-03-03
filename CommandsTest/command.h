@@ -6,6 +6,7 @@
 #include <FEHUtility.h>
 #include "util/timer.h"
 #include "drive.h"
+#include "io.h"
 
 class Command
 {
@@ -23,7 +24,8 @@ public:
     static FEHLCD *lcd;
     static Script<Command> *script;
     static Drive *drive;
-    static void Init(FEHLCD *lcd_in, Drive *drive_in);
+    static IO *io;
+    static void Init(FEHLCD *lcd_in, Drive *drive_in, IO *io_in);
     static void SetScript(Script<Command> *script_in);
 
 protected:

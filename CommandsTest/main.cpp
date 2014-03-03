@@ -64,7 +64,7 @@ int main(void)
         Command::SetScript(script);
 
         // Initialize subsystems in the Command class
-        Command::Init(lcd, drive);
+        Command::Init(lcd, drive, io);
 
         // Script chooser
         while(true)
@@ -73,6 +73,7 @@ int main(void)
             if(io->ButtonBoardGetPressedEvent(IO::MIDDLE))
             {
                 // Middle button pressed: begin the script that is currently selected
+                Command::script = script;
                 break;
             }
             if(io->ButtonBoardGetPressedEvent(IO::LEFT))
@@ -126,7 +127,7 @@ int main(void)
         // Scheduler Loop
         while(true)
         {
-            if(script->commands_size == 0)
+            if(script->commands_size <= 0)
             {
                 lcd->WriteLine("End of Script");
                 break;
@@ -157,6 +158,15 @@ int main(void)
             {
                 script->NextCommand();// Take it of the deque first so new failure commands can be up next
                 current->Failure();
+
+                // Debugging failure commands in script
+                lcd->Clear();
+                for(int i = 0; i < script->commands_size; i++)
+                {
+                    lcd->WriteLine(script->commands[i]->name);
+                }
+                lcd->WriteLine("Done");
+                Sleep(5.0);
             }
 
             Sleep(LOOP_TIMEOUT);
@@ -181,7 +191,7 @@ void InitScripts()
     Script<Command> *toggle_rps = scripts[3];
     // TODO: add test script to enable the user to manually set command parameters and run them
 
-    // Set Names
+    // Set Script Names
     test->SetName("Test");
     comp->SetName("Competition");
     pt6->SetName("PT 6");
@@ -207,8 +217,8 @@ void InitScripts()
 
 
     // *** PT 6 *** BEGIN //
-    pt6->AddSequential(new PrintCommand("Pt6 1"));
-    pt6->AddSequential(new DriveCommand(100, 0, 3.0));
+    pt6->AddSequential(new DriveCommand(100, 0, 2.5));
+    pt6->AddSequential(new TurnAmountCommand(-90, Drive::LEFT));
     pt6->AddSequential(new PrintCommand("Pt6 3"));
     pt6->MergeQueue();
     // *** PT 6 *** END //

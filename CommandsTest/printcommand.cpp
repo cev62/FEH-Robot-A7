@@ -1,9 +1,9 @@
-#include <printcommand.h>
+#include "printcommand.h"
 
 void PrintCommand::Init()
 {
-    lcd->WriteLine(message);
-    Sleep(1.0);
+    timer->Reset();
+    timer->SetTimeout(2.0);
 }
 
 void PrintCommand::Run()
@@ -13,7 +13,7 @@ void PrintCommand::Run()
 
 bool PrintCommand::EndCondition()
 {
-    return true;
+    return timer->IsTimeout();
 }
 
 void PrintCommand::Finish()
@@ -33,5 +33,7 @@ void PrintCommand::Failure()
 
 void PrintCommand::PrintStatus()
 {
-
+    lcd->WriteLine(message);
+    lcd->Write("T: ");
+    lcd->WriteLine(timer->GetTimeLeft());
 }
