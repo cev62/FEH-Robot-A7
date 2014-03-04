@@ -38,7 +38,7 @@ FEHWONKA RPS;
 int button_presses;
 
 const int ARM_STORE = 45;
-const int ARM_APPROACH_SKID = 165;
+const int ARM_APPROACH_SKID = 172;
 const int ARM_PICKUP_SKID = 90;
 const int ARM_SENSE_PIN = 120;
 const int ARM_APPROACH_PIN = 130;
@@ -77,8 +77,8 @@ int main(void)
 
 void PT5(){
 
-    //RPS.InitializeMenu(); //call the region config menu
-    //RPS.Enable(); //enable the RPS
+    RPS.InitializeMenu(); //call the region config menu
+    RPS.Enable(); //enable the RPS
 
     control->WaitForMiddleButton();
     control->WaitForStartLight();
@@ -119,7 +119,10 @@ void PT5(){
     drive->SetDrive(0, 0);
     Sleep(1.0);
     arm->SetDegree(ARM_PULL_PIN);
-
+    Sleep(1.0);
+    arm->SetDegree(ARM_STORE);
+    Sleep(1.0);
+    arm->SetDegree(ARM_PULL_PIN);
     drive->TurnAngle(85, Drive::LEFT, Drive::LEFT);
     arm->SetDegree(ARM_APPROACH_SKID);
     Sleep(1.0);
@@ -129,17 +132,31 @@ void PT5(){
     drive->SetDriveTime(-100, 0, 0.3);
     Sleep(1.0);
     drive->SetDriveTime(100, 0, 0.5);
-    drive->SetDriveTime(-100, 0, 0.3);
+    drive->SetDriveTime(-100, 0, 0.5);
     Sleep(3.0);
-    drive->TurnAngle(0, Drive::LEFT, Drive::LEFT);
-    drive->TurnAngle(90, Drive::LEFT, Drive::LEFT);
+    drive->TurnAngle(0, Drive::RIGHT, Drive::LEFT);
+    drive->TurnAngle(80, Drive::RIGHT, Drive::LEFT);
 
 
 
     // Drive down ramp
     //drive->TurnAngle(90, Drive::RIGHT, Drive::LEFT);
     Sleep(1.0);
-    drive->SetDriveTime(100, 0, 2.0);
+    drive->SetDriveTime(100, 0, 2.5);
+    Sleep(1.0);
+    drive->TurnAngle(0, Drive::LEFT, Drive::RIGHT);
+    Sleep(1.0);
+    drive->SetDriveTime(-100, 0, 0.5);
+    Sleep(1.0);
+    drive->TurnAngle(90, Drive::LEFT, Drive::RIGHT);
+    Sleep(1.0);
+    arm->SetDegree(ARM_APPROACH_SKID);
+    Sleep(1.0);
+    drive->SetDriveTime(100, 0, 1.5);
+    Sleep(1.0);
+    arm->Off();
+    drive->SetDriveTime(-100, 0, 1.0);
+
 }
 
 void PT5_acceleration_line_following(){
