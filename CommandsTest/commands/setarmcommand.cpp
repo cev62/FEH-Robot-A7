@@ -2,7 +2,14 @@
 
 void SetArmCommand::Init()
 {
-    arm->Set(degree);
+    if(degree == -1) // ARM_STOP from main.cpp
+    {
+        arm->Off();
+    }
+    else
+    {
+        arm->SetDegree(degree);
+    }
     timer->SetTimeout(timeout);
     timer->Reset();
 }

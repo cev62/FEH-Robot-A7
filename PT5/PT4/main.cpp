@@ -100,10 +100,10 @@ void PT5(){
         float value = optosensor->Value();
         //bool isOnLine = value < THRESHOLD; // Old way
         bool isOnLine = value < GRAY_VALUE - DELTA_THRESH; // New delta way
-        lcd->Write(isOnLine ? "ON " : "OFF");
+        /*lcd->Write(isOnLine ? "ON " : "OFF");
         lcd->Write(value);
         lcd->Write("    ");
-        lcd->Write(GRAY_VALUE - DELTA_THRESH);
+        lcd->Write(GRAY_VALUE - DELTA_THRESH);*/
         if(isOnLine)
         {
             // Need to go right
@@ -118,8 +118,8 @@ void PT5(){
     }
     drive->SetDrive(0, 0);
     Sleep(1.0);
-    arm->SetDegree(ARM_PULL_PIN);
-    Sleep(1.0);
+    //arm->SetDegree(ARM_PULL_PIN);
+    //Sleep(1.0);
     arm->SetDegree(ARM_STORE);
     Sleep(1.0);
     arm->SetDegree(ARM_PULL_PIN);
@@ -128,12 +128,18 @@ void PT5(){
     Sleep(1.0);
     drive->SetDriveTime(70, 0, 1.0);
     Sleep(1.0);
-    arm->SetDegree(ARM_PICKUP_SKID);
+    arm->SetDegree(ARM_STORE);
     drive->SetDriveTime(-100, 0, 0.3);
     Sleep(1.0);
     drive->SetDriveTime(100, 0, 0.5);
     drive->SetDriveTime(-100, 0, 0.5);
+    drive->SetDriveTime(100, 0, 1.0);
+    drive->SetDriveTime(-100, 0, 0.5);
     Sleep(3.0);
+    drive->TurnAngle(45, Drive::RIGHT, Drive::LEFT);
+    Sleep(1.0);
+    drive->SetDriveTime(-100, 0, 0.15);
+    Sleep(1.0);
     drive->TurnAngle(0, Drive::RIGHT, Drive::LEFT);
     drive->TurnAngle(80, Drive::RIGHT, Drive::LEFT);
 
@@ -142,11 +148,13 @@ void PT5(){
     // Drive down ramp
     //drive->TurnAngle(90, Drive::RIGHT, Drive::LEFT);
     Sleep(1.0);
-    drive->SetDriveTime(100, 0, 2.5);
+    //drive->SetDriveTime(100, 0, 1.75);
+    drive->SquareToWallForward();
+
     Sleep(1.0);
     drive->TurnAngle(0, Drive::LEFT, Drive::RIGHT);
     Sleep(1.0);
-    drive->SetDriveTime(-100, 0, 0.5);
+    //drive->SetDriveTime(-100, 0, 0.5);
     Sleep(1.0);
     drive->TurnAngle(90, Drive::LEFT, Drive::RIGHT);
     Sleep(1.0);

@@ -21,6 +21,5 @@ commands/turnamountcommand.cpp
 commands/turntoanglecommand.cpp
 commands/drivedistcommand.h
 commands/drivedistcommand.cpp
-arm.h
 commands/setarmcommand.h
 commands/setarmcommand.cpp

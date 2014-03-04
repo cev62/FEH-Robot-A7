@@ -27,14 +27,13 @@
  C:\fehqt\Proteus/EWL/EWL_C/include/math_integral.h ..\/drive.h \
  Libraries/FEHMotor.h Libraries/FEHWONKA.h Drivers/FEHXBee.h \
  ..\/command.h ..\/util/script.h ..\/util/timer.h ..\/drive.h ..\/io.h \
- ..\/arm.h Libraries/FEHServo.h ..\/printcommand.h ../command.h \
+ Libraries/FEHServo.h ..\/printcommand.h ../command.h \
  ..\/commands/drivecommand.h ..\/commands/../command.h \
  ..\/commands/turnamountcommand.h ..\/commands/../drive.h \
  ..\/commands/../printcommand.h ..\/commands/turntoanglecommand.h \
  ..\/commands/../io.h ..\/commands/turnamountcommand.h \
  ..\/commands/drivedistcommand.h ..\/commands/setarmcommand.h \
- ..\/util/script.h ..\/util/script.cpp ..\/util/script.h ..\/io.h \
- ..\/arm.h
+ ..\/util/script.h ..\/util/script.cpp ..\/util/script.h ..\/io.h
 
 C:\fehqt\Proteus/EWL/EWL_C++/include/lib_ewl_c++.prefix:
 
@@ -114,8 +113,6 @@ Drivers/FEHXBee.h:
 
 ..\/io.h:
 
-..\/arm.h:
-
 Libraries/FEHServo.h:
 
 ..\/printcommand.h:
@@ -149,5 +146,3 @@ Libraries/FEHServo.h:
 ..\/util/script.h:
 
 ..\/io.h:
-
-..\/arm.h:

@@ -16,7 +16,6 @@
 #include "io.h"
 #include <FEHWONKA.h>
 #include <FEHServo.h>
-#include "arm.h"
 
 const float LOOP_TIMEOUT = 0.010;
 const float PRINT_TIMEOUT = 0.100;
@@ -28,6 +27,7 @@ const int ARM_PICKUP_SKID = 90;
 const int ARM_SENSE_PIN = 120;
 const int ARM_APPROACH_PIN = 130;
 const int ARM_PULL_PIN = 90;
+const int ARM_STOP = -1;
 
 // Function Prototypes
 void InitScripts();
@@ -46,8 +46,7 @@ FEHMotor *drive_left, *drive_right;
 bool is_rps_enabled, has_rps_been_initialized;
 FEHWONKA RPS, *rps;
 FEHEncoder *left_encoder, *right_encoder;
-FEHServo *arm_servo;
-Arm *arm;
+FEHServo *arm;
 
 int main(void)
 {
@@ -68,8 +67,7 @@ int main(void)
     left_encoder = new FEHEncoder(FEHIO::P1_0);
     right_encoder = new FEHEncoder(FEHIO::P1_1);
     io = new IO(button_board, rps, left_encoder, right_encoder);
-    arm_servo = new FEHServo(FEHServo::Servo0);
-    arm = new Arm(arm_servo);
+    arm = new FEHServo(FEHServo::Servo0);
 
     // Main Loop, allows for multiple scripts to be run back to back. Does not stop. Ever.
     // Make sure scripts are re-initialized every iteration
@@ -226,7 +224,7 @@ void InitScripts()
 
 
     // *** COMPETTION *** BEGIN //
-    comp->AddSequential(new TurnToAngleCommand(90, Drive::LEFT, Drive::RIGHT));
+    comp->AddSequential(new TurnToAngleCommand(90, Drive::LEFT, Drive::LEFT));
     comp->AddSequential(new PrintCommand("Comp 2"));
     comp->AddSequential(new PrintCommand("Comp 3"));
     comp->MergeQueue();
@@ -236,7 +234,7 @@ void InitScripts()
 
     // *** PT 6 *** BEGIN //
     pt6->AddSequential(new DriveDistCommand(100, 36));
-    pt6->AddSequential(new TurnToAngleCommand(90, Drive::LEFT, Drive::RIGHT));
+    pt6->AddSequential(new TurnToAngleCommand(90, Drive::LEFT, Drive::LEFT));
     pt6->AddSequential(new SetArmCommand(ARM_APPROACH_SKID, 2.0));
     pt6->AddSequential(new DriveCommand(70, 0, 1.0));
     pt6->AddSequential(new SetArmCommand(ARM_PICKUP_SKID, 0.0));

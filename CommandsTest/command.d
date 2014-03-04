@@ -14,7 +14,7 @@
  C:\fehqt\Proteus/EWL/EWL_C/include/ewl_lib_ext1.h Libraries/FEHUtility.h \
  ..\/util/timer.h ..\/drive.h Libraries/FEHMotor.h Libraries/FEHIO.h \
  Drivers/adc16.h Libraries/FEHWONKA.h Drivers/FEHXBee.h ..\/io.h \
- ..\/arm.h Libraries/FEHServo.h
+ Libraries/FEHServo.h
 
 C:\fehqt\Proteus/EWL/EWL_C++/include/lib_ewl_c++.prefix:
 
@@ -67,7 +67,5 @@ Libraries/FEHWONKA.h:
 Drivers/FEHXBee.h:
 
 ..\/io.h:
-
-..\/arm.h:
 
 Libraries/FEHServo.h:

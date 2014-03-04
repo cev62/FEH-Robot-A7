@@ -7,7 +7,7 @@
 #include "util/timer.h"
 #include "drive.h"
 #include "io.h"
-#include "arm.h"
+#include <FEHServo.h>
 
 class Command
 {
@@ -28,8 +28,8 @@ public:
     static Script<Command> *script;
     static Drive *drive;
     static IO *io;
-    static Arm *arm;
-    static void Init(FEHLCD *lcd_in, Drive *drive_in, IO *io_in, Arm *arm_in);
+    static FEHServo *arm;
+    static void Init(FEHLCD *lcd_in, Drive *drive_in, IO *io_in, FEHServo *arm_in);
     static void SetScript(Script<Command> *script_in);
 
 protected:
