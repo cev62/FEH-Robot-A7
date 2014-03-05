@@ -33,6 +33,7 @@
  ..\/commands/../printcommand.h ..\/commands/turntoanglecommand.h \
  ..\/commands/../io.h ..\/commands/turnamountcommand.h \
  ..\/commands/drivedistcommand.h ..\/commands/setarmcommand.h \
+ ..\/commands/linefollowtopincommand.h ..\/commands/drivecommand.h \
  ..\/util/script.h ..\/util/script.cpp ..\/util/script.h ..\/io.h
 
 C:\fehqt\Proteus/EWL/EWL_C++/include/lib_ewl_c++.prefix:
@@ -138,6 +139,10 @@ Libraries/FEHServo.h:
 ..\/commands/drivedistcommand.h:
 
 ..\/commands/setarmcommand.h:
+
+..\/commands/linefollowtopincommand.h:
+
+..\/commands/drivecommand.h:
 
 ..\/util/script.h:
 

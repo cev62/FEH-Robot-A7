@@ -28,6 +28,6 @@ void Drive::SetDrive(int forward, int turn)
 void Drive::SetDriveLR(int left_percent_in, int right_percent_in)
 {
     // Set motor values directly
-    left->SetPercent(left_percent_in);
+    left->SetPercent(-left_percent_in);
     right->SetPercent(right_percent_in);
 }

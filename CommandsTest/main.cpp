@@ -11,6 +11,7 @@
 #include "commands/turntoanglecommand.h"
 #include "commands/drivedistcommand.h"
 #include "commands/setarmcommand.h"
+#include "commands/linefollowtopincommand.h"
 #include "util/script.h"
 #include "util/script.cpp" // Needs to be here to eliminate Template definition madness
 #include "io.h"
@@ -25,7 +26,6 @@ const int ARM_STORE = 45;
 const int ARM_APPROACH_SKID = 170;
 const int ARM_PICKUP_SKID = 90;
 const int ARM_SENSE_PIN = 120;
-const int ARM_APPROACH_PIN = 130;
 const int ARM_PULL_PIN = 90;
 const int ARM_STOP = -1;
 
@@ -47,6 +47,8 @@ bool is_rps_enabled, has_rps_been_initialized;
 FEHWONKA RPS, *rps;
 FEHEncoder *left_encoder, *right_encoder;
 FEHServo *arm;
+DigitalInputPin *arm_switch, *left_switch, *right_switch;
+AnalogInputPin *optosensor;
 
 int main(void)
 {
@@ -66,7 +68,11 @@ int main(void)
     rps = &RPS;
     left_encoder = new FEHEncoder(FEHIO::P1_0);
     right_encoder = new FEHEncoder(FEHIO::P1_1);
-    io = new IO(button_board, rps, left_encoder, right_encoder);
+    arm_switch = new DigitalInputPin(FEHIO::P0_3);
+    right_switch = new DigitalInputPin(FEHIO::P0_1);
+    left_switch = new DigitalInputPin(FEHIO::P0_2);
+    optosensor = new AnalogInputPin(FEHIO::P0_4);
+    io = new IO(button_board, rps, left_encoder, right_encoder, left_switch, right_switch, arm_switch, optosensor);
     arm = new FEHServo(FEHServo::Servo0);
 
     // Main Loop, allows for multiple scripts to be run back to back. Does not stop. Ever.
@@ -136,6 +142,8 @@ int main(void)
         // Conditionally init RPS
         if(is_rps_enabled && (script->name != "Toggle RPS") && !has_rps_been_initialized)
         {
+            // Sleep to let the middle button become un-pressed
+            Sleep(1.0);
             rps->InitializeMenu(); //call the region config menu
             rps->Enable(); //enable the RPS
         }
@@ -233,14 +241,47 @@ void InitScripts()
 
 
     // *** PT 6 *** BEGIN //
-    pt6->AddSequential(new DriveDistCommand(100, 36));
-    pt6->AddSequential(new TurnToAngleCommand(90, Drive::LEFT, Drive::LEFT));
+    pt6->AddSequential(new SetArmCommand(ARM_STORE, 0.0));
+    pt6->AddSequential(new DriveCommand(100, 0, 2.0));
+    pt6->AddSequential(new SetArmCommand(ARM_SENSE_PIN, 1.0));
+    pt6->AddSequential(new LineFollowToPinCommand());
+    pt6->AddSequential(new DriveCommand(0, 0, 1.0)); // WAIT
+    pt6->AddSequential(new SetArmCommand(ARM_STORE, 1.0));
+    pt6->AddSequential(new SetArmCommand(ARM_PULL_PIN, 1.0));
+    pt6->AddSequential(new TurnToAngleCommand(85, Drive::LEFT, Drive::LEFT));
+    pt6->AddSequential(new DriveCommand(0, 0, 1.0)); // WAIT
     pt6->AddSequential(new SetArmCommand(ARM_APPROACH_SKID, 2.0));
+
     pt6->AddSequential(new DriveCommand(70, 0, 1.0));
-    pt6->AddSequential(new SetArmCommand(ARM_PICKUP_SKID, 0.0));
-    pt6->AddSequential(new DriveCommand(-70, 0, 0.3));
-    pt6->AddSequential(new DriveCommand(70, 0, 0.5));
-    pt6->AddSequential(new DriveCommand(-70, 0, 0.3));
+    pt6->AddSequential(new SetArmCommand(ARM_STORE, 1.0));
+    pt6->AddSequential(new DriveCommand(-100, 0, 0.3));
+    pt6->AddSequential(new DriveCommand(0, 0, 1.0)); // WAIT
+    pt6->AddSequential(new DriveCommand(100, 0, 0.5));
+    pt6->AddSequential(new DriveCommand(-100, 0, 0.5));
+    pt6->AddSequential(new DriveCommand(100, 0, 1.0));
+    pt6->AddSequential(new DriveCommand(-100, 0, 0.5));
+    pt6->AddSequential(new DriveCommand(0, 0, 3.0)); // WAIT
+    pt6->AddSequential(new TurnToAngleCommand(45, Drive::RIGHT, Drive::LEFT));
+    pt6->AddSequential(new DriveCommand(0, 0, 3.0)); // WAIT
+    pt6->AddSequential(new DriveCommand(-100, 0, 0.15));
+    pt6->AddSequential(new DriveCommand(0, 0, 1.0)); // WAIT
+    pt6->AddSequential(new TurnToAngleCommand(0, Drive::RIGHT, Drive::LEFT));
+    pt6->AddSequential(new TurnToAngleCommand(85, Drive::RIGHT, Drive::LEFT));
+    pt6->AddSequential(new DriveCommand(0, 0, 1.0)); // WAIT
+
+    // Go down ramp
+    pt6->AddSequential(new DriveCommand(100, 0, 2.5));
+    pt6->AddSequential(new DriveCommand(0, 0, 1.0)); // WAIT
+    pt6->AddSequential(new TurnToAngleCommand(0, Drive::LEFT, Drive::RIGHT));
+    pt6->AddSequential(new DriveCommand(0, 0, 1.0)); // WAIT
+    pt6->AddSequential(new TurnToAngleCommand(90, Drive::LEFT, Drive::RIGHT));
+
+    // Put Skid in chiller
+    pt6->AddSequential(new SetArmCommand(ARM_APPROACH_SKID, 1.0));
+    pt6->AddSequential(new DriveCommand(100, 0, 1.0));
+    pt6->AddSequential(new SetArmCommand(ARM_STOP, 1.0));
+    pt6->AddSequential(new DriveCommand(-100, 0, 1.0));
+
     pt6->MergeQueue();
     // *** PT 6 *** END //
 

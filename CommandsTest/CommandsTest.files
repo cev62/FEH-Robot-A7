@@ -23,3 +23,5 @@ commands/drivedistcommand.h
 commands/drivedistcommand.cpp
 commands/setarmcommand.h
 commands/setarmcommand.cpp
+commands/linefollowtopincommand.h
+commands/linefollowtopincommand.cpp

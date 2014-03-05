@@ -22,9 +22,11 @@ public:
     FEHWONKA *rps;
     ButtonBoard *button_board;
     FEHEncoder *left_encoder, *right_encoder;
+    DigitalInputPin *left_switch, *right_switch, *arm_switch;
+    AnalogInputPin *optosensor;
     bool *button_board_prev_states, *button_board_current_states;
     float COUNTS_PER_INCH;
-    IO(ButtonBoard *button_board_in, FEHWONKA *rps_in, FEHEncoder *left_encoder_in, FEHEncoder *right_encoder_in)
+    IO(ButtonBoard *button_board_in, FEHWONKA *rps_in, FEHEncoder *left_encoder_in, FEHEncoder *right_encoder_in, DigitalInputPin *left_switch_in, DigitalInputPin *right_switch_in, DigitalInputPin *arm_switch_in, AnalogInputPin *optosensor_in)
     {
         COUNTS_PER_INCH = 24.0 / (2.75 * 3.14);
         button_board = button_board_in;
@@ -41,6 +43,10 @@ public:
         rps = rps_in;
         left_encoder = left_encoder_in;
         right_encoder = right_encoder_in;
+        left_switch = left_switch_in;
+        right_switch = right_switch_in;
+        arm_switch = arm_switch_in;
+        optosensor = optosensor_in;
     }
 };
 
