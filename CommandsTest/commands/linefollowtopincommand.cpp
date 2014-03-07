@@ -16,12 +16,12 @@ void LineFollowToPinCommand::Run()
     if(is_on_line)
     {
         // Need to go right
-        drive->SetDriveLR(65, 0);
+        drive->SetDriveLR(55, 30);
     }
     else
     {
         // Need to go left
-        drive->SetDriveLR(0, 65);
+        drive->SetDriveLR(30, 55);
     }
 }
 
@@ -42,8 +42,10 @@ bool LineFollowToPinCommand::FailedCondition()
 
 void LineFollowToPinCommand::Failure()
 {
+    script->AddSequential(new SetArmCommand(-1, 1.0));
     script->AddSequential(new DriveCommand(-100, 0, 0.75));
     script->AddSequential(new DriveCommand(0, 100, 0.25));
+    script->AddSequential(new SetArmCommand(120, 1.0));
     script->AddSequential(new LineFollowToPinCommand());
 }
 

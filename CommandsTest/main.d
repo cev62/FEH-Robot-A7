@@ -34,7 +34,9 @@
  ..\/commands/../io.h ..\/commands/turnamountcommand.h \
  ..\/commands/drivedistcommand.h ..\/commands/setarmcommand.h \
  ..\/commands/linefollowtopincommand.h ..\/commands/drivecommand.h \
- ..\/util/script.h ..\/util/script.cpp ..\/util/script.h ..\/io.h
+ ..\/commands/setarmcommand.h ..\/commands/squareforwardtowallcommand.h \
+ ..\/commands/waitforstartlightcommand.h ..\/util/script.h \
+ ..\/util/script.cpp ..\/util/script.h ..\/io.h
 
 C:\fehqt\Proteus/EWL/EWL_C++/include/lib_ewl_c++.prefix:
 
@@ -143,6 +145,12 @@ Libraries/FEHServo.h:
 ..\/commands/linefollowtopincommand.h:
 
 ..\/commands/drivecommand.h:
+
+..\/commands/setarmcommand.h:
+
+..\/commands/squareforwardtowallcommand.h:
+
+..\/commands/waitforstartlightcommand.h:
 
 ..\/util/script.h:
 

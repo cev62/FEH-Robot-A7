@@ -12,6 +12,8 @@
 #include "commands/drivedistcommand.h"
 #include "commands/setarmcommand.h"
 #include "commands/linefollowtopincommand.h"
+#include "commands/squareforwardtowallcommand.h"
+#include "commands/waitforstartlightcommand.h"
 #include "util/script.h"
 #include "util/script.cpp" // Needs to be here to eliminate Template definition madness
 #include "io.h"
@@ -20,12 +22,12 @@
 
 const float LOOP_TIMEOUT = 0.010;
 const float PRINT_TIMEOUT = 0.100;
-const int NUM_SCRIPTS= 4;
+const int NUM_SCRIPTS= 5;
 
 const int ARM_STORE = 45;
-const int ARM_APPROACH_SKID = 170;
+const int ARM_APPROACH_SKID = 168;
 const int ARM_PICKUP_SKID = 90;
-const int ARM_SENSE_PIN = 120;
+const int ARM_SENSE_PIN = 118;
 const int ARM_PULL_PIN = 90;
 const int ARM_STOP = -1;
 
@@ -48,7 +50,7 @@ FEHWONKA RPS, *rps;
 FEHEncoder *left_encoder, *right_encoder;
 FEHServo *arm;
 DigitalInputPin *arm_switch, *left_switch, *right_switch;
-AnalogInputPin *optosensor;
+AnalogInputPin *optosensor, *cds_cell;
 
 int main(void)
 {
@@ -72,8 +74,11 @@ int main(void)
     right_switch = new DigitalInputPin(FEHIO::P0_1);
     left_switch = new DigitalInputPin(FEHIO::P0_2);
     optosensor = new AnalogInputPin(FEHIO::P0_4);
-    io = new IO(button_board, rps, left_encoder, right_encoder, left_switch, right_switch, arm_switch, optosensor);
+    cds_cell = new AnalogInputPin(FEHIO::P0_0);
+    io = new IO(button_board, rps, left_encoder, right_encoder, left_switch, right_switch, arm_switch, optosensor, cds_cell);
     arm = new FEHServo(FEHServo::Servo0);
+    arm->SetMin(500);
+    arm->SetMax(2431);
 
     // Main Loop, allows for multiple scripts to be run back to back. Does not stop. Ever.
     // Make sure scripts are re-initialized every iteration
@@ -214,44 +219,54 @@ void InitScripts()
     Script<Command> *test = scripts[0];
     Script<Command> *comp = scripts[1];
     Script<Command> *pt6 = scripts[2];
-    Script<Command> *toggle_rps = scripts[3];
+    Script<Command> *line = scripts[3];
+    Script<Command> *toggle_rps = scripts[4];
     // TODO: add test script to enable the user to manually set command parameters and run them
 
     // Set Script Names
     test->SetName("Test");
     comp->SetName("Competition");
     pt6->SetName("PT 6");
+    line->SetName("Line Following to Pin");
     toggle_rps->SetName("Toggle RPS");
 
 
     // *** TEST *** BEGIN //
-    test->AddSequential(new DriveDistCommand(100, 10));
-    test->MergeQueue();
+    test->AddSequential(new SquareForwardToWallCommand(5.0));
     // *** TEST *** END //
 
 
 
     // *** COMPETTION *** BEGIN //
-    comp->AddSequential(new TurnToAngleCommand(90, Drive::LEFT, Drive::LEFT));
-    comp->AddSequential(new PrintCommand("Comp 2"));
-    comp->AddSequential(new PrintCommand("Comp 3"));
-    comp->MergeQueue();
+
+    comp->AddSequential(new WaitForStartLightCommand());
     // *** COMPETITION *** END //
 
 
 
     // *** PT 6 *** BEGIN //
+    pt6->AddSequential(new WaitForStartLightCommand());
     pt6->AddSequential(new SetArmCommand(ARM_STORE, 0.0));
     pt6->AddSequential(new DriveCommand(100, 0, 2.0));
     pt6->AddSequential(new SetArmCommand(ARM_SENSE_PIN, 1.0));
     pt6->AddSequential(new LineFollowToPinCommand());
     pt6->AddSequential(new DriveCommand(0, 0, 1.0)); // WAIT
+
+    // Pull and shake pin
+    pt6->AddSequential(new SetArmCommand(ARM_STORE, 0.0));
+    pt6->AddSequential(new DriveCommand(-100, 0, 0.5));
     pt6->AddSequential(new SetArmCommand(ARM_STORE, 1.0));
-    pt6->AddSequential(new SetArmCommand(ARM_PULL_PIN, 1.0));
+    pt6->AddSequential(new SetArmCommand(ARM_APPROACH_SKID, 1.0));
+    pt6->AddSequential(new SetArmCommand(ARM_STORE, 1.0));
+    pt6->AddSequential(new DriveCommand(100, 0, 0.6));
+    pt6->AddSequential(new DriveCommand(0, 0, 1.0)); // WAIT
+
+    // Turn to and approach skid
     pt6->AddSequential(new TurnToAngleCommand(85, Drive::LEFT, Drive::LEFT));
     pt6->AddSequential(new DriveCommand(0, 0, 1.0)); // WAIT
     pt6->AddSequential(new SetArmCommand(ARM_APPROACH_SKID, 2.0));
 
+    // Pick up skid and ram to make sure its on the arm
     pt6->AddSequential(new DriveCommand(70, 0, 1.0));
     pt6->AddSequential(new SetArmCommand(ARM_STORE, 1.0));
     pt6->AddSequential(new DriveCommand(-100, 0, 0.3));
@@ -261,6 +276,8 @@ void InitScripts()
     pt6->AddSequential(new DriveCommand(100, 0, 1.0));
     pt6->AddSequential(new DriveCommand(-100, 0, 0.5));
     pt6->AddSequential(new DriveCommand(0, 0, 3.0)); // WAIT
+
+    // Navigate to shop
     pt6->AddSequential(new TurnToAngleCommand(45, Drive::RIGHT, Drive::LEFT));
     pt6->AddSequential(new DriveCommand(0, 0, 3.0)); // WAIT
     pt6->AddSequential(new DriveCommand(-100, 0, 0.15));
@@ -270,7 +287,7 @@ void InitScripts()
     pt6->AddSequential(new DriveCommand(0, 0, 1.0)); // WAIT
 
     // Go down ramp
-    pt6->AddSequential(new DriveCommand(100, 0, 2.5));
+    pt6->AddSequential(new SquareForwardToWallCommand(5.0));
     pt6->AddSequential(new DriveCommand(0, 0, 1.0)); // WAIT
     pt6->AddSequential(new TurnToAngleCommand(0, Drive::LEFT, Drive::RIGHT));
     pt6->AddSequential(new DriveCommand(0, 0, 1.0)); // WAIT
@@ -281,10 +298,12 @@ void InitScripts()
     pt6->AddSequential(new DriveCommand(100, 0, 1.0));
     pt6->AddSequential(new SetArmCommand(ARM_STOP, 1.0));
     pt6->AddSequential(new DriveCommand(-100, 0, 1.0));
-
-    pt6->MergeQueue();
     // *** PT 6 *** END //
 
+
+    // *** Line Following To Pin *** BEGIN //
+    line->AddSequential(new LineFollowToPinCommand());
+    // *** Line Following to Pin *** END //
 
 
     // *** Toggle RPS *** BEGIN //

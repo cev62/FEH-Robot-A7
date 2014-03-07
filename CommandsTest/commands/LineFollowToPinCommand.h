@@ -3,6 +3,7 @@
 
 #include "../command.h"
 #include "drivecommand.h"
+#include "setarmcommand.h"
 
 class LineFollowToPinCommand : public Command
 {
