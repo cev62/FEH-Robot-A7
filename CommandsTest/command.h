@@ -28,8 +28,8 @@ public:
     static Script<Command> *script;
     static Drive *drive;
     static IO *io;
-    static FEHServo *arm;
-    static void Init(FEHLCD *lcd_in, Drive *drive_in, IO *io_in, FEHServo *arm_in);
+    static FEHServo *arm, *box;
+    static void Init(FEHLCD *lcd_in, Drive *drive_in, IO *io_in, FEHServo *arm_in, FEHServo *box_in);
     static void SetScript(Script<Command> *script_in);
 
 protected:

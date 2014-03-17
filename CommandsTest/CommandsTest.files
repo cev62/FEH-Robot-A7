@@ -31,3 +31,6 @@ commands/waitforstartlightcommand.h
 commands/waitforstartlightcommand.cpp
 commands/testcommand.h
 commands/testcommand.cpp
+commands/setboxcommand.h
+commands/setboxcommand.h
+commands/setboxcommand.cpp

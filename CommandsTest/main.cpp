@@ -11,6 +11,7 @@
 #include "commands/turntoanglecommand.h"
 #include "commands/drivedistcommand.h"
 #include "commands/setarmcommand.h"
+#include "commands/setboxcommand.h"
 #include "commands/linefollowtopincommand.h"
 #include "commands/squareforwardtowallcommand.h"
 #include "commands/waitforstartlightcommand.h"
@@ -32,6 +33,9 @@ const int ARM_SENSE_PIN = 120;
 const int ARM_PULL_PIN = 90;
 const int ARM_STOP = -1;
 
+const int BOX_STORE = 45;
+const int BOX_DUMP = 180;
+
 // Function Prototypes
 void InitScripts();
 
@@ -49,7 +53,7 @@ FEHMotor *drive_left, *drive_right;
 bool is_rps_enabled, has_rps_been_initialized;
 FEHWONKA RPS, *rps;
 FEHEncoder *left_encoder, *right_encoder;
-FEHServo *arm;
+FEHServo *arm, *box;
 DigitalInputPin *arm_switch, *left_switch, *right_switch;
 AnalogInputPin *optosensor, *cds_cell;
 
@@ -78,8 +82,11 @@ int main(void)
     cds_cell = new AnalogInputPin(FEHIO::P0_0);
     io = new IO(button_board, rps, left_encoder, right_encoder, left_switch, right_switch, arm_switch, optosensor, cds_cell);
     arm = new FEHServo(FEHServo::Servo0);
+    box = new FEHServo(FEHServo::Servo1);
     arm->SetMin(500);
     arm->SetMax(2431);
+    box->SetMin(500);
+    box->SetMax(2431);
 
     // Main Loop, allows for multiple scripts to be run back to back. Does not stop. Ever.
     // Make sure scripts are re-initialized every iteration
@@ -175,7 +182,10 @@ int main(void)
             // TODO: Add IO.UserInterrupt to kill whole script
             // TODO: Add IO.UserInterrupt to kill single command
             io->Update();
-            current->Run();
+            if(!script->is_new_current_command) // keeps run from running when a command creates child commands
+            {
+                current->Run();
+            }
             if(print_timer->GetTime() > PRINT_TIMEOUT)
             {
                 lcd->Clear();
@@ -228,7 +238,7 @@ void InitScripts()
 
     // Set Script Names
     test->SetName("Test Sensors");
-    comp->SetName("Competition");
+    comp->SetName("Box");
     pt6->SetName("PT 6");
     pt7->SetName("PT 7");
     line->SetName("Line Following to Pin");
@@ -244,7 +254,9 @@ void InitScripts()
 
     // *** COMPETTION *** BEGIN //
 
-    comp->AddSequential(new WaitForStartLightCommand());
+    comp->AddSequential(new SetBoxCommand(BOX_STORE, 1.0);
+    comp->AddSequential(new SetBoxCommand(BOX_DUMP, 2.0);
+    comp->AddSequential(new SetBoxCommand(BOX_STORE, 1.0);
     // *** COMPETITION *** END //
 
 

@@ -321,6 +321,51 @@ Discarded input sections
                 0x00000000        0x8 ..\commands/testcommand.o
  .rodata._ZL10QUEUE_SIZE
                 0x00000000        0x4 ..\commands/testcommand.o
+ .group         0x00000000        0x8 ..\commands/setboxcommand.o
+ .group         0x00000000        0x8 ..\commands/setboxcommand.o
+ .text          0x00000000        0x0 ..\commands/setboxcommand.o
+ .data          0x00000000        0x0 ..\commands/setboxcommand.o
+ .bss           0x00000000        0x0 ..\commands/setboxcommand.o
+ .text._ZN13SetBoxCommand4InitEv
+                0x00000000       0x48 ..\commands/setboxcommand.o
+ .text._ZN13SetBoxCommand3RunEv
+                0x00000000       0x14 ..\commands/setboxcommand.o
+ .text._ZN13SetBoxCommand12EndConditionEv
+                0x00000000       0x20 ..\commands/setboxcommand.o
+ .text._ZN13SetBoxCommand6FinishEv
+                0x00000000       0x14 ..\commands/setboxcommand.o
+ .text._ZN13SetBoxCommand15FailedConditionEv
+                0x00000000       0x18 ..\commands/setboxcommand.o
+ .text._ZN13SetBoxCommand7FailureEv
+                0x00000000       0x14 ..\commands/setboxcommand.o
+ .rodata        0x00000000       0x14 ..\commands/setboxcommand.o
+ .text._ZN13SetBoxCommand11PrintStatusEv
+                0x00000000       0x74 ..\commands/setboxcommand.o
+ .rodata._ZTV13SetBoxCommand
+                0x00000000       0x28 ..\commands/setboxcommand.o
+ .rodata._ZTI13SetBoxCommand
+                0x00000000        0xc ..\commands/setboxcommand.o
+ .rodata._ZTS13SetBoxCommand
+                0x00000000       0x10 ..\commands/setboxcommand.o
+ .rodata._ZTS7Command
+                0x00000000        0xc ..\commands/setboxcommand.o
+ .rodata._ZTI7Command
+                0x00000000        0x8 ..\commands/setboxcommand.o
+ .rodata._ZL10QUEUE_SIZE
+                0x00000000        0x4 ..\commands/setboxcommand.o
+ .debug_info    0x00000000     0x1cef ..\commands/setboxcommand.o
+ .debug_abbrev  0x00000000      0x363 ..\commands/setboxcommand.o
+ .debug_loc     0x00000000      0x188 ..\commands/setboxcommand.o
+ .debug_aranges
+                0x00000000       0x50 ..\commands/setboxcommand.o
+ .debug_line    0x00000000      0x2f9 ..\commands/setboxcommand.o
+ .debug_macinfo
+                0x00000000    0x638a2 ..\commands/setboxcommand.o
+ .debug_str     0x00000000     0x1b42 ..\commands/setboxcommand.o
+ .comment       0x00000000       0x7a ..\commands/setboxcommand.o
+ .ARM.attributes
+                0x00000000       0x33 ..\commands/setboxcommand.o
+ .debug_frame   0x00000000       0xe0 ..\commands/setboxcommand.o
  .text          0x00000000        0x0 Startup\__arm_start.o
  .data          0x00000000        0x0 Startup\__arm_start.o
  .bss           0x00000000        0x0 Startup\__arm_start.o
@@ -1453,6 +1498,7 @@ LOAD ..\commands/linefollowtopincommand.o
 LOAD ..\commands/squareforwardtowallcommand.o
 LOAD ..\commands/waitforstartlightcommand.o
 LOAD ..\commands/testcommand.o
+LOAD ..\commands/setboxcommand.o
 LOAD Startup\__arm_start.o
 LOAD Startup\__arm_end.o
 LOAD Startup\kinetis_sysinit.o

@@ -6,6 +6,7 @@ Script<Command>* Command::script;
 Drive* Command::drive;
 IO* Command::io;
 FEHServo* Command::arm;
+FEHServo* Command::box;
 
 Command::Command()
 {
@@ -14,12 +15,13 @@ Command::Command()
     has_been_initialized = false;
 }
 
-void Command::Init(FEHLCD *lcd_in, Drive *drive_in, IO *io_in, FEHServo *arm_in)
+void Command::Init(FEHLCD *lcd_in, Drive *drive_in, IO *io_in, FEHServo *arm_in, FEHServo *box_in)
 {
     lcd = lcd_in;
     drive = drive_in;
     io = io_in;
     arm = arm_in;
+    box = box_in;
 }
 
 void Command::SetScript(Script<Command> *script_in)
