@@ -59,6 +59,12 @@ int main(void)
     lcd = &LCD;
     lcd->Clear( FEHLCD::Black );
     lcd->SetFontColor( FEHLCD::White );
+
+
+    lcd->WriteLine("HELLO");
+    Sleep(5.0);
+}
+
     button_board = new ButtonBoard(FEHIO::Bank3);
     print_timer = new Timer();
     scripts = new Script<Command>*[NUM_SCRIPTS];
@@ -130,7 +136,7 @@ int main(void)
                 lcd->Clear();
                 lcd->Write("Selected: ");
                 lcd->WriteLine(script->name);
-                lcd->WriteLine("Side buttons --> choose");
+                lcd->WriteLine("Hwllo --> choose");
                 lcd->WriteLine("Middle button --> run");
                 lcd->Write("RPS is: ");
                 lcd->WriteLine(is_rps_enabled ? "Enabled" : "Disabled");
@@ -228,7 +234,7 @@ void InitScripts()
 
     // Set Script Names
     test->SetName("Test Sensors");
-    comp->SetName("Competition");
+    comp->SetName("Box2");
     pt6->SetName("PT 6");
     pt7->SetName("PT 7");
     line->SetName("Line Following to Pin");
