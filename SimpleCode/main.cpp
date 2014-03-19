@@ -167,7 +167,7 @@ void pt7()
     {
         drive->TurnAngle(0, Drive::LEFT, Drive::RIGHT);
         Sleep(1.0);
-        drive->DriveDist(100, 4);
+        drive->DriveDist(100, 2.5);
         Sleep(1.0);
         drive->TurnAngle(90, Drive::RIGHT, Drive::LEFT);
         Sleep(1.0);
@@ -208,6 +208,7 @@ void test()
 void comp()
 {
     box->Calibrate();
+    Sleep(10.0);
 }
 
 void encoderTest()

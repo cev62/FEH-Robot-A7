@@ -1297,8 +1297,8 @@ LOAD Libraries\FEHLCD.o
 LOAD Libraries\FEHBattery.o
 LOAD Drivers\FEHXBee.o
 LOAD Libraries\FEHWONKA.o
-                0x00014f2c                __pformatter = __pformatter_
-                [0x00015324]                __sformatter = __sformatter
+                0x00014f44                __pformatter = __pformatter_
+                [0x0001533c]                __sformatter = __sformatter
 LOAD C:\fehqt\Proteus/EWL/lib/armv7e-m\libstdc++.a
 LOAD C:\fehqt\Proteus/EWL/lib/armv7e-m\libm.a
 START GROUP
@@ -1326,7 +1326,7 @@ END GROUP
  *(.cfmconfig)
                 0x0000c400                . = ALIGN (0x4)
 
-.text           0x0000c410     0xb680
+.text           0x0000c410     0xb698
                 0x0000c410                . = ALIGN (0x4)
  *(.text)
  .text          0x0000c410      0x370 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/armv7e-m\libgcc.a(_arm_addsubdf3.o)
@@ -1451,878 +1451,879 @@ END GROUP
  .text._Z9RunScriptPc
                 0x0000e9bc       0xcc ..\main.o
                 0x0000e9bc                RunScript(char*)
- .text._Z3pt7v  0x0000ea88      0x268 ..\main.o
+ .text._Z3pt7v  0x0000ea88      0x26c ..\main.o
                 0x0000ea88                pt7()
  .text._Z4testv
-                0x0000ecf0       0xb8 ..\main.o
-                0x0000ecf0                test()
+                0x0000ecf4       0xb8 ..\main.o
+                0x0000ecf4                test()
  .text._Z4compv
-                0x0000eda8       0x18 ..\main.o
-                0x0000eda8                comp()
+                0x0000edac       0x28 ..\main.o
+                0x0000edac                comp()
  .text._Z11encoderTestv
-                0x0000edc0      0x258 ..\main.o
-                0x0000edc0                encoderTest()
+                0x0000edd4      0x258 ..\main.o
+                0x0000edd4                encoderTest()
  .text._Z41__static_initialization_and_destruction_0ii
-                0x0000f018       0x30 ..\main.o
+                0x0000f02c       0x30 ..\main.o
  .text._GLOBAL__sub_I_button_board
-                0x0000f048       0x14 ..\main.o
+                0x0000f05c       0x14 ..\main.o
  .text._ZN2IOC2EP5TimerP11ButtonBoardP6FEHLCDP8FEHWONKAP10FEHEncoderS9_P15DigitalInputPinSB_SB_SB_SB_P14AnalogInputPinSD_
-                0x0000f05c       0xd0 ..\io.o
-                0x0000f05c                IO::IO(Timer*, ButtonBoard*, FEHLCD*, FEHWONKA*, FEHEncoder*, FEHEncoder*, DigitalInputPin*, DigitalInputPin*, DigitalInputPin*, DigitalInputPin*, DigitalInputPin*, AnalogInputPin*, AnalogInputPin*)
-                0x0000f05c                IO::IO(Timer*, ButtonBoard*, FEHLCD*, FEHWONKA*, FEHEncoder*, FEHEncoder*, DigitalInputPin*, DigitalInputPin*, DigitalInputPin*, DigitalInputPin*, DigitalInputPin*, AnalogInputPin*, AnalogInputPin*)
+                0x0000f070       0xd0 ..\io.o
+                0x0000f070                IO::IO(Timer*, ButtonBoard*, FEHLCD*, FEHWONKA*, FEHEncoder*, FEHEncoder*, DigitalInputPin*, DigitalInputPin*, DigitalInputPin*, DigitalInputPin*, DigitalInputPin*, AnalogInputPin*, AnalogInputPin*)
+                0x0000f070                IO::IO(Timer*, ButtonBoard*, FEHLCD*, FEHWONKA*, FEHEncoder*, FEHEncoder*, DigitalInputPin*, DigitalInputPin*, DigitalInputPin*, DigitalInputPin*, DigitalInputPin*, AnalogInputPin*, AnalogInputPin*)
  .text._ZN2IO6UpdateEv
-                0x0000f12c       0x84 ..\io.o
-                0x0000f12c                IO::Update()
+                0x0000f140       0x84 ..\io.o
+                0x0000f140                IO::Update()
  .text._ZN2IO26ButtonBoardGetPressedEventENS_6ButtonE
-                0x0000f1b0       0x44 ..\io.o
-                0x0000f1b0                IO::ButtonBoardGetPressedEvent(IO::Button)
+                0x0000f1c4       0x44 ..\io.o
+                0x0000f1c4                IO::ButtonBoardGetPressedEvent(IO::Button)
  .text._ZN2IO13ResetEncodersEv
-                0x0000f1f4       0x24 ..\io.o
-                0x0000f1f4                IO::ResetEncoders()
+                0x0000f208       0x24 ..\io.o
+                0x0000f208                IO::ResetEncoders()
+ *fill*         0x0000f22c        0x4 00
  .text._ZN2IO16GetDistTravelledEv
-                0x0000f218       0x70 ..\io.o
-                0x0000f218                IO::GetDistTravelled()
+                0x0000f230       0x70 ..\io.o
+                0x0000f230                IO::GetDistTravelled()
  .text._ZN2IO20InitializeScoopLightEv
-                0x0000f288       0x20 ..\io.o
-                0x0000f288                IO::InitializeScoopLight()
+                0x0000f2a0       0x20 ..\io.o
+                0x0000f2a0                IO::InitializeScoopLight()
  .text._ZN2IO14ReadScoopLightEv
-                0x0000f2a8       0xb0 ..\io.o
-                0x0000f2a8                IO::ReadScoopLight()
+                0x0000f2c0       0xb0 ..\io.o
+                0x0000f2c0                IO::ReadScoopLight()
  .text._ZN5TimerC2Ef
-                0x0000f358       0x34 ..\timer.o
-                0x0000f358                Timer::Timer(float)
-                0x0000f358                Timer::Timer(float)
+                0x0000f370       0x34 ..\timer.o
+                0x0000f370                Timer::Timer(float)
+                0x0000f370                Timer::Timer(float)
  .text._ZN5Timer7GetTimeEv
-                0x0000f38c       0x40 ..\timer.o
-                0x0000f38c                Timer::GetTime()
+                0x0000f3a4       0x40 ..\timer.o
+                0x0000f3a4                Timer::GetTime()
  .text._ZN5Timer5ResetEv
-                0x0000f3cc       0x28 ..\timer.o
-                0x0000f3cc                Timer::Reset()
+                0x0000f3e4       0x28 ..\timer.o
+                0x0000f3e4                Timer::Reset()
  .text._ZN5Timer10SetTimeoutEf
-                0x0000f3f4       0x1c ..\timer.o
-                0x0000f3f4                Timer::SetTimeout(float)
+                0x0000f40c       0x1c ..\timer.o
+                0x0000f40c                Timer::SetTimeout(float)
  .text._ZN5Timer9IsTimeoutEv
-                0x0000f410       0x48 ..\timer.o
-                0x0000f410                Timer::IsTimeout()
+                0x0000f428       0x48 ..\timer.o
+                0x0000f428                Timer::IsTimeout()
  .text._ZN5DriveC2EP8FEHMotorS1_P2IO
-                0x0000f458       0x38 ..\drive.o
-                0x0000f458                Drive::Drive(FEHMotor*, FEHMotor*, IO*)
-                0x0000f458                Drive::Drive(FEHMotor*, FEHMotor*, IO*)
+                0x0000f470       0x38 ..\drive.o
+                0x0000f470                Drive::Drive(FEHMotor*, FEHMotor*, IO*)
+                0x0000f470                Drive::Drive(FEHMotor*, FEHMotor*, IO*)
  .text._ZN5Drive8SetDriveEii
-                0x0000f490       0x88 ..\drive.o
-                0x0000f490                Drive::SetDrive(int, int)
+                0x0000f4a8       0x88 ..\drive.o
+                0x0000f4a8                Drive::SetDrive(int, int)
  .text._ZN5Drive10SetDriveLREii
-                0x0000f518       0x44 ..\drive.o
-                0x0000f518                Drive::SetDriveLR(int, int)
+                0x0000f530       0x44 ..\drive.o
+                0x0000f530                Drive::SetDriveLR(int, int)
  .text._ZN5Drive10TurnAmountEiNS_4SideE
-                0x0000f55c      0x234 ..\drive.o
-                0x0000f55c                Drive::TurnAmount(int, Drive::Side)
+                0x0000f574      0x234 ..\drive.o
+                0x0000f574                Drive::TurnAmount(int, Drive::Side)
  .text._ZN5Drive9TurnAngleEiNS_4SideES0_
-                0x0000f790       0xdc ..\drive.o
-                0x0000f790                Drive::TurnAngle(int, Drive::Side, Drive::Side)
+                0x0000f7a8       0xdc ..\drive.o
+                0x0000f7a8                Drive::TurnAngle(int, Drive::Side, Drive::Side)
  .text._ZN5Drive20SquareToWallBackwardEv
-                0x0000f86c      0x164 ..\drive.o
-                0x0000f86c                Drive::SquareToWallBackward()
+                0x0000f884      0x164 ..\drive.o
+                0x0000f884                Drive::SquareToWallBackward()
  .text._ZN5Drive9DriveDistEif
-                0x0000f9d0      0x108 ..\drive.o
-                0x0000f9d0                Drive::DriveDist(int, float)
+                0x0000f9e8      0x108 ..\drive.o
+                0x0000f9e8                Drive::DriveDist(int, float)
  .text.zero_fill_bss
-                0x0000fad8       0x34 Startup\__arm_start.o
+                0x0000faf0       0x34 Startup\__arm_start.o
  .text.__thumb_startup
-                0x0000fb0c       0x34 Startup\__arm_start.o
-                0x0000fb0c                __thumb_startup
+                0x0000fb24       0x34 Startup\__arm_start.o
+                0x0000fb24                __thumb_startup
  .text.InitFEHProteus
-                0x0000fb40      0x15c Startup\__arm_start.o
-                0x0000fb40                InitFEHProteus
+                0x0000fb58      0x15c Startup\__arm_start.o
+                0x0000fb58                InitFEHProteus
  .text.pll_init_bl
-                0x0000fc9c      0x130 Startup\__arm_start.o
+                0x0000fcb4      0x130 Startup\__arm_start.o
  .text.InitPowerButton
-                0x0000fdcc       0x90 Startup\__arm_start.o
-                0x0000fdcc                InitPowerButton
+                0x0000fde4       0x90 Startup\__arm_start.o
+                0x0000fde4                InitPowerButton
  .text._ExitProcess
-                0x0000fe5c        0xc Startup\__arm_end.o
-                0x0000fe5c                _ExitProcess
+                0x0000fe74        0xc Startup\__arm_end.o
+                0x0000fe74                _ExitProcess
  .text.Default_Handler
-                0x0000fe68        0xc Startup\kinetis_sysinit.o
-                0x0000fe68                BusFault_Handler()
-                0x0000fe68                HardFault_Handler()
-                0x0000fe68                SysTick_Handler()
-                0x0000fe68                PendSV_Handler()
-                0x0000fe68                DebugMonitor_Handler()
-                0x0000fe68                MemManage_Handler()
-                0x0000fe68                NMI_Handler()
-                0x0000fe68                SVC_Handler()
-                0x0000fe68                Default_Handler
-                0x0000fe68                UsageFault_Handler()
+                0x0000fe80        0xc Startup\kinetis_sysinit.o
+                0x0000fe80                BusFault_Handler()
+                0x0000fe80                HardFault_Handler()
+                0x0000fe80                SysTick_Handler()
+                0x0000fe80                PendSV_Handler()
+                0x0000fe80                DebugMonitor_Handler()
+                0x0000fe80                MemManage_Handler()
+                0x0000fe80                NMI_Handler()
+                0x0000fe80                SVC_Handler()
+                0x0000fe80                Default_Handler
+                0x0000fe80                UsageFault_Handler()
  .text.__init_hardware
-                0x0000fe74       0x44 Startup\kinetis_sysinit.o
-                0x0000fe74                __init_hardware
+                0x0000fe8c       0x44 Startup\kinetis_sysinit.o
+                0x0000fe8c                __init_hardware
  .text._Z8PortDISRv
-                0x0000feb8       0x5c Startup\kinetis_sysinit.o
-                0x0000feb8                PortDISR()
+                0x0000fed0       0x5c Startup\kinetis_sysinit.o
+                0x0000fed0                PortDISR()
  .text._ZN8FEHMotorC2ENS_12FEHMotorPortE
-                0x0000ff14       0x28 Libraries\FEHMotor.o
-                0x0000ff14                FEHMotor::FEHMotor(FEHMotor::FEHMotorPort)
-                0x0000ff14                FEHMotor::FEHMotor(FEHMotor::FEHMotorPort)
- *fill*         0x0000ff3c        0x4 00
+                0x0000ff2c       0x28 Libraries\FEHMotor.o
+                0x0000ff2c                FEHMotor::FEHMotor(FEHMotor::FEHMotorPort)
+                0x0000ff2c                FEHMotor::FEHMotor(FEHMotor::FEHMotorPort)
+ *fill*         0x0000ff54        0x4 00
  .text._ZN8FEHMotor10SetPercentEf
-                0x0000ff40       0xd8 Libraries\FEHMotor.o
-                0x0000ff40                FEHMotor::SetPercent(float)
+                0x0000ff58       0xd8 Libraries\FEHMotor.o
+                0x0000ff58                FEHMotor::SetPercent(float)
  .text._Z9uart_initPV11UART_MemMapii
-                0x00010018      0x20c Drivers\uart.o
-                0x00010018                uart_init(UART_MemMap volatile*, int, int)
+                0x00010030      0x20c Drivers\uart.o
+                0x00010030                uart_init(UART_MemMap volatile*, int, int)
  .text._Z12uart_getcharPV11UART_MemMap
-                0x00010224       0x34 Drivers\uart.o
-                0x00010224                uart_getchar(UART_MemMap volatile*)
+                0x0001023c       0x34 Drivers\uart.o
+                0x0001023c                uart_getchar(UART_MemMap volatile*)
  .text._Z12uart_putcharPV11UART_MemMapc
-                0x00010258       0x38 Drivers\uart.o
-                0x00010258                uart_putchar(UART_MemMap volatile*, char)
+                0x00010270       0x38 Drivers\uart.o
+                0x00010270                uart_putchar(UART_MemMap volatile*, char)
  .text._Z13time_delay_msm
-                0x00010290       0xa4 Drivers\lptmr.o
-                0x00010290                time_delay_ms(unsigned long)
+                0x000102a8       0xa4 Drivers\lptmr.o
+                0x000102a8                time_delay_ms(unsigned long)
  .text._Z41__static_initialization_and_destruction_0ii
-                0x00010334       0x30 FEHProteus.o
+                0x0001034c       0x30 FEHProteus.o
  .text._GLOBAL__sub_I_Propeller
-                0x00010364       0x14 FEHProteus.o
+                0x0001037c       0x14 FEHProteus.o
  .text._ZN12FEHPropellerC2Ev
-                0x00010378       0x20 Drivers\FEHPropeller.o
-                0x00010378                FEHPropeller::FEHPropeller()
-                0x00010378                FEHPropeller::FEHPropeller()
+                0x00010390       0x20 Drivers\FEHPropeller.o
+                0x00010390                FEHPropeller::FEHPropeller()
+                0x00010390                FEHPropeller::FEHPropeller()
  .text._ZN12FEHPropeller10InitializeEv
-                0x00010398       0x94 Drivers\FEHPropeller.o
-                0x00010398                FEHPropeller::Initialize()
+                0x000103b0       0x94 Drivers\FEHPropeller.o
+                0x000103b0                FEHPropeller::Initialize()
  .text._ZN12FEHPropeller12SetMotorRateEhhh
-                0x0001042c       0x78 Drivers\FEHPropeller.o
-                0x0001042c                FEHPropeller::SetMotorRate(unsigned char, unsigned char, unsigned char)
+                0x00010444       0x78 Drivers\FEHPropeller.o
+                0x00010444                FEHPropeller::SetMotorRate(unsigned char, unsigned char, unsigned char)
  .text._ZL5Delaymjj
-                0x000104a4       0xc4 Libraries\FEHUtility.o
+                0x000104bc       0xc4 Libraries\FEHUtility.o
  .text._Z5Sleepi
-                0x00010568       0x34 Libraries\FEHUtility.o
-                0x00010568                Sleep(int)
+                0x00010580       0x34 Libraries\FEHUtility.o
+                0x00010580                Sleep(int)
  .text._Z5Sleepf
-                0x0001059c       0x48 Libraries\FEHUtility.o
-                0x0001059c                Sleep(float)
- *fill*         0x000105e4        0x4 00
+                0x000105b4       0x48 Libraries\FEHUtility.o
+                0x000105b4                Sleep(float)
+ *fill*         0x000105fc        0x4 00
  .text._Z5Sleepd
-                0x000105e8       0x58 Libraries\FEHUtility.o
-                0x000105e8                Sleep(double)
+                0x00010600       0x58 Libraries\FEHUtility.o
+                0x00010600                Sleep(double)
  .text._Z7TimeNowv
-                0x00010640       0x70 Libraries\FEHUtility.o
-                0x00010640                TimeNow()
+                0x00010658       0x70 Libraries\FEHUtility.o
+                0x00010658                TimeNow()
  .text._Z11TimeNowMSecv
-                0x000106b0       0x44 Libraries\FEHUtility.o
-                0x000106b0                TimeNowMSec()
+                0x000106c8       0x44 Libraries\FEHUtility.o
+                0x000106c8                TimeNowMSec()
  .text._ZN15DigitalInputPinC2EN5FEHIO8FEHIOPinE
-                0x000106f4       0x24 Libraries\FEHIO.o
-                0x000106f4                DigitalInputPin::DigitalInputPin(FEHIO::FEHIOPin)
-                0x000106f4                DigitalInputPin::DigitalInputPin(FEHIO::FEHIOPin)
+                0x0001070c       0x24 Libraries\FEHIO.o
+                0x0001070c                DigitalInputPin::DigitalInputPin(FEHIO::FEHIOPin)
+                0x0001070c                DigitalInputPin::DigitalInputPin(FEHIO::FEHIOPin)
  .text._ZN15DigitalInputPinC2Ev
-                0x00010718       0x18 Libraries\FEHIO.o
-                0x00010718                DigitalInputPin::DigitalInputPin()
-                0x00010718                DigitalInputPin::DigitalInputPin()
+                0x00010730       0x18 Libraries\FEHIO.o
+                0x00010730                DigitalInputPin::DigitalInputPin()
+                0x00010730                DigitalInputPin::DigitalInputPin()
  .text._ZN15DigitalInputPin10InitializeEN5FEHIO8FEHIOPinE
-                0x00010730      0x224 Libraries\FEHIO.o
-                0x00010730                DigitalInputPin::Initialize(FEHIO::FEHIOPin)
+                0x00010748      0x224 Libraries\FEHIO.o
+                0x00010748                DigitalInputPin::Initialize(FEHIO::FEHIOPin)
  .text._ZN15DigitalInputPin5ValueEv
-                0x00010954      0x148 Libraries\FEHIO.o
-                0x00010954                DigitalInputPin::Value()
+                0x0001096c      0x148 Libraries\FEHIO.o
+                0x0001096c                DigitalInputPin::Value()
  .text._ZN14AnalogInputPinC2EN5FEHIO8FEHIOPinE
-                0x00010a9c       0x20 Libraries\FEHIO.o
-                0x00010a9c                AnalogInputPin::AnalogInputPin(FEHIO::FEHIOPin)
-                0x00010a9c                AnalogInputPin::AnalogInputPin(FEHIO::FEHIOPin)
- *fill*         0x00010abc        0x4 00
+                0x00010ab4       0x20 Libraries\FEHIO.o
+                0x00010ab4                AnalogInputPin::AnalogInputPin(FEHIO::FEHIOPin)
+                0x00010ab4                AnalogInputPin::AnalogInputPin(FEHIO::FEHIOPin)
+ *fill*         0x00010ad4        0x4 00
  .text._ZN14AnalogInputPin5ValueEv
-                0x00010ac0      0x1c0 Libraries\FEHIO.o
-                0x00010ac0                AnalogInputPin::Value()
+                0x00010ad8      0x1c0 Libraries\FEHIO.o
+                0x00010ad8                AnalogInputPin::Value()
  .text._ZN10FEHEncoder12EncoderValueEv
-                0x00010c80       0xe4 Libraries\FEHIO.o
-                0x00010c80                FEHEncoder::EncoderValue()
+                0x00010c98       0xe4 Libraries\FEHIO.o
+                0x00010c98                FEHEncoder::EncoderValue()
  .text._ZN14AnalogInputPin8InitADCsEv
-                0x00010d64      0x120 Libraries\FEHIO.o
-                0x00010d64                AnalogInputPin::InitADCs()
+                0x00010d7c      0x120 Libraries\FEHIO.o
+                0x00010d7c                AnalogInputPin::InitADCs()
  .text._Z8pit0_isrv
-                0x00010e84       0x34 Libraries\FEHIO.o
-                0x00010e84                pit0_isr()
+                0x00010e9c       0x34 Libraries\FEHIO.o
+                0x00010e9c                pit0_isr()
  .text._ZN10FEHEncoder4InitEv
-                0x00010eb8       0x64 Libraries\FEHIO.o
-                0x00010eb8                FEHEncoder::Init()
+                0x00010ed0       0x64 Libraries\FEHIO.o
+                0x00010ed0                FEHEncoder::Init()
  .text._ZN10FEHEncoder14SetCounterInitEj
-                0x00010f1c       0x20 Libraries\FEHIO.o
-                0x00010f1c                FEHEncoder::SetCounterInit(unsigned int)
+                0x00010f34       0x20 Libraries\FEHIO.o
+                0x00010f34                FEHEncoder::SetCounterInit(unsigned int)
  .text._ZN10FEHEncoderC2EN5FEHIO8FEHIOPinE
-                0x00010f3c      0x194 Libraries\FEHIO.o
-                0x00010f3c                FEHEncoder::FEHEncoder(FEHIO::FEHIOPin)
-                0x00010f3c                FEHEncoder::FEHEncoder(FEHIO::FEHIOPin)
+                0x00010f54      0x194 Libraries\FEHIO.o
+                0x00010f54                FEHEncoder::FEHEncoder(FEHIO::FEHIOPin)
+                0x00010f54                FEHEncoder::FEHEncoder(FEHIO::FEHIOPin)
  .text._ZN10FEHEncoder10ProcessIntEv
-                0x000110d0       0x80 Libraries\FEHIO.o
-                0x000110d0                FEHEncoder::ProcessInt()
+                0x000110e8       0x80 Libraries\FEHIO.o
+                0x000110e8                FEHEncoder::ProcessInt()
  .text._ZN10FEHEncoder14ProcessIntSelfEv
-                0x00011150       0x80 Libraries\FEHIO.o
-                0x00011150                FEHEncoder::ProcessIntSelf()
+                0x00011168       0x80 Libraries\FEHIO.o
+                0x00011168                FEHEncoder::ProcessIntSelf()
  .text._ZN10FEHEncoder6CountsEv
-                0x000111d0       0x18 Libraries\FEHIO.o
-                0x000111d0                FEHEncoder::Counts()
+                0x000111e8       0x18 Libraries\FEHIO.o
+                0x000111e8                FEHEncoder::Counts()
  .text._ZN10FEHEncoder11ResetCountsEv
-                0x000111e8       0x1c Libraries\FEHIO.o
-                0x000111e8                FEHEncoder::ResetCounts()
+                0x00011200       0x1c Libraries\FEHIO.o
+                0x00011200                FEHEncoder::ResetCounts()
  .text._ZN11ButtonBoardC2EN5FEHIO9FEHIOPortE
-                0x00011204      0x10c Libraries\FEHIO.o
-                0x00011204                ButtonBoard::ButtonBoard(FEHIO::FEHIOPort)
-                0x00011204                ButtonBoard::ButtonBoard(FEHIO::FEHIOPort)
+                0x0001121c      0x10c Libraries\FEHIO.o
+                0x0001121c                ButtonBoard::ButtonBoard(FEHIO::FEHIOPort)
+                0x0001121c                ButtonBoard::ButtonBoard(FEHIO::FEHIOPort)
  .text._ZN11ButtonBoard11LeftPressedEv
-                0x00011310       0x24 Libraries\FEHIO.o
-                0x00011310                ButtonBoard::LeftPressed()
+                0x00011328       0x24 Libraries\FEHIO.o
+                0x00011328                ButtonBoard::LeftPressed()
  .text._ZN11ButtonBoard13MiddlePressedEv
-                0x00011334       0x28 Libraries\FEHIO.o
-                0x00011334                ButtonBoard::MiddlePressed()
+                0x0001134c       0x28 Libraries\FEHIO.o
+                0x0001134c                ButtonBoard::MiddlePressed()
  .text._ZN11ButtonBoard12RightPressedEv
-                0x0001135c       0x28 Libraries\FEHIO.o
-                0x0001135c                ButtonBoard::RightPressed()
+                0x00011374       0x28 Libraries\FEHIO.o
+                0x00011374                ButtonBoard::RightPressed()
  .text._Z7ADC_CalPV10ADC_MemMap
-                0x00011384      0x14c Drivers\adc16.o
-                0x00011384                ADC_Cal(ADC_MemMap volatile*)
+                0x0001139c      0x14c Drivers\adc16.o
+                0x0001139c                ADC_Cal(ADC_MemMap volatile*)
  .text._Z14ADC_Config_AltPV10ADC_MemMapP7adc_cfg
-                0x000114d0       0x6c Drivers\adc16.o
-                0x000114d0                ADC_Config_Alt(ADC_MemMap volatile*, adc_cfg*)
+                0x000114e8       0x6c Drivers\adc16.o
+                0x000114e8                ADC_Config_Alt(ADC_MemMap volatile*, adc_cfg*)
  .text._ZN9FEHBuzzerC2Ev
-                0x0001153c       0x18 Libraries\FEHBuzzer.o
-                0x0001153c                FEHBuzzer::FEHBuzzer()
-                0x0001153c                FEHBuzzer::FEHBuzzer()
+                0x00011554       0x18 Libraries\FEHBuzzer.o
+                0x00011554                FEHBuzzer::FEHBuzzer()
+                0x00011554                FEHBuzzer::FEHBuzzer()
  .text._Z41__static_initialization_and_destruction_0ii
-                0x00011554       0x30 Libraries\FEHBuzzer.o
+                0x0001156c       0x30 Libraries\FEHBuzzer.o
  .text._GLOBAL__sub_I_Buzzer
-                0x00011584       0x14 Libraries\FEHBuzzer.o
+                0x0001159c       0x14 Libraries\FEHBuzzer.o
  .text._ZN8FEHServoC2ENS_12FEHServoPortE
-                0x00011598       0x3c Libraries\FEHServo.o
-                0x00011598                FEHServo::FEHServo(FEHServo::FEHServoPort)
-                0x00011598                FEHServo::FEHServo(FEHServo::FEHServoPort)
+                0x000115b0       0x3c Libraries\FEHServo.o
+                0x000115b0                FEHServo::FEHServo(FEHServo::FEHServoPort)
+                0x000115b0                FEHServo::FEHServo(FEHServo::FEHServoPort)
  .text._ZN8FEHServo6SetMinEi
-                0x000115d4       0x3c Libraries\FEHServo.o
-                0x000115d4                FEHServo::SetMin(int)
+                0x000115ec       0x3c Libraries\FEHServo.o
+                0x000115ec                FEHServo::SetMin(int)
  .text._ZN8FEHServo6SetMaxEi
-                0x00011610       0x3c Libraries\FEHServo.o
-                0x00011610                FEHServo::SetMax(int)
- *fill*         0x0001164c        0x4 00
+                0x00011628       0x3c Libraries\FEHServo.o
+                0x00011628                FEHServo::SetMax(int)
+ *fill*         0x00011664        0x4 00
  .text._ZN8FEHServo9SetDegreeEf
-                0x00011650      0x148 Libraries\FEHServo.o
-                0x00011650                FEHServo::SetDegree(float)
+                0x00011668      0x148 Libraries\FEHServo.o
+                0x00011668                FEHServo::SetDegree(float)
  .text._ZN8FEHServo9DigitalOnEv
-                0x00011798       0x64 Libraries\FEHServo.o
-                0x00011798                FEHServo::DigitalOn()
+                0x000117b0       0x64 Libraries\FEHServo.o
+                0x000117b0                FEHServo::DigitalOn()
  .text._ZN8FEHServo9CalibrateEv
-                0x000117fc      0x384 Libraries\FEHServo.o
-                0x000117fc                FEHServo::Calibrate()
+                0x00011814      0x384 Libraries\FEHServo.o
+                0x00011814                FEHServo::Calibrate()
  .text._ZN6FEHLCD11_InitializeEv
-                0x00011b80      0x5c0 Libraries\FEHLCD.o
-                0x00011b80                FEHLCD::_Initialize()
+                0x00011b98      0x5c0 Libraries\FEHLCD.o
+                0x00011b98                FEHLCD::_Initialize()
  .text._ZN6FEHLCDC2Ev
-                0x00012140       0x64 Libraries\FEHLCD.o
-                0x00012140                FEHLCD::FEHLCD()
-                0x00012140                FEHLCD::FEHLCD()
+                0x00012158       0x64 Libraries\FEHLCD.o
+                0x00012158                FEHLCD::FEHLCD()
+                0x00012158                FEHLCD::FEHLCD()
  .text._ZN6FEHLCD10InitializeEv
-                0x000121a4       0x38 Libraries\FEHLCD.o
-                0x000121a4                FEHLCD::Initialize()
+                0x000121bc       0x38 Libraries\FEHLCD.o
+                0x000121bc                FEHLCD::Initialize()
  .text._ZN6FEHLCD10PrintImageEii
-                0x000121dc       0xf4 Libraries\FEHLCD.o
-                0x000121dc                FEHLCD::PrintImage(int, int)
+                0x000121f4       0xf4 Libraries\FEHLCD.o
+                0x000121f4                FEHLCD::PrintImage(int, int)
  .text._ZN6FEHLCD22ConvertFEHColorTo24BitENS_11FEHLCDColorE
-                0x000122d0       0x80 Libraries\FEHLCD.o
-                0x000122d0                FEHLCD::ConvertFEHColorTo24Bit(FEHLCD::FEHLCDColor)
+                0x000122e8       0x80 Libraries\FEHLCD.o
+                0x000122e8                FEHLCD::ConvertFEHColorTo24Bit(FEHLCD::FEHLCDColor)
  .text._ZN6FEHLCD24Convert24BitColorTo16BitEj
-                0x00012350       0x40 Libraries\FEHLCD.o
-                0x00012350                FEHLCD::Convert24BitColorTo16Bit(unsigned int)
+                0x00012368       0x40 Libraries\FEHLCD.o
+                0x00012368                FEHLCD::Convert24BitColorTo16Bit(unsigned int)
  .text._ZN6FEHLCD22ConvertRGBColorTo16BitEhhh
-                0x00012390       0x44 Libraries\FEHLCD.o
-                0x00012390                FEHLCD::ConvertRGBColorTo16Bit(unsigned char, unsigned char, unsigned char)
+                0x000123a8       0x44 Libraries\FEHLCD.o
+                0x000123a8                FEHLCD::ConvertRGBColorTo16Bit(unsigned char, unsigned char, unsigned char)
  .text._ZN6FEHLCD5ClearENS_11FEHLCDColorE
-                0x000123d4       0x28 Libraries\FEHLCD.o
-                0x000123d4                FEHLCD::Clear(FEHLCD::FEHLCDColor)
+                0x000123ec       0x28 Libraries\FEHLCD.o
+                0x000123ec                FEHLCD::Clear(FEHLCD::FEHLCDColor)
  .text._ZN6FEHLCD5ClearEj
-                0x000123fc       0x2c Libraries\FEHLCD.o
-                0x000123fc                FEHLCD::Clear(unsigned int)
+                0x00012414       0x2c Libraries\FEHLCD.o
+                0x00012414                FEHLCD::Clear(unsigned int)
  .text._ZN6FEHLCD5ClearEv
-                0x00012428       0x18 Libraries\FEHLCD.o
-                0x00012428                FEHLCD::Clear()
+                0x00012440       0x18 Libraries\FEHLCD.o
+                0x00012440                FEHLCD::Clear()
  .text._ZN6FEHLCD18SetBackgroundColorENS_11FEHLCDColorE
-                0x00012440       0x28 Libraries\FEHLCD.o
-                0x00012440                FEHLCD::SetBackgroundColor(FEHLCD::FEHLCDColor)
+                0x00012458       0x28 Libraries\FEHLCD.o
+                0x00012458                FEHLCD::SetBackgroundColor(FEHLCD::FEHLCDColor)
  .text._ZN6FEHLCD18SetBackgroundColorEj
-                0x00012468       0x28 Libraries\FEHLCD.o
-                0x00012468                FEHLCD::SetBackgroundColor(unsigned int)
+                0x00012480       0x28 Libraries\FEHLCD.o
+                0x00012480                FEHLCD::SetBackgroundColor(unsigned int)
  .text._ZN6FEHLCD12SetFontColorENS_11FEHLCDColorE
-                0x00012490       0x28 Libraries\FEHLCD.o
-                0x00012490                FEHLCD::SetFontColor(FEHLCD::FEHLCDColor)
+                0x000124a8       0x28 Libraries\FEHLCD.o
+                0x000124a8                FEHLCD::SetFontColor(FEHLCD::FEHLCDColor)
  .text._ZN6FEHLCD12SetFontColorEj
-                0x000124b8       0x28 Libraries\FEHLCD.o
-                0x000124b8                FEHLCD::SetFontColor(unsigned int)
+                0x000124d0       0x28 Libraries\FEHLCD.o
+                0x000124d0                FEHLCD::SetFontColor(unsigned int)
  .text._ZN6FEHLCD7WriteAtEPKcii
-                0x000124e0       0x58 Libraries\FEHLCD.o
-                0x000124e0                FEHLCD::WriteAt(char const*, int, int)
+                0x000124f8       0x58 Libraries\FEHLCD.o
+                0x000124f8                FEHLCD::WriteAt(char const*, int, int)
  .text._ZN6FEHLCD5WriteEPKc
-                0x00012538       0x5c Libraries\FEHLCD.o
-                0x00012538                FEHLCD::Write(char const*)
+                0x00012550       0x5c Libraries\FEHLCD.o
+                0x00012550                FEHLCD::Write(char const*)
  .text._ZN6FEHLCD5WriteEi
-                0x00012594       0x34 Libraries\FEHLCD.o
-                0x00012594                FEHLCD::Write(int)
+                0x000125ac       0x34 Libraries\FEHLCD.o
+                0x000125ac                FEHLCD::Write(int)
  .text._ZN6FEHLCD5WriteEf
-                0x000125c8       0xdc Libraries\FEHLCD.o
-                0x000125c8                FEHLCD::Write(float)
+                0x000125e0       0xdc Libraries\FEHLCD.o
+                0x000125e0                FEHLCD::Write(float)
  .text._ZN6FEHLCD5WriteEb
-                0x000126a4       0x38 Libraries\FEHLCD.o
-                0x000126a4                FEHLCD::Write(bool)
+                0x000126bc       0x38 Libraries\FEHLCD.o
+                0x000126bc                FEHLCD::Write(bool)
  .text._ZN6FEHLCD5WriteEc
-                0x000126dc       0x30 Libraries\FEHLCD.o
-                0x000126dc                FEHLCD::Write(char)
+                0x000126f4       0x30 Libraries\FEHLCD.o
+                0x000126f4                FEHLCD::Write(char)
  .text._ZN6FEHLCD9WriteLineEPKc
-                0x0001270c       0x28 Libraries\FEHLCD.o
-                0x0001270c                FEHLCD::WriteLine(char const*)
+                0x00012724       0x28 Libraries\FEHLCD.o
+                0x00012724                FEHLCD::WriteLine(char const*)
  .text._ZN6FEHLCD9WriteLineEi
-                0x00012734       0x28 Libraries\FEHLCD.o
-                0x00012734                FEHLCD::WriteLine(int)
+                0x0001274c       0x28 Libraries\FEHLCD.o
+                0x0001274c                FEHLCD::WriteLine(int)
  .text._ZN6FEHLCD9WriteLineEf
-                0x0001275c       0x28 Libraries\FEHLCD.o
-                0x0001275c                FEHLCD::WriteLine(float)
+                0x00012774       0x28 Libraries\FEHLCD.o
+                0x00012774                FEHLCD::WriteLine(float)
  .text._ZN6FEHLCD9WriteLineEb
-                0x00012784       0x2c Libraries\FEHLCD.o
-                0x00012784                FEHLCD::WriteLine(bool)
+                0x0001279c       0x2c Libraries\FEHLCD.o
+                0x0001279c                FEHLCD::WriteLine(bool)
  .text._ZN6FEHLCD9WriteLineEc
-                0x000127b0       0x2c Libraries\FEHLCD.o
-                0x000127b0                FEHLCD::WriteLine(char)
+                0x000127c8       0x2c Libraries\FEHLCD.o
+                0x000127c8                FEHLCD::WriteLine(char)
  .text._ZN6FEHLCD10WriteIndexEh
-                0x000127dc      0x288 Libraries\FEHLCD.o
-                0x000127dc                FEHLCD::WriteIndex(unsigned char)
+                0x000127f4      0x288 Libraries\FEHLCD.o
+                0x000127f4                FEHLCD::WriteIndex(unsigned char)
  .text._ZN6FEHLCD14WriteParameterEh
-                0x00012a64      0x254 Libraries\FEHLCD.o
-                0x00012a64                FEHLCD::WriteParameter(unsigned char)
+                0x00012a7c      0x254 Libraries\FEHLCD.o
+                0x00012a7c                FEHLCD::WriteParameter(unsigned char)
  .text._ZN6FEHLCD6_ClearEv
-                0x00012cb8      0x228 Libraries\FEHLCD.o
-                0x00012cb8                FEHLCD::_Clear()
+                0x00012cd0      0x228 Libraries\FEHLCD.o
+                0x00012cd0                FEHLCD::_Clear()
  .text._ZN6FEHLCD8NextLineEv
-                0x00012ee0       0x30 Libraries\FEHLCD.o
-                0x00012ee0                FEHLCD::NextLine()
+                0x00012ef8       0x30 Libraries\FEHLCD.o
+                0x00012ef8                FEHLCD::NextLine()
  .text._ZN6FEHLCD9CheckLineEv
-                0x00012f10       0x2c Libraries\FEHLCD.o
-                0x00012f10                FEHLCD::CheckLine()
+                0x00012f28       0x2c Libraries\FEHLCD.o
+                0x00012f28                FEHLCD::CheckLine()
  .text._ZN6FEHLCD8NextCharEv
-                0x00012f3c       0x34 Libraries\FEHLCD.o
-                0x00012f3c                FEHLCD::NextChar()
+                0x00012f54       0x34 Libraries\FEHLCD.o
+                0x00012f54                FEHLCD::NextChar()
  .text._ZN6FEHLCD13SetDrawRegionEiiii
-                0x00012f70      0x10c Libraries\FEHLCD.o
-                0x00012f70                FEHLCD::SetDrawRegion(int, int, int, int)
+                0x00012f88      0x10c Libraries\FEHLCD.o
+                0x00012f88                FEHLCD::SetDrawRegion(int, int, int, int)
  .text._ZN6FEHLCD9WriteCharEiic
-                0x0001307c       0x40 Libraries\FEHLCD.o
-                0x0001307c                FEHLCD::WriteChar(int, int, char)
+                0x00013094       0x40 Libraries\FEHLCD.o
+                0x00013094                FEHLCD::WriteChar(int, int, char)
  .text._ZN6FEHLCD11WriteCharAtEiic
-                0x000130bc      0x278 Libraries\FEHLCD.o
-                0x000130bc                FEHLCD::WriteCharAt(int, int, char)
+                0x000130d4      0x278 Libraries\FEHLCD.o
+                0x000130d4                FEHLCD::WriteCharAt(int, int, char)
  .text._ZN6FEHLCD11RepeatColorEv
-                0x00013334       0xbc Libraries\FEHLCD.o
-                0x00013334                FEHLCD::RepeatColor()
+                0x0001334c       0xbc Libraries\FEHLCD.o
+                0x0001334c                FEHLCD::RepeatColor()
  .text._ZN6FEHLCD10_ForePixelEv
-                0x000133f0      0x160 Libraries\FEHLCD.o
-                0x000133f0                FEHLCD::_ForePixel()
+                0x00013408      0x160 Libraries\FEHLCD.o
+                0x00013408                FEHLCD::_ForePixel()
  .text._ZN6FEHLCD10_BackPixelEv
-                0x00013550      0x160 Libraries\FEHLCD.o
-                0x00013550                FEHLCD::_BackPixel()
+                0x00013568      0x160 Libraries\FEHLCD.o
+                0x00013568                FEHLCD::_BackPixel()
  .text._ZN6FEHLCD22SetRegisterColorValuesEv
-                0x000136b0      0x4c0 Libraries\FEHLCD.o
-                0x000136b0                FEHLCD::SetRegisterColorValues()
+                0x000136c8      0x4c0 Libraries\FEHLCD.o
+                0x000136c8                FEHLCD::SetRegisterColorValues()
  .text._Z41__static_initialization_and_destruction_0ii
-                0x00013b70       0x30 Libraries\FEHLCD.o
+                0x00013b88       0x30 Libraries\FEHLCD.o
  .text._GLOBAL__sub_I_image
-                0x00013ba0       0x14 Libraries\FEHLCD.o
+                0x00013bb8       0x14 Libraries\FEHLCD.o
  .text._ZN10FEHBatteryC2EN5FEHIO8FEHIOPinE
-                0x00013bb4       0x24 Libraries\FEHBattery.o
-                0x00013bb4                FEHBattery::FEHBattery(FEHIO::FEHIOPin)
-                0x00013bb4                FEHBattery::FEHBattery(FEHIO::FEHIOPin)
+                0x00013bcc       0x24 Libraries\FEHBattery.o
+                0x00013bcc                FEHBattery::FEHBattery(FEHIO::FEHIOPin)
+                0x00013bcc                FEHBattery::FEHBattery(FEHIO::FEHIOPin)
  .text._Z41__static_initialization_and_destruction_0ii
-                0x00013bd8       0x34 Libraries\FEHBattery.o
+                0x00013bf0       0x34 Libraries\FEHBattery.o
  .text._GLOBAL__sub_I_Battery
-                0x00013c0c       0x14 Libraries\FEHBattery.o
+                0x00013c24       0x14 Libraries\FEHBattery.o
  .text._ZN7FEHXBeeC2Ev
-                0x00013c20       0x20 Drivers\FEHXBee.o
-                0x00013c20                FEHXBee::FEHXBee()
-                0x00013c20                FEHXBee::FEHXBee()
+                0x00013c38       0x20 Drivers\FEHXBee.o
+                0x00013c38                FEHXBee::FEHXBee()
+                0x00013c38                FEHXBee::FEHXBee()
  .text._ZN7FEHXBee10InitializeEv
-                0x00013c40      0x148 Drivers\FEHXBee.o
-                0x00013c40                FEHXBee::Initialize()
+                0x00013c58      0x148 Drivers\FEHXBee.o
+                0x00013c58                FEHXBee::Initialize()
  .text._ZN7FEHXBee13IsInitializedEv
-                0x00013d88       0x18 Drivers\FEHXBee.o
-                0x00013d88                FEHXBee::IsInitialized()
+                0x00013da0       0x18 Drivers\FEHXBee.o
+                0x00013da0                FEHXBee::IsInitialized()
  .text._ZN7FEHXBee17ReceiveDataSearchEPcjh
-                0x00013da0       0xb4 Drivers\FEHXBee.o
-                0x00013da0                FEHXBee::ReceiveDataSearch(char*, unsigned int, unsigned char)
+                0x00013db8       0xb4 Drivers\FEHXBee.o
+                0x00013db8                FEHXBee::ReceiveDataSearch(char*, unsigned int, unsigned char)
  .text._ZN7FEHXBee8SendDataEPcj
-                0x00013e54       0x50 Drivers\FEHXBee.o
-                0x00013e54                FEHXBee::SendData(char*, unsigned int)
+                0x00013e6c       0x50 Drivers\FEHXBee.o
+                0x00013e6c                FEHXBee::SendData(char*, unsigned int)
  .text._ZN7FEHXBee17SetPacketCallBackEPFvPhhE
-                0x00013ea4       0x20 Drivers\FEHXBee.o
-                0x00013ea4                FEHXBee::SetPacketCallBack(void (*)(unsigned char*, unsigned char))
+                0x00013ebc       0x20 Drivers\FEHXBee.o
+                0x00013ebc                FEHXBee::SetPacketCallBack(void (*)(unsigned char*, unsigned char))
  .text._Z9UART0_ISRv
-                0x00013ec4      0x174 Drivers\FEHXBee.o
-                0x00013ec4                UART0_ISR()
+                0x00013edc      0x174 Drivers\FEHXBee.o
+                0x00013edc                UART0_ISR()
  .text._ZN8FEHWONKAC2Ev
-                0x00014038       0x88 Libraries\FEHWONKA.o
-                0x00014038                FEHWONKA::FEHWONKA()
-                0x00014038                FEHWONKA::FEHWONKA()
+                0x00014050       0x88 Libraries\FEHWONKA.o
+                0x00014050                FEHWONKA::FEHWONKA()
+                0x00014050                FEHWONKA::FEHWONKA()
  .text._ZN8FEHWONKA14InitializeMenuEv
-                0x000140c0      0x1e8 Libraries\FEHWONKA.o
-                0x000140c0                FEHWONKA::InitializeMenu()
+                0x000140d8      0x1e8 Libraries\FEHWONKA.o
+                0x000140d8                FEHWONKA::InitializeMenu()
  .text._ZN8FEHWONKA10InitializeEi
-                0x000142a8      0x740 Libraries\FEHWONKA.o
-                0x000142a8                FEHWONKA::Initialize(int)
+                0x000142c0      0x740 Libraries\FEHWONKA.o
+                0x000142c0                FEHWONKA::Initialize(int)
  .text._ZN8FEHWONKA10InitializeEc
-                0x000149e8       0x4c Libraries\FEHWONKA.o
-                0x000149e8                FEHWONKA::Initialize(char)
+                0x00014a00       0x4c Libraries\FEHWONKA.o
+                0x00014a00                FEHWONKA::Initialize(char)
  .text._ZN8FEHWONKA6EnableEv
-                0x00014a34       0x58 Libraries\FEHWONKA.o
-                0x00014a34                FEHWONKA::Enable()
+                0x00014a4c       0x58 Libraries\FEHWONKA.o
+                0x00014a4c                FEHWONKA::Enable()
  .text._ZN8FEHWONKA19CurrentRegionLetterEv
-                0x00014a8c       0x20 Libraries\FEHWONKA.o
-                0x00014a8c                FEHWONKA::CurrentRegionLetter()
+                0x00014aa4       0x20 Libraries\FEHWONKA.o
+                0x00014aa4                FEHWONKA::CurrentRegionLetter()
  .text._ZN8FEHWONKA13WaitForPacketEv
-                0x00014aac       0x7c Libraries\FEHWONKA.o
-                0x00014aac                FEHWONKA::WaitForPacket()
+                0x00014ac4       0x7c Libraries\FEHWONKA.o
+                0x00014ac4                FEHWONKA::WaitForPacket()
  .text._ZN8FEHWONKA7HeadingEv
-                0x00014b28       0x20 Libraries\FEHWONKA.o
-                0x00014b28                FEHWONKA::Heading()
+                0x00014b40       0x20 Libraries\FEHWONKA.o
+                0x00014b40                FEHWONKA::Heading()
  .text._Z16WONKADataProcessPhh
-                0x00014b48      0x12c Libraries\FEHWONKA.o
-                0x00014b48                WONKADataProcess(unsigned char*, unsigned char)
+                0x00014b60      0x12c Libraries\FEHWONKA.o
+                0x00014b60                WONKADataProcess(unsigned char*, unsigned char)
  .text._Z41__static_initialization_and_destruction_0ii
-                0x00014c74       0x40 Libraries\FEHWONKA.o
+                0x00014c8c       0x40 Libraries\FEHWONKA.o
  .text._GLOBAL__sub_I_WONKA
-                0x00014cb4       0x14 Libraries\FEHWONKA.o
- .text.sprintf  0x00014cc8       0x1c C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(sprintf.o)
-                0x00014cc8                sprintf
+                0x00014ccc       0x14 Libraries\FEHWONKA.o
+ .text.sprintf  0x00014ce0       0x1c C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(sprintf.o)
+                0x00014ce0                sprintf
  .text.__StringWrite
-                0x00014ce4       0x28 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(vsnprintf.o)
-                0x00014ce4                __StringWrite
+                0x00014cfc       0x28 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(vsnprintf.o)
+                0x00014cfc                __StringWrite
  .text.vsnprintf
-                0x00014d0c       0x34 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(vsnprintf.o)
-                0x00014d0c                vsnprintf
- .text.exit     0x00014d40       0x38 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(exit.o)
-                0x00014d40                exit
- .text.memcpy   0x00014d78       0x12 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(memcpy.o)
-                0x00014d78                memcpy
- .text.memset   0x00014d8a        0xc C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(memset.o)
-                0x00014d8a                memset
+                0x00014d24       0x34 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(vsnprintf.o)
+                0x00014d24                vsnprintf
+ .text.exit     0x00014d58       0x38 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(exit.o)
+                0x00014d58                exit
+ .text.memcpy   0x00014d90       0x12 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(memcpy.o)
+                0x00014d90                memcpy
+ .text.memset   0x00014da2        0xc C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(memset.o)
+                0x00014da2                memset
  .text.long2str.isra.0
-                0x00014d96      0x196 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(printformat_.o)
+                0x00014dae      0x196 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(printformat_.o)
  .text.__pformatter_
-                0x00014f2c      0x3f8 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(printformat_.o)
-                0x00014f2c                __pformatter_
+                0x00014f44      0x3f8 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(printformat_.o)
+                0x00014f44                __pformatter_
  .text.__sformatter
-                0x00015324      0x74e C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(scanformat_.o)
-                0x00015324                __sformatter
- *fill*         0x00015a72        0x2 00
- .text.isalpha  0x00015a74       0x1c C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(ctype_aeabi.o)
-                0x00015a74                isalpha
- .text.isspace  0x00015a90       0x1c C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(ctype_aeabi.o)
-                0x00015a90                isspace
- .text.toupper  0x00015aac        0xc C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(ctype_aeabi.o)
-                0x00015aac                toupper
+                0x0001533c      0x74e C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(scanformat_.o)
+                0x0001533c                __sformatter
+ *fill*         0x00015a8a        0x2 00
+ .text.isalpha  0x00015a8c       0x1c C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(ctype_aeabi.o)
+                0x00015a8c                isalpha
+ .text.isspace  0x00015aa8       0x1c C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(ctype_aeabi.o)
+                0x00015aa8                isspace
+ .text.toupper  0x00015ac4        0xc C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(ctype_aeabi.o)
+                0x00015ac4                toupper
  .text.__strtoul
-                0x00015ab8      0x1dc C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(__strtoul.o)
-                0x00015ab8                __strtoul
+                0x00015ad0      0x1dc C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(__strtoul.o)
+                0x00015ad0                __strtoul
  .text.__fill_mem
-                0x00015c94       0x76 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(__filll_mem.o)
-                0x00015c94                __fill_mem
- .text.memchr   0x00015d0a       0x1a C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(memchr.o)
-                0x00015d0a                memchr
- .text.strchr   0x00015d24       0x1c C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(strchr.o)
-                0x00015d24                strchr
- .text.strlen   0x00015d40       0x10 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(strlen.o)
-                0x00015d40                strlen
+                0x00015cac       0x76 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(__filll_mem.o)
+                0x00015cac                __fill_mem
+ .text.memchr   0x00015d22       0x1a C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(memchr.o)
+                0x00015d22                memchr
+ .text.strchr   0x00015d3c       0x1c C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(strchr.o)
+                0x00015d3c                strchr
+ .text.strlen   0x00015d58       0x10 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(strlen.o)
+                0x00015d58                strlen
  .text.__init_cpp
-                0x00015d50       0x4c C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(gcc_ctor_dtor.o)
-                0x00015d50                __init_cpp
+                0x00015d68       0x4c C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(gcc_ctor_dtor.o)
+                0x00015d68                __init_cpp
  .text.__fini_cpp
-                0x00015d9c       0x34 C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(gcc_ctor_dtor.o)
-                0x00015d9c                __fini_cpp
+                0x00015db4       0x34 C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(gcc_ctor_dtor.o)
+                0x00015db4                __fini_cpp
  .text.__copy_rom_section
-                0x00015dd0       0x44 C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(ROMCopy.o)
-                0x00015dd0                __copy_rom_section
+                0x00015de8       0x44 C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(ROMCopy.o)
+                0x00015de8                __copy_rom_section
  .text.__copy_rom_sections_to_ram
-                0x00015e14       0x34 C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(ROMCopy.o)
-                0x00015e14                __copy_rom_sections_to_ram
+                0x00015e2c       0x34 C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(ROMCopy.o)
+                0x00015e2c                __copy_rom_sections_to_ram
  .text.__destroy_global_chain
-                0x00015e48       0x1c C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(__arm_eabi_init.o)
-                0x00015e48                __destroy_global_chain
+                0x00015e60       0x1c C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(__arm_eabi_init.o)
+                0x00015e60                __destroy_global_chain
  .text.__init_registers
-                0x00015e64       0x20 C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(__arm_eabi_init.o)
-                0x00015e64                __init_registers
+                0x00015e7c       0x20 C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(__arm_eabi_init.o)
+                0x00015e7c                __init_registers
  .text.__init_user
-                0x00015e84        0x4 C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(__arm_eabi_init.o)
-                0x00015e84                __init_user
+                0x00015e9c        0x4 C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(__arm_eabi_init.o)
+                0x00015e9c                __init_user
  .text._ZNSt9bad_allocD2Ev
-                0x00015e88        0xc C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(New.o)
-                0x00015e88                std::bad_alloc::~bad_alloc()
-                0x00015e88                std::bad_alloc::~bad_alloc()
+                0x00015ea0        0xc C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(New.o)
+                0x00015ea0                std::bad_alloc::~bad_alloc()
+                0x00015ea0                std::bad_alloc::~bad_alloc()
  .text._ZNKSt9bad_alloc4whatEv
-                0x00015e94        0x8 C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(New.o)
-                0x00015e94                std::bad_alloc::what() const
- .text._Znwj    0x00015e9c       0x4c C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(New.o)
-                0x00015e9c                operator new(unsigned int)
- .text._ZdlPv   0x00015ee8        0x8 C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(New.o)
-                0x00015ee8                operator delete(void*)
+                0x00015eac        0x8 C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(New.o)
+                0x00015eac                std::bad_alloc::what() const
+ .text._Znwj    0x00015eb4       0x4c C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(New.o)
+                0x00015eb4                operator new(unsigned int)
+ .text._ZdlPv   0x00015f00        0x8 C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(New.o)
+                0x00015f00                operator delete(void*)
  .text._ZNSt9bad_allocD0Ev
-                0x00015ef0       0x14 C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(New.o)
-                0x00015ef0                std::bad_alloc::~bad_alloc()
- .text._Znaj    0x00015f04       0x14 C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(New.o)
-                0x00015f04                operator new[](unsigned int)
+                0x00015f08       0x14 C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(New.o)
+                0x00015f08                std::bad_alloc::~bad_alloc()
+ .text._Znaj    0x00015f1c       0x14 C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(New.o)
+                0x00015f1c                operator new[](unsigned int)
  .text._ZNK10__cxxabiv117__class_type_info11__do_upcastEPKS0_PPv
-                0x00015f18       0x38 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(class_type_info.o)
-                0x00015f18                __cxxabiv1::__class_type_info::__do_upcast(__cxxabiv1::__class_type_info const*, void**) const
+                0x00015f30       0x38 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(class_type_info.o)
+                0x00015f30                __cxxabiv1::__class_type_info::__do_upcast(__cxxabiv1::__class_type_info const*, void**) const
  .text._ZNK10__cxxabiv117__class_type_info20__do_find_public_srcEiPKvPKS0_S2_
-                0x00015f50        0xc c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(class_type_info.o)
-                0x00015f50                __cxxabiv1::__class_type_info::__do_find_public_src(int, void const*, __cxxabiv1::__class_type_info const*, void const*) const
+                0x00015f68        0xc c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(class_type_info.o)
+                0x00015f68                __cxxabiv1::__class_type_info::__do_find_public_src(int, void const*, __cxxabiv1::__class_type_info const*, void const*) const
  .text._ZNK10__cxxabiv117__class_type_info11__do_upcastEPKS0_PKvRNS0_15__upcast_resultE
-                0x00015f5c       0x1c c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(class_type_info.o)
-                0x00015f5c                __cxxabiv1::__class_type_info::__do_upcast(__cxxabiv1::__class_type_info const*, void const*, __cxxabiv1::__class_type_info::__upcast_result&) const
+                0x00015f74       0x1c c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(class_type_info.o)
+                0x00015f74                __cxxabiv1::__class_type_info::__do_upcast(__cxxabiv1::__class_type_info const*, void const*, __cxxabiv1::__class_type_info::__upcast_result&) const
  .text._ZN10__cxxabiv117__class_type_infoD2Ev
-                0x00015f78       0x14 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(class_type_info.o)
-                0x00015f78                __cxxabiv1::__class_type_info::~__class_type_info()
-                0x00015f78                __cxxabiv1::__class_type_info::~__class_type_info()
+                0x00015f90       0x14 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(class_type_info.o)
+                0x00015f90                __cxxabiv1::__class_type_info::~__class_type_info()
+                0x00015f90                __cxxabiv1::__class_type_info::~__class_type_info()
  .text._ZN10__cxxabiv117__class_type_infoD0Ev
-                0x00015f8c       0x1c c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(class_type_info.o)
-                0x00015f8c                __cxxabiv1::__class_type_info::~__class_type_info()
+                0x00015fa4       0x1c c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(class_type_info.o)
+                0x00015fa4                __cxxabiv1::__class_type_info::~__class_type_info()
  .text._ZNK10__cxxabiv117__class_type_info12__do_dyncastEiNS0_10__sub_kindEPKS0_PKvS3_S5_RNS0_16__dyncast_resultE
-                0x00015fa8       0x3c c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(class_type_info.o)
-                0x00015fa8                __cxxabiv1::__class_type_info::__do_dyncast(int, __cxxabiv1::__class_type_info::__sub_kind, __cxxabiv1::__class_type_info const*, void const*, __cxxabiv1::__class_type_info const*, void const*, __cxxabiv1::__class_type_info::__dyncast_result&) const
+                0x00015fc0       0x3c c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(class_type_info.o)
+                0x00015fc0                __cxxabiv1::__class_type_info::__do_dyncast(int, __cxxabiv1::__class_type_info::__sub_kind, __cxxabiv1::__class_type_info const*, void const*, __cxxabiv1::__class_type_info const*, void const*, __cxxabiv1::__class_type_info::__dyncast_result&) const
  .text._ZNK10__cxxabiv117__class_type_info10__do_catchEPKSt9type_infoPPvj
-                0x00015fe4       0x28 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(class_type_info.o)
-                0x00015fe4                __cxxabiv1::__class_type_info::__do_catch(std::type_info const*, void**, unsigned int) const
+                0x00015ffc       0x28 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(class_type_info.o)
+                0x00015ffc                __cxxabiv1::__class_type_info::__do_catch(std::type_info const*, void**, unsigned int) const
  .text.__cxa_allocate_exception
-                0x0001600c       0x70 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_alloc.o)
-                0x0001600c                __cxa_allocate_exception
+                0x00016024       0x70 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_alloc.o)
+                0x00016024                __cxa_allocate_exception
  .text.__cxa_free_exception
-                0x0001607c       0x34 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_alloc.o)
-                0x0001607c                __cxa_free_exception
+                0x00016094       0x34 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_alloc.o)
+                0x00016094                __cxa_free_exception
  .text.__cxa_end_cleanup
-                0x000160b0        0xc c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_arm.o)
-                0x000160b0                __cxa_end_cleanup
+                0x000160c8        0xc c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_arm.o)
+                0x000160c8                __cxa_end_cleanup
  .text.__cxa_type_match
-                0x000160bc       0xec c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_arm.o)
-                0x000160bc                __cxa_type_match
+                0x000160d4       0xec c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_arm.o)
+                0x000160d4                __cxa_type_match
  .text.__cxa_begin_cleanup
-                0x000161a8       0x78 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_arm.o)
-                0x000161a8                __cxa_begin_cleanup
+                0x000161c0       0x78 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_arm.o)
+                0x000161c0                __cxa_begin_cleanup
  .text.__gnu_end_cleanup
-                0x00016220       0x7c c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_arm.o)
-                0x00016220                __gnu_end_cleanup
+                0x00016238       0x7c c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_arm.o)
+                0x00016238                __gnu_end_cleanup
  .text.__cxa_bad_typeid
-                0x0001629c       0x24 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_aux_runtime.o)
-                0x0001629c                __cxa_bad_typeid
+                0x000162b4       0x24 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_aux_runtime.o)
+                0x000162b4                __cxa_bad_typeid
  .text.__cxa_call_terminate
-                0x000162c0       0x50 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_call.o)
-                0x000162c0                __cxa_call_terminate
+                0x000162d8       0x50 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_call.o)
+                0x000162d8                __cxa_call_terminate
  .text.__cxa_call_unexpected
-                0x00016310      0x120 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_call.o)
-                0x00016310                __cxa_call_unexpected
+                0x00016328      0x120 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_call.o)
+                0x00016328                __cxa_call_unexpected
  .text.__cxa_begin_catch
-                0x00016430       0x98 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_catch.o)
-                0x00016430                __cxa_begin_catch
+                0x00016448       0x98 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_catch.o)
+                0x00016448                __cxa_begin_catch
  .text.__cxa_end_catch
-                0x000164c8       0x98 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_catch.o)
-                0x000164c8                __cxa_end_catch
+                0x000164e0       0x98 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_catch.o)
+                0x000164e0                __cxa_end_catch
  .text._ZNSt9exceptionD2Ev
-                0x00016560        0xc c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_exception.o)
-                0x00016560                std::exception::~exception()
-                0x00016560                std::exception::~exception()
- .text._ZNSt13bad_exceptionD2Ev
-                0x0001656c        0xc c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_exception.o)
-                0x0001656c                std::bad_exception::~bad_exception()
-                0x0001656c                std::bad_exception::~bad_exception()
- .text._ZNKSt9exception4whatEv
                 0x00016578        0xc c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_exception.o)
-                0x00016578                std::exception::what() const
- .text._ZNKSt13bad_exception4whatEv
+                0x00016578                std::exception::~exception()
+                0x00016578                std::exception::~exception()
+ .text._ZNSt13bad_exceptionD2Ev
                 0x00016584        0xc c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_exception.o)
-                0x00016584                std::bad_exception::what() const
+                0x00016584                std::bad_exception::~bad_exception()
+                0x00016584                std::bad_exception::~bad_exception()
+ .text._ZNKSt9exception4whatEv
+                0x00016590        0xc c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_exception.o)
+                0x00016590                std::exception::what() const
+ .text._ZNKSt13bad_exception4whatEv
+                0x0001659c        0xc c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_exception.o)
+                0x0001659c                std::bad_exception::what() const
  .text._ZNSt13bad_exceptionD0Ev
-                0x00016590       0x14 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_exception.o)
-                0x00016590                std::bad_exception::~bad_exception()
+                0x000165a8       0x14 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_exception.o)
+                0x000165a8                std::bad_exception::~bad_exception()
  .text._ZNSt9exceptionD0Ev
-                0x000165a4       0x14 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_exception.o)
-                0x000165a4                std::exception::~exception()
+                0x000165bc       0x14 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_exception.o)
+                0x000165bc                std::exception::~exception()
  .text.__cxa_get_globals_fast
-                0x000165b8        0xc c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_globals.o)
-                0x000165b8                __cxa_get_globals_fast
+                0x000165d0        0xc c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_globals.o)
+                0x000165d0                __cxa_get_globals_fast
  .text.__cxa_get_globals
-                0x000165c4        0xc c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_globals.o)
-                0x000165c4                __cxa_get_globals
+                0x000165dc        0xc c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_globals.o)
+                0x000165dc                __cxa_get_globals
  .text._ZL12read_sleb128PKhPl
-                0x000165d0       0x3c c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_personality.o)
+                0x000165e8       0x3c c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_personality.o)
  .text._ZL28read_encoded_value_with_basehjPKhPj
-                0x0001660c       0xa4 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_personality.o)
+                0x00016624       0xa4 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_personality.o)
  .text._ZL21base_of_encoded_valuehP15_Unwind_Context
-                0x000166b0       0x4c c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_personality.o)
+                0x000166c8       0x4c c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_personality.o)
  .text._ZL17parse_lsda_headerP15_Unwind_ContextPKhP16lsda_header_info.constprop.1
-                0x000166fc       0x90 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_personality.o)
+                0x00016714       0x90 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_personality.o)
  .text.__gxx_personality_v0
-                0x0001678c      0x3bc c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_personality.o)
-                0x0001678c                __gxx_personality_v0
+                0x000167a4      0x3bc c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_personality.o)
+                0x000167a4                __gxx_personality_v0
  .text._ZN10__cxxabiv111__terminateEPFvvE
-                0x00016b48       0x28 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_terminate.o)
-                0x00016b48                __cxxabiv1::__terminate(void (*)())
+                0x00016b60       0x28 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_terminate.o)
+                0x00016b60                __cxxabiv1::__terminate(void (*)())
  .text._ZSt9terminatev
-                0x00016b70       0x10 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_terminate.o)
-                0x00016b70                std::terminate()
+                0x00016b88       0x10 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_terminate.o)
+                0x00016b88                std::terminate()
  .text._ZN10__cxxabiv112__unexpectedEPFvvE
-                0x00016b80        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_terminate.o)
-                0x00016b80                __cxxabiv1::__unexpected(void (*)())
+                0x00016b98        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_terminate.o)
+                0x00016b98                __cxxabiv1::__unexpected(void (*)())
  .text._ZSt10unexpectedv
-                0x00016b88       0x14 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_terminate.o)
-                0x00016b88                std::unexpected()
+                0x00016ba0       0x14 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_terminate.o)
+                0x00016ba0                std::unexpected()
  .text._ZL23__gxx_exception_cleanup19_Unwind_Reason_CodeP21_Unwind_Control_Block
-                0x00016b9c       0x4c c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_throw.o)
+                0x00016bb4       0x4c c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_throw.o)
  .text.__cxa_throw
-                0x00016be8       0x80 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_throw.o)
-                0x00016be8                __cxa_throw
+                0x00016c00       0x80 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_throw.o)
+                0x00016c00                __cxa_throw
  .text.__cxa_rethrow
-                0x00016c68       0x78 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_throw.o)
-                0x00016c68                __cxa_rethrow
+                0x00016c80       0x78 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_throw.o)
+                0x00016c80                __cxa_rethrow
  .text._ZN10__cxxabiv123__fundamental_type_infoD2Ev
-                0x00016ce0       0x14 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(fundamental_type_info.o)
-                0x00016ce0                __cxxabiv1::__fundamental_type_info::~__fundamental_type_info()
-                0x00016ce0                __cxxabiv1::__fundamental_type_info::~__fundamental_type_info()
+                0x00016cf8       0x14 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(fundamental_type_info.o)
+                0x00016cf8                __cxxabiv1::__fundamental_type_info::~__fundamental_type_info()
+                0x00016cf8                __cxxabiv1::__fundamental_type_info::~__fundamental_type_info()
  .text._ZN10__cxxabiv123__fundamental_type_infoD0Ev
-                0x00016cf4       0x1c c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(fundamental_type_info.o)
-                0x00016cf4                __cxxabiv1::__fundamental_type_info::~__fundamental_type_info()
+                0x00016d0c       0x1c c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(fundamental_type_info.o)
+                0x00016d0c                __cxxabiv1::__fundamental_type_info::~__fundamental_type_info()
  .text._ZNK10__cxxabiv119__pointer_type_info14__is_pointer_pEv
-                0x00016d10        0x4 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(pointer_type_info.o)
-                0x00016d10                __cxxabiv1::__pointer_type_info::__is_pointer_p() const
+                0x00016d28        0x4 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(pointer_type_info.o)
+                0x00016d28                __cxxabiv1::__pointer_type_info::__is_pointer_p() const
  .text._ZN10__cxxabiv119__pointer_type_infoD2Ev
-                0x00016d14       0x14 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(pointer_type_info.o)
-                0x00016d14                __cxxabiv1::__pointer_type_info::~__pointer_type_info()
-                0x00016d14                __cxxabiv1::__pointer_type_info::~__pointer_type_info()
+                0x00016d2c       0x14 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(pointer_type_info.o)
+                0x00016d2c                __cxxabiv1::__pointer_type_info::~__pointer_type_info()
+                0x00016d2c                __cxxabiv1::__pointer_type_info::~__pointer_type_info()
  .text._ZN10__cxxabiv119__pointer_type_infoD0Ev
-                0x00016d28       0x1c c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(pointer_type_info.o)
-                0x00016d28                __cxxabiv1::__pointer_type_info::~__pointer_type_info()
+                0x00016d40       0x1c c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(pointer_type_info.o)
+                0x00016d40                __cxxabiv1::__pointer_type_info::~__pointer_type_info()
  .text._ZNK10__cxxabiv119__pointer_type_info15__pointer_catchEPKNS_17__pbase_type_infoEPPvj
-                0x00016d44       0x44 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(pointer_type_info.o)
-                0x00016d44                __cxxabiv1::__pointer_type_info::__pointer_catch(__cxxabiv1::__pbase_type_info const*, void**, unsigned int) const
+                0x00016d5c       0x44 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(pointer_type_info.o)
+                0x00016d5c                __cxxabiv1::__pointer_type_info::__pointer_catch(__cxxabiv1::__pbase_type_info const*, void**, unsigned int) const
  .text._ZN10__cxxabiv120__si_class_type_infoD2Ev
-                0x00016d88       0x14 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(si_class_type_info.o)
-                0x00016d88                __cxxabiv1::__si_class_type_info::~__si_class_type_info()
-                0x00016d88                __cxxabiv1::__si_class_type_info::~__si_class_type_info()
+                0x00016da0       0x14 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(si_class_type_info.o)
+                0x00016da0                __cxxabiv1::__si_class_type_info::~__si_class_type_info()
+                0x00016da0                __cxxabiv1::__si_class_type_info::~__si_class_type_info()
  .text._ZN10__cxxabiv120__si_class_type_infoD0Ev
-                0x00016d9c       0x1c c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(si_class_type_info.o)
-                0x00016d9c                __cxxabiv1::__si_class_type_info::~__si_class_type_info()
+                0x00016db4       0x1c c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(si_class_type_info.o)
+                0x00016db4                __cxxabiv1::__si_class_type_info::~__si_class_type_info()
  .text._ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE
-                0x00016db8       0x24 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(si_class_type_info.o)
-                0x00016db8                __cxxabiv1::__si_class_type_info::__do_upcast(__cxxabiv1::__class_type_info const*, void const*, __cxxabiv1::__class_type_info::__upcast_result&) const
+                0x00016dd0       0x24 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(si_class_type_info.o)
+                0x00016dd0                __cxxabiv1::__si_class_type_info::__do_upcast(__cxxabiv1::__class_type_info const*, void const*, __cxxabiv1::__class_type_info::__upcast_result&) const
  .text._ZNK10__cxxabiv120__si_class_type_info12__do_dyncastEiNS_17__class_type_info10__sub_kindEPKS1_PKvS4_S6_RNS1_16__dyncast_resultE
-                0x00016ddc       0x94 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(si_class_type_info.o)
-                0x00016ddc                __cxxabiv1::__si_class_type_info::__do_dyncast(int, __cxxabiv1::__class_type_info::__sub_kind, __cxxabiv1::__class_type_info const*, void const*, __cxxabiv1::__class_type_info const*, void const*, __cxxabiv1::__class_type_info::__dyncast_result&) const
+                0x00016df4       0x94 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(si_class_type_info.o)
+                0x00016df4                __cxxabiv1::__si_class_type_info::__do_dyncast(int, __cxxabiv1::__class_type_info::__sub_kind, __cxxabiv1::__class_type_info const*, void const*, __cxxabiv1::__class_type_info const*, void const*, __cxxabiv1::__class_type_info::__dyncast_result&) const
  .text._ZNK10__cxxabiv120__si_class_type_info20__do_find_public_srcEiPKvPKNS_17__class_type_infoES2_
-                0x00016e70       0x34 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(si_class_type_info.o)
-                0x00016e70                __cxxabiv1::__si_class_type_info::__do_find_public_src(int, void const*, __cxxabiv1::__class_type_info const*, void const*) const
+                0x00016e88       0x34 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(si_class_type_info.o)
+                0x00016e88                __cxxabiv1::__si_class_type_info::__do_find_public_src(int, void const*, __cxxabiv1::__class_type_info const*, void const*) const
  .text._ZNSt9type_infoD2Ev
-                0x00016ea4        0xc c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(tinfo.o)
-                0x00016ea4                std::type_info::~type_info()
-                0x00016ea4                std::type_info::~type_info()
- .text._ZNKSt9type_info14__is_pointer_pEv
-                0x00016eb0        0x4 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(tinfo.o)
-                0x00016eb0                std::type_info::__is_pointer_p() const
- .text._ZNKSt9type_info15__is_function_pEv
-                0x00016eb4        0x4 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(tinfo.o)
-                0x00016eb4                std::type_info::__is_function_p() const
- .text._ZNKSt9type_info11__do_upcastEPKN10__cxxabiv117__class_type_infoEPPv
-                0x00016eb8        0x4 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(tinfo.o)
-                0x00016eb8                std::type_info::__do_upcast(__cxxabiv1::__class_type_info const*, void**) const
- .text._ZNSt9type_infoD0Ev
-                0x00016ebc       0x14 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(tinfo.o)
+                0x00016ebc        0xc c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(tinfo.o)
                 0x00016ebc                std::type_info::~type_info()
+                0x00016ebc                std::type_info::~type_info()
+ .text._ZNKSt9type_info14__is_pointer_pEv
+                0x00016ec8        0x4 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(tinfo.o)
+                0x00016ec8                std::type_info::__is_pointer_p() const
+ .text._ZNKSt9type_info15__is_function_pEv
+                0x00016ecc        0x4 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(tinfo.o)
+                0x00016ecc                std::type_info::__is_function_p() const
+ .text._ZNKSt9type_info11__do_upcastEPKN10__cxxabiv117__class_type_infoEPPv
+                0x00016ed0        0x4 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(tinfo.o)
+                0x00016ed0                std::type_info::__do_upcast(__cxxabiv1::__class_type_info const*, void**) const
+ .text._ZNSt9type_infoD0Ev
+                0x00016ed4       0x14 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(tinfo.o)
+                0x00016ed4                std::type_info::~type_info()
  .text._ZNKSt9type_infoeqERKS_
-                0x00016ed0       0x30 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(tinfo.o)
-                0x00016ed0                std::type_info::operator==(std::type_info const&) const
+                0x00016ee8       0x30 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(tinfo.o)
+                0x00016ee8                std::type_info::operator==(std::type_info const&) const
  .text._ZNKSt9type_info10__do_catchEPKS_PPvj
-                0x00016f00        0x4 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(tinfo.o)
-                0x00016f00                std::type_info::__do_catch(std::type_info const*, void**, unsigned int) const
+                0x00016f18        0x4 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(tinfo.o)
+                0x00016f18                std::type_info::__do_catch(std::type_info const*, void**, unsigned int) const
  .text._ZNKSt10bad_typeid4whatEv
-                0x00016f04        0xc c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(bad_typeid.o)
-                0x00016f04                std::bad_typeid::what() const
+                0x00016f1c        0xc c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(bad_typeid.o)
+                0x00016f1c                std::bad_typeid::what() const
  .text._ZNSt10bad_typeidD2Ev
-                0x00016f10       0x14 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(bad_typeid.o)
-                0x00016f10                std::bad_typeid::~bad_typeid()
-                0x00016f10                std::bad_typeid::~bad_typeid()
+                0x00016f28       0x14 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(bad_typeid.o)
+                0x00016f28                std::bad_typeid::~bad_typeid()
+                0x00016f28                std::bad_typeid::~bad_typeid()
  .text._ZNSt10bad_typeidD0Ev
-                0x00016f24       0x1c c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(bad_typeid.o)
-                0x00016f24                std::bad_typeid::~bad_typeid()
+                0x00016f3c       0x1c c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(bad_typeid.o)
+                0x00016f3c                std::bad_typeid::~bad_typeid()
  .text._ZNK10__cxxabiv117__pbase_type_info15__pointer_catchEPKS0_PPvj
-                0x00016f40       0x10 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(pbase_type_info.o)
-                0x00016f40                __cxxabiv1::__pbase_type_info::__pointer_catch(__cxxabiv1::__pbase_type_info const*, void**, unsigned int) const
+                0x00016f58       0x10 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(pbase_type_info.o)
+                0x00016f58                __cxxabiv1::__pbase_type_info::__pointer_catch(__cxxabiv1::__pbase_type_info const*, void**, unsigned int) const
  .text._ZN10__cxxabiv117__pbase_type_infoD2Ev
-                0x00016f50       0x14 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(pbase_type_info.o)
-                0x00016f50                __cxxabiv1::__pbase_type_info::~__pbase_type_info()
-                0x00016f50                __cxxabiv1::__pbase_type_info::~__pbase_type_info()
+                0x00016f68       0x14 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(pbase_type_info.o)
+                0x00016f68                __cxxabiv1::__pbase_type_info::~__pbase_type_info()
+                0x00016f68                __cxxabiv1::__pbase_type_info::~__pbase_type_info()
  .text._ZN10__cxxabiv117__pbase_type_infoD0Ev
-                0x00016f64       0x1c c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(pbase_type_info.o)
-                0x00016f64                __cxxabiv1::__pbase_type_info::~__pbase_type_info()
+                0x00016f7c       0x1c c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(pbase_type_info.o)
+                0x00016f7c                __cxxabiv1::__pbase_type_info::~__pbase_type_info()
  .text._ZNK10__cxxabiv117__pbase_type_info10__do_catchEPKSt9type_infoPPvj
-                0x00016f80       0x68 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(pbase_type_info.o)
-                0x00016f80                __cxxabiv1::__pbase_type_info::__do_catch(std::type_info const*, void**, unsigned int) const
- .text.abort    0x00016fe8       0x24 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(abort.o)
-                0x00016fe8                abort
- .text.sbrk     0x0001700c       0x28 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(alloc.o)
-                0x0001700c                sbrk
- .text.malloc   0x00017034      0x110 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(alloc.o)
-                0x00017034                malloc
- .text.free     0x00017144       0x10 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(alloc.o)
-                0x00017144                free
- .text.strcmp   0x00017154       0x18 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(strcmp.o)
-                0x00017154                strcmp
- .text.raise    0x0001716c       0x3c C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(raise.o)
-                0x0001716c                raise
+                0x00016f98       0x68 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(pbase_type_info.o)
+                0x00016f98                __cxxabiv1::__pbase_type_info::__do_catch(std::type_info const*, void**, unsigned int) const
+ .text.abort    0x00017000       0x24 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(abort.o)
+                0x00017000                abort
+ .text.sbrk     0x00017024       0x28 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(alloc.o)
+                0x00017024                sbrk
+ .text.malloc   0x0001704c      0x110 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(alloc.o)
+                0x0001704c                malloc
+ .text.free     0x0001715c       0x10 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(alloc.o)
+                0x0001715c                free
+ .text.strcmp   0x0001716c       0x18 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(strcmp.o)
+                0x0001716c                strcmp
+ .text.raise    0x00017184       0x3c C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(raise.o)
+                0x00017184                raise
  *(.rodata)
- .rodata        0x000171a8       0x94 ..\main.o
- .rodata        0x0001723c       0x2c ..\io.o
- .rodata        0x00017268       0x30 ..\drive.o
- .rodata        0x00017298       0x74 Libraries\FEHServo.o
- .rodata        0x0001730c       0x34 Libraries\FEHLCD.o
- .rodata        0x00017340      0x16c Libraries\FEHWONKA.o
+ .rodata        0x000171c0       0x94 ..\main.o
+ .rodata        0x00017254       0x2c ..\io.o
+ .rodata        0x00017280       0x30 ..\drive.o
+ .rodata        0x000172b0       0x74 Libraries\FEHServo.o
+ .rodata        0x00017324       0x34 Libraries\FEHLCD.o
+ .rodata        0x00017358      0x16c Libraries\FEHWONKA.o
  *(.rodata*)
  .rodata._ZL9GPIOPorts
-                0x000174ac       0x20 Libraries\FEHIO.o
+                0x000174c4       0x20 Libraries\FEHIO.o
  .rodata._ZL10ADCNumbers
-                0x000174cc       0x24 Libraries\FEHIO.o
+                0x000174e4       0x24 Libraries\FEHIO.o
  .rodata._ZL14GPIOPinNumbers
-                0x000174f0       0x80 Libraries\FEHIO.o
+                0x00017508       0x80 Libraries\FEHIO.o
  .rodata._ZL16AnalogPinNumbers
-                0x00017570       0x84 Libraries\FEHIO.o
+                0x00017588       0x84 Libraries\FEHIO.o
  .rodata.str1.1
                 0x00000000        0x0 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(printformat_.o)
                                   0x1 (size before relaxing)
  .rodata.__aeabi_ctype_table_C
-                0x000175f4      0x101 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(ctype_aeabi.o)
-                0x000175f4                __aeabi_ctype_table_C
- *fill*         0x000176f5        0x3 00
+                0x0001760c      0x101 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(ctype_aeabi.o)
+                0x0001760c                __aeabi_ctype_table_C
+ *fill*         0x0001770d        0x3 00
  .rodata._ZTVSt9bad_alloc
-                0x000176f8       0x18 C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(New.o)
-                0x000176f8                vtable for std::bad_alloc
+                0x00017710       0x18 C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(New.o)
+                0x00017710                vtable for std::bad_alloc
  .rodata._ZTISt9bad_alloc
-                0x00017710        0xc C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(New.o)
-                0x00017710                typeinfo for std::bad_alloc
+                0x00017728        0xc C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(New.o)
+                0x00017728                typeinfo for std::bad_alloc
  .rodata._ZTSSt9bad_alloc
-                0x0001771c        0xd C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(New.o)
-                0x0001771c                typeinfo name for std::bad_alloc
+                0x00017734        0xd C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(New.o)
+                0x00017734                typeinfo name for std::bad_alloc
  .rodata.str1.1
-                0x00017729       0x14 C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(New.o)
- *fill*         0x0001773d        0x3 00
+                0x00017741       0x14 C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(New.o)
+ *fill*         0x00017755        0x3 00
  .rodata._ZTVN10__cxxabiv117__class_type_infoE
-                0x00017740       0x30 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(class_type_info.o)
-                0x00017740                vtable for __cxxabiv1::__class_type_info
+                0x00017758       0x30 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(class_type_info.o)
+                0x00017758                vtable for __cxxabiv1::__class_type_info
  .rodata._ZTIN10__cxxabiv117__class_type_infoE
-                0x00017770        0xc c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(class_type_info.o)
-                0x00017770                typeinfo for __cxxabiv1::__class_type_info
+                0x00017788        0xc c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(class_type_info.o)
+                0x00017788                typeinfo for __cxxabiv1::__class_type_info
  .rodata._ZTSN10__cxxabiv117__class_type_infoE
-                0x0001777c       0x24 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(class_type_info.o)
-                0x0001777c                typeinfo name for __cxxabiv1::__class_type_info
+                0x00017794       0x24 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(class_type_info.o)
+                0x00017794                typeinfo name for __cxxabiv1::__class_type_info
  .rodata._ZTVSt9exception
-                0x000177a0       0x18 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_exception.o)
-                0x000177a0                vtable for std::exception
+                0x000177b8       0x18 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_exception.o)
+                0x000177b8                vtable for std::exception
  .rodata._ZTIN10__cxxabiv115__forced_unwindE
-                0x000177b8        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_exception.o)
-                0x000177b8                typeinfo for __cxxabiv1::__forced_unwind
+                0x000177d0        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_exception.o)
+                0x000177d0                typeinfo for __cxxabiv1::__forced_unwind
  .rodata._ZTISt9exception
-                0x000177c0        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_exception.o)
-                0x000177c0                typeinfo for std::exception
+                0x000177d8        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_exception.o)
+                0x000177d8                typeinfo for std::exception
  .rodata._ZTSSt13bad_exception
-                0x000177c8       0x14 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_exception.o)
-                0x000177c8                typeinfo name for std::bad_exception
+                0x000177e0       0x14 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_exception.o)
+                0x000177e0                typeinfo name for std::bad_exception
  .rodata.str1.4
-                0x000177dc       0x23 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_exception.o)
+                0x000177f4       0x23 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_exception.o)
                                  0x24 (size before relaxing)
- *fill*         0x000177ff        0x1 00
+ *fill*         0x00017817        0x1 00
  .rodata._ZTSN10__cxxabiv119__foreign_exceptionE
-                0x00017800       0x24 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_exception.o)
-                0x00017800                typeinfo name for __cxxabiv1::__foreign_exception
+                0x00017818       0x24 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_exception.o)
+                0x00017818                typeinfo name for __cxxabiv1::__foreign_exception
  .rodata._ZTIN10__cxxabiv119__foreign_exceptionE
-                0x00017824        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_exception.o)
-                0x00017824                typeinfo for __cxxabiv1::__foreign_exception
- *fill*         0x0001782c        0x4 00
+                0x0001783c        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_exception.o)
+                0x0001783c                typeinfo for __cxxabiv1::__foreign_exception
+ *fill*         0x00017844        0x4 00
  .rodata._ZTVSt13bad_exception
-                0x00017830       0x18 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_exception.o)
-                0x00017830                vtable for std::bad_exception
+                0x00017848       0x18 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_exception.o)
+                0x00017848                vtable for std::bad_exception
  .rodata._ZTSSt9exception
-                0x00017848       0x10 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_exception.o)
-                0x00017848                typeinfo name for std::exception
+                0x00017860       0x10 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_exception.o)
+                0x00017860                typeinfo name for std::exception
  .rodata._ZTSN10__cxxabiv115__forced_unwindE
-                0x00017858       0x20 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_exception.o)
-                0x00017858                typeinfo name for __cxxabiv1::__forced_unwind
+                0x00017870       0x20 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_exception.o)
+                0x00017870                typeinfo name for __cxxabiv1::__forced_unwind
  .rodata._ZTISt13bad_exception
-                0x00017878        0xc c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_exception.o)
-                0x00017878                typeinfo for std::bad_exception
+                0x00017890        0xc c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_exception.o)
+                0x00017890                typeinfo for std::bad_exception
  .rodata._ZTIPv
-                0x00017884       0x10 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(fundamental_type_info.o)
-                0x00017884                typeinfo for void*
- .rodata._ZTIv  0x00017894        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(fundamental_type_info.o)
-                0x00017894                typeinfo for void
+                0x0001789c       0x10 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(fundamental_type_info.o)
+                0x0001789c                typeinfo for void*
+ .rodata._ZTIv  0x000178ac        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(fundamental_type_info.o)
+                0x000178ac                typeinfo for void
  .rodata._ZTSPv
-                0x0001789c        0x4 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(fundamental_type_info.o)
-                0x0001789c                typeinfo name for void*
- .rodata._ZTSv  0x000178a0        0x4 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(fundamental_type_info.o)
-                0x000178a0                typeinfo name for void
+                0x000178b4        0x4 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(fundamental_type_info.o)
+                0x000178b4                typeinfo name for void*
+ .rodata._ZTSv  0x000178b8        0x4 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(fundamental_type_info.o)
+                0x000178b8                typeinfo name for void
  .rodata._ZTIN10__cxxabiv123__fundamental_type_infoE
-                0x000178a4        0xc c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(fundamental_type_info.o)
-                0x000178a4                typeinfo for __cxxabiv1::__fundamental_type_info
+                0x000178bc        0xc c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(fundamental_type_info.o)
+                0x000178bc                typeinfo for __cxxabiv1::__fundamental_type_info
  .rodata._ZTSN10__cxxabiv123__fundamental_type_infoE
-                0x000178b0       0x28 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(fundamental_type_info.o)
-                0x000178b0                typeinfo name for __cxxabiv1::__fundamental_type_info
+                0x000178c8       0x28 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(fundamental_type_info.o)
+                0x000178c8                typeinfo name for __cxxabiv1::__fundamental_type_info
  .rodata._ZTVN10__cxxabiv123__fundamental_type_infoE
-                0x000178d8       0x20 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(fundamental_type_info.o)
-                0x000178d8                vtable for __cxxabiv1::__fundamental_type_info
+                0x000178f0       0x20 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(fundamental_type_info.o)
+                0x000178f0                vtable for __cxxabiv1::__fundamental_type_info
  .rodata._ZTSN10__cxxabiv119__pointer_type_infoE
-                0x000178f8       0x24 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(pointer_type_info.o)
-                0x000178f8                typeinfo name for __cxxabiv1::__pointer_type_info
+                0x00017910       0x24 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(pointer_type_info.o)
+                0x00017910                typeinfo name for __cxxabiv1::__pointer_type_info
  .rodata._ZTIN10__cxxabiv119__pointer_type_infoE
-                0x0001791c        0xc c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(pointer_type_info.o)
-                0x0001791c                typeinfo for __cxxabiv1::__pointer_type_info
+                0x00017934        0xc c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(pointer_type_info.o)
+                0x00017934                typeinfo for __cxxabiv1::__pointer_type_info
  .rodata._ZTVN10__cxxabiv119__pointer_type_infoE
-                0x00017928       0x28 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(pointer_type_info.o)
-                0x00017928                vtable for __cxxabiv1::__pointer_type_info
+                0x00017940       0x28 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(pointer_type_info.o)
+                0x00017940                vtable for __cxxabiv1::__pointer_type_info
  .rodata._ZTVN10__cxxabiv120__si_class_type_infoE
-                0x00017950       0x30 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(si_class_type_info.o)
-                0x00017950                vtable for __cxxabiv1::__si_class_type_info
+                0x00017968       0x30 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(si_class_type_info.o)
+                0x00017968                vtable for __cxxabiv1::__si_class_type_info
  .rodata._ZTIN10__cxxabiv120__si_class_type_infoE
-                0x00017980        0xc c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(si_class_type_info.o)
-                0x00017980                typeinfo for __cxxabiv1::__si_class_type_info
+                0x00017998        0xc c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(si_class_type_info.o)
+                0x00017998                typeinfo for __cxxabiv1::__si_class_type_info
  .rodata._ZTSN10__cxxabiv120__si_class_type_infoE
-                0x0001798c       0x28 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(si_class_type_info.o)
-                0x0001798c                typeinfo name for __cxxabiv1::__si_class_type_info
+                0x000179a4       0x28 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(si_class_type_info.o)
+                0x000179a4                typeinfo name for __cxxabiv1::__si_class_type_info
  .rodata._ZTISt9type_info
-                0x000179b4        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(tinfo.o)
-                0x000179b4                typeinfo for std::type_info
+                0x000179cc        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(tinfo.o)
+                0x000179cc                typeinfo for std::type_info
  .rodata._ZTSSt9type_info
-                0x000179bc       0x10 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(tinfo.o)
-                0x000179bc                typeinfo name for std::type_info
- *fill*         0x000179cc        0x4 00
+                0x000179d4       0x10 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(tinfo.o)
+                0x000179d4                typeinfo name for std::type_info
+ *fill*         0x000179e4        0x4 00
  .rodata._ZTVSt9type_info
-                0x000179d0       0x20 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(tinfo.o)
-                0x000179d0                vtable for std::type_info
+                0x000179e8       0x20 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(tinfo.o)
+                0x000179e8                vtable for std::type_info
  .rodata._ZTVSt10bad_typeid
-                0x000179f0       0x18 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(bad_typeid.o)
-                0x000179f0                vtable for std::bad_typeid
+                0x00017a08       0x18 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(bad_typeid.o)
+                0x00017a08                vtable for std::bad_typeid
  .rodata._ZTISt10bad_typeid
-                0x00017a08        0xc c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(bad_typeid.o)
-                0x00017a08                typeinfo for std::bad_typeid
+                0x00017a20        0xc c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(bad_typeid.o)
+                0x00017a20                typeinfo for std::bad_typeid
  .rodata.str1.4
-                0x00017a14       0x10 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(bad_typeid.o)
+                0x00017a2c       0x10 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(bad_typeid.o)
  .rodata._ZTSSt10bad_typeid
-                0x00017a24       0x10 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(bad_typeid.o)
-                0x00017a24                typeinfo name for std::bad_typeid
+                0x00017a3c       0x10 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(bad_typeid.o)
+                0x00017a3c                typeinfo name for std::bad_typeid
  .rodata._ZTIN10__cxxabiv117__pbase_type_infoE
-                0x00017a34        0xc c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(pbase_type_info.o)
-                0x00017a34                typeinfo for __cxxabiv1::__pbase_type_info
+                0x00017a4c        0xc c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(pbase_type_info.o)
+                0x00017a4c                typeinfo for __cxxabiv1::__pbase_type_info
  .rodata._ZTSN10__cxxabiv117__pbase_type_infoE
-                0x00017a40       0x24 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(pbase_type_info.o)
-                0x00017a40                typeinfo name for __cxxabiv1::__pbase_type_info
- *fill*         0x00017a64        0x4 00
+                0x00017a58       0x24 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(pbase_type_info.o)
+                0x00017a58                typeinfo name for __cxxabiv1::__pbase_type_info
+ *fill*         0x00017a7c        0x4 00
  .rodata._ZTVN10__cxxabiv117__pbase_type_infoE
-                0x00017a68       0x28 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(pbase_type_info.o)
-                0x00017a68                vtable for __cxxabiv1::__pbase_type_info
+                0x00017a80       0x28 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(pbase_type_info.o)
+                0x00017a80                vtable for __cxxabiv1::__pbase_type_info
  *(.glue_7)
  .glue_7        0x00000000        0x0 linker stubs
  *(.glue_7t)
@@ -2330,265 +2331,265 @@ END GROUP
  *(.eh_frame)
  *(.init)
  *(.fini)
-                0x00017a90                . = ALIGN (0x4)
-                0x00017a90                _etext = .
+                0x00017aa8                . = ALIGN (0x4)
+                0x00017aa8                _etext = .
 
-.vfp11_veneer   0x00017a90        0x0
+.vfp11_veneer   0x00017aa8        0x0
  .vfp11_veneer  0x00000000        0x0 linker stubs
 
-.v4_bx          0x00017a90        0x0
+.v4_bx          0x00017aa8        0x0
  .v4_bx         0x00000000        0x0 linker stubs
 
-.ARM.extab      0x00017a90      0x138
+.ARM.extab      0x00017aa8      0x138
  *(.ARM.extab* .gnu.linkonce.armextab.*)
  .ARM.extab.text._ZNSt9bad_allocD2Ev
-                0x00017a90        0x0 C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(New.o)
+                0x00017aa8        0x0 C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(New.o)
  .ARM.extab.text._ZNKSt9bad_alloc4whatEv
-                0x00017a90        0x0 C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(New.o)
+                0x00017aa8        0x0 C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(New.o)
  .ARM.extab.text._Znwj
-                0x00017a90       0x20 C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(New.o)
+                0x00017aa8       0x20 C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(New.o)
  .ARM.extab.text._ZNSt9bad_allocD0Ev
-                0x00017ab0        0x0 C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(New.o)
+                0x00017ac8        0x0 C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(New.o)
  .ARM.extab.text._Znaj
-                0x00017ab0       0x24 C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(New.o)
+                0x00017ac8       0x24 C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(New.o)
  .ARM.extab.text.__cxa_bad_typeid
-                0x00017ad4        0xc c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_aux_runtime.o)
+                0x00017aec        0xc c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_aux_runtime.o)
  .ARM.extab.text.__cxa_call_unexpected
-                0x00017ae0       0x28 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_call.o)
+                0x00017af8       0x28 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_call.o)
  .ARM.extab.text.__cxa_begin_catch
-                0x00017b08       0x20 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_catch.o)
+                0x00017b20       0x20 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_catch.o)
  .ARM.extab.text._ZL21base_of_encoded_valuehP15_Unwind_Context
-                0x00017b28        0xc c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_personality.o)
+                0x00017b40        0xc c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_personality.o)
  .ARM.extab.text.__gxx_personality_v0
-                0x00017b34       0x20 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_personality.o)
+                0x00017b4c       0x20 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_personality.o)
  .ARM.extab.text._ZN10__cxxabiv111__terminateEPFvvE
-                0x00017b54       0x2c c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_terminate.o)
+                0x00017b6c       0x2c c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_terminate.o)
  .ARM.extab.text._ZN10__cxxabiv112__unexpectedEPFvvE
-                0x00017b80        0xc c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_terminate.o)
+                0x00017b98        0xc c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_terminate.o)
  .ARM.extab.text._ZSt10unexpectedv
-                0x00017b8c        0xc c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_terminate.o)
+                0x00017ba4        0xc c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_terminate.o)
  .ARM.extab.text._ZNK10__cxxabiv117__pbase_type_info15__pointer_catchEPKS0_PPvj
-                0x00017b98        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(pbase_type_info.o)
- .ARM.extab     0x00017b98       0x18 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/armv7e-m\libgcc.a(unwind-arm.o)
- .ARM.extab     0x00017bb0       0x18 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/armv7e-m\libgcc.a(pr-support.o)
+                0x00017bb0        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(pbase_type_info.o)
+ .ARM.extab     0x00017bb0       0x18 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/armv7e-m\libgcc.a(unwind-arm.o)
+ .ARM.extab     0x00017bc8       0x18 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/armv7e-m\libgcc.a(pr-support.o)
 
-.ARM            0x00017bc8      0x1f8
-                0x00017bc8                __exidx_start = .
+.ARM            0x00017be0      0x1f8
+                0x00017be0                __exidx_start = .
  *(.ARM.exidx*)
  .ARM.exidx.text._ZNSt9bad_allocD2Ev
-                0x00017c88        0x0 C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(New.o)
+                0x00017ca0        0x0 C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(New.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._ZNKSt9bad_alloc4whatEv
-                0x00017c88        0x0 C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(New.o)
+                0x00017ca0        0x0 C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(New.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._Znwj
-                0x00017c88        0x8 C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(New.o)
+                0x00017ca0        0x8 C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(New.o)
  .ARM.exidx.text._ZdlPv
-                0x00017c90        0x8 C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(New.o)
+                0x00017ca8        0x8 C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(New.o)
  .ARM.exidx.text._ZNSt9bad_allocD0Ev
-                0x00017c98        0x0 C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(New.o)
+                0x00017cb0        0x0 C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(New.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._Znaj
-                0x00017c98        0x8 C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(New.o)
+                0x00017cb0        0x8 C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(New.o)
  .ARM.exidx.text._ZNK10__cxxabiv117__class_type_info11__do_upcastEPKS0_PPv
-                0x00017ca0        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(class_type_info.o)
- .ARM.exidx.text._ZNK10__cxxabiv117__class_type_info20__do_find_public_srcEiPKvPKS0_S2_
-                0x00017ca8        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(class_type_info.o)
- .ARM.exidx.text._ZNK10__cxxabiv117__class_type_info11__do_upcastEPKS0_PKvRNS0_15__upcast_resultE
-                0x00017cb0        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(class_type_info.o)
- .ARM.exidx.text._ZN10__cxxabiv117__class_type_infoD2Ev
                 0x00017cb8        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(class_type_info.o)
+ .ARM.exidx.text._ZNK10__cxxabiv117__class_type_info20__do_find_public_srcEiPKvPKS0_S2_
+                0x00017cc0        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(class_type_info.o)
+ .ARM.exidx.text._ZNK10__cxxabiv117__class_type_info11__do_upcastEPKS0_PKvRNS0_15__upcast_resultE
+                0x00017cc8        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(class_type_info.o)
+ .ARM.exidx.text._ZN10__cxxabiv117__class_type_infoD2Ev
+                0x00017cd0        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(class_type_info.o)
  .ARM.exidx.text._ZN10__cxxabiv117__class_type_infoD0Ev
-                0x00017cc0        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(class_type_info.o)
+                0x00017cd8        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(class_type_info.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._ZNK10__cxxabiv117__class_type_info12__do_dyncastEiNS0_10__sub_kindEPKS0_PKvS3_S5_RNS0_16__dyncast_resultE
-                0x00017cc0        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(class_type_info.o)
+                0x00017cd8        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(class_type_info.o)
  .ARM.exidx.text._ZNK10__cxxabiv117__class_type_info10__do_catchEPKSt9type_infoPPvj
-                0x00017cc8        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(class_type_info.o)
+                0x00017ce0        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(class_type_info.o)
  .ARM.exidx.text.__cxa_allocate_exception
-                0x00017cd0        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_alloc.o)
+                0x00017ce8        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_alloc.o)
  .ARM.exidx.text.__cxa_free_exception
-                0x00017cd8        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_alloc.o)
+                0x00017cf0        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_alloc.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text.__cxa_type_match
-                0x00017cd8        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_arm.o)
+                0x00017cf0        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_arm.o)
  .ARM.exidx.text.__cxa_begin_cleanup
-                0x00017ce0        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_arm.o)
+                0x00017cf8        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_arm.o)
  .ARM.exidx.text.__gnu_end_cleanup
-                0x00017ce8        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_arm.o)
+                0x00017d00        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_arm.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text.__cxa_bad_typeid
-                0x00017ce8        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_aux_runtime.o)
+                0x00017d00        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_aux_runtime.o)
  .ARM.exidx.text.__cxa_call_terminate
-                0x00017cf0        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_call.o)
+                0x00017d08        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_call.o)
  .ARM.exidx.text.__cxa_call_unexpected
-                0x00017cf8        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_call.o)
+                0x00017d10        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_call.o)
  .ARM.exidx.text.__cxa_begin_catch
-                0x00017d00        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_catch.o)
+                0x00017d18        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_catch.o)
  .ARM.exidx.text.__cxa_end_catch
-                0x00017d08        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_catch.o)
+                0x00017d20        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_catch.o)
  .ARM.exidx.text._ZNSt9exceptionD2Ev
-                0x00017d10        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_exception.o)
+                0x00017d28        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_exception.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._ZNSt13bad_exceptionD2Ev
-                0x00017d10        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_exception.o)
+                0x00017d28        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_exception.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._ZNKSt9exception4whatEv
-                0x00017d10        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_exception.o)
+                0x00017d28        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_exception.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._ZNKSt13bad_exception4whatEv
-                0x00017d10        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_exception.o)
+                0x00017d28        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_exception.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._ZNSt13bad_exceptionD0Ev
-                0x00017d10        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_exception.o)
+                0x00017d28        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_exception.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._ZNSt9exceptionD0Ev
-                0x00017d10        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_exception.o)
+                0x00017d28        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_exception.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text.__cxa_get_globals_fast
-                0x00017d10        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_globals.o)
+                0x00017d28        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_globals.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text.__cxa_get_globals
-                0x00017d10        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_globals.o)
+                0x00017d28        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_globals.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._ZL12read_sleb128PKhPl
-                0x00017d10        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_personality.o)
+                0x00017d28        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_personality.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._ZL28read_encoded_value_with_basehjPKhPj
-                0x00017d10        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_personality.o)
- .ARM.exidx.text._ZL21base_of_encoded_valuehP15_Unwind_Context
-                0x00017d18        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_personality.o)
- .ARM.exidx.text._ZL17parse_lsda_headerP15_Unwind_ContextPKhP16lsda_header_info.constprop.1
-                0x00017d20        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_personality.o)
- .ARM.exidx.text.__gxx_personality_v0
                 0x00017d28        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_personality.o)
+ .ARM.exidx.text._ZL21base_of_encoded_valuehP15_Unwind_Context
+                0x00017d30        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_personality.o)
+ .ARM.exidx.text._ZL17parse_lsda_headerP15_Unwind_ContextPKhP16lsda_header_info.constprop.1
+                0x00017d38        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_personality.o)
+ .ARM.exidx.text.__gxx_personality_v0
+                0x00017d40        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_personality.o)
  .ARM.exidx.text._ZN10__cxxabiv111__terminateEPFvvE
-                0x00017d30        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_terminate.o)
- .ARM.exidx.text._ZSt9terminatev
-                0x00017d38        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_terminate.o)
- .ARM.exidx.text._ZN10__cxxabiv112__unexpectedEPFvvE
-                0x00017d40        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_terminate.o)
- .ARM.exidx.text._ZSt10unexpectedv
                 0x00017d48        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_terminate.o)
+ .ARM.exidx.text._ZSt9terminatev
+                0x00017d50        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_terminate.o)
+ .ARM.exidx.text._ZN10__cxxabiv112__unexpectedEPFvvE
+                0x00017d58        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_terminate.o)
+ .ARM.exidx.text._ZSt10unexpectedv
+                0x00017d60        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_terminate.o)
  .ARM.exidx.text._ZL23__gxx_exception_cleanup19_Unwind_Reason_CodeP21_Unwind_Control_Block
-                0x00017d50        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_throw.o)
+                0x00017d68        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_throw.o)
  .ARM.exidx.text.__cxa_throw
-                0x00017d58        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_throw.o)
+                0x00017d70        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_throw.o)
  .ARM.exidx.text.__cxa_rethrow
-                0x00017d60        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_throw.o)
+                0x00017d78        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(eh_throw.o)
  .ARM.exidx.text._ZN10__cxxabiv123__fundamental_type_infoD2Ev
-                0x00017d68        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(fundamental_type_info.o)
+                0x00017d80        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(fundamental_type_info.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._ZN10__cxxabiv123__fundamental_type_infoD0Ev
-                0x00017d68        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(fundamental_type_info.o)
+                0x00017d80        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(fundamental_type_info.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._ZNK10__cxxabiv119__pointer_type_info14__is_pointer_pEv
-                0x00017d68        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(pointer_type_info.o)
+                0x00017d80        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(pointer_type_info.o)
  .ARM.exidx.text._ZN10__cxxabiv119__pointer_type_infoD2Ev
-                0x00017d70        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(pointer_type_info.o)
+                0x00017d88        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(pointer_type_info.o)
  .ARM.exidx.text._ZN10__cxxabiv119__pointer_type_infoD0Ev
-                0x00017d78        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(pointer_type_info.o)
+                0x00017d90        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(pointer_type_info.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._ZNK10__cxxabiv119__pointer_type_info15__pointer_catchEPKNS_17__pbase_type_infoEPPvj
-                0x00017d78        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(pointer_type_info.o)
+                0x00017d90        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(pointer_type_info.o)
  .ARM.exidx.text._ZN10__cxxabiv120__si_class_type_infoD2Ev
-                0x00017d80        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(si_class_type_info.o)
+                0x00017d98        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(si_class_type_info.o)
  .ARM.exidx.text._ZN10__cxxabiv120__si_class_type_infoD0Ev
-                0x00017d88        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(si_class_type_info.o)
+                0x00017da0        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(si_class_type_info.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE
-                0x00017d88        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(si_class_type_info.o)
+                0x00017da0        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(si_class_type_info.o)
  .ARM.exidx.text._ZNK10__cxxabiv120__si_class_type_info12__do_dyncastEiNS_17__class_type_info10__sub_kindEPKS1_PKvS4_S6_RNS1_16__dyncast_resultE
-                0x00017d90        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(si_class_type_info.o)
+                0x00017da8        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(si_class_type_info.o)
  .ARM.exidx.text._ZNK10__cxxabiv120__si_class_type_info20__do_find_public_srcEiPKvPKNS_17__class_type_infoES2_
-                0x00017d98        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(si_class_type_info.o)
+                0x00017db0        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(si_class_type_info.o)
  .ARM.exidx.text._ZNSt9type_infoD2Ev
-                0x00017da0        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(tinfo.o)
+                0x00017db8        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(tinfo.o)
  .ARM.exidx.text._ZNKSt9type_info14__is_pointer_pEv
-                0x00017da8        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(tinfo.o)
+                0x00017dc0        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(tinfo.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._ZNKSt9type_info15__is_function_pEv
-                0x00017da8        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(tinfo.o)
+                0x00017dc0        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(tinfo.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._ZNKSt9type_info11__do_upcastEPKN10__cxxabiv117__class_type_infoEPPv
-                0x00017da8        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(tinfo.o)
+                0x00017dc0        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(tinfo.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._ZNSt9type_infoD0Ev
-                0x00017da8        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(tinfo.o)
+                0x00017dc0        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(tinfo.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._ZNKSt9type_infoeqERKS_
-                0x00017da8        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(tinfo.o)
+                0x00017dc0        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(tinfo.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._ZNKSt9type_info10__do_catchEPKS_PPvj
-                0x00017da8        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(tinfo.o)
+                0x00017dc0        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(tinfo.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._ZNKSt10bad_typeid4whatEv
-                0x00017da8        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(bad_typeid.o)
+                0x00017dc0        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(bad_typeid.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._ZNSt10bad_typeidD2Ev
-                0x00017da8        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(bad_typeid.o)
+                0x00017dc0        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(bad_typeid.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._ZNSt10bad_typeidD0Ev
-                0x00017da8        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(bad_typeid.o)
+                0x00017dc0        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(bad_typeid.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._ZNK10__cxxabiv117__pbase_type_info15__pointer_catchEPKS0_PPvj
-                0x00017da8        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(pbase_type_info.o)
+                0x00017dc0        0x8 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(pbase_type_info.o)
  .ARM.exidx.text._ZN10__cxxabiv117__pbase_type_infoD2Ev
-                0x00017db0        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(pbase_type_info.o)
+                0x00017dc8        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(pbase_type_info.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._ZN10__cxxabiv117__pbase_type_infoD0Ev
-                0x00017db0        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(pbase_type_info.o)
+                0x00017dc8        0x0 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(pbase_type_info.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._ZNK10__cxxabiv117__pbase_type_info10__do_catchEPKSt9type_infoPPvj
-                0x00017db0       0x10 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(pbase_type_info.o)
+                0x00017dc8       0x10 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv7e-m\libsupc++.a(pbase_type_info.o)
                                   0x8 (size before relaxing)
- .ARM.exidx     0x00017bc8       0x88 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/armv7e-m\libgcc.a(unwind-arm.o)
+ .ARM.exidx     0x00017be0       0x88 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/armv7e-m\libgcc.a(unwind-arm.o)
                                  0xc0 (size before relaxing)
- .ARM.exidx     0x00017c50       0x38 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/armv7e-m\libgcc.a(pr-support.o)
+ .ARM.exidx     0x00017c68       0x38 c:/fehqt/proteus/gcc/bin/../lib/gcc/arm-none-eabi/4.6.2/armv7e-m\libgcc.a(pr-support.o)
                                  0x48 (size before relaxing)
-                0x00017dc0                __exidx_end = .
+                0x00017dd8                __exidx_end = .
 
-.ctors          0x00017dc0        0x0
-                0x00017dc0                __CTOR_LIST__ = .
+.ctors          0x00017dd8        0x0
+                0x00017dd8                __CTOR_LIST__ = .
  *crtbegin.o(.ctors)
  *(EXCLUDE_FILE(*crtend.o) .ctors)
  *(SORT(.ctors.*))
  *(.ctors)
-                0x00017dc0                __CTOR_END__ = .
+                0x00017dd8                __CTOR_END__ = .
 
-.dtors          0x00017dc0        0x0
-                0x00017dc0                __DTOR_LIST__ = .
+.dtors          0x00017dd8        0x0
+                0x00017dd8                __DTOR_LIST__ = .
  *crtbegin.o(.dtors)
  *(EXCLUDE_FILE(*crtend.o) .dtors)
  *(SORT(.dtors.*))
  *(.dtors)
-                0x00017dc0                __DTOR_END__ = .
+                0x00017dd8                __DTOR_END__ = .
 
-.preinit_array  0x00017dc0        0x0
-                0x00017dc0                PROVIDE (__preinit_array_start, .)
+.preinit_array  0x00017dd8        0x0
+                0x00017dd8                PROVIDE (__preinit_array_start, .)
  *(.preinit_array*)
-                0x00017dc0                PROVIDE (__preinit_array_end, .)
+                0x00017dd8                PROVIDE (__preinit_array_end, .)
 
-.init_array     0x00017dc0       0x18
-                0x00017dc0                PROVIDE (__init_array_start, .)
+.init_array     0x00017dd8       0x18
+                0x00017dd8                PROVIDE (__init_array_start, .)
  *(SORT(.init_array.*))
  *(.init_array*)
- .init_array    0x00017dc0        0x4 ..\main.o
- .init_array    0x00017dc4        0x4 FEHProteus.o
- .init_array    0x00017dc8        0x4 Libraries\FEHBuzzer.o
- .init_array    0x00017dcc        0x4 Libraries\FEHLCD.o
- .init_array    0x00017dd0        0x4 Libraries\FEHBattery.o
- .init_array    0x00017dd4        0x4 Libraries\FEHWONKA.o
-                0x00017dd8                PROVIDE (__init_array_end, .)
+ .init_array    0x00017dd8        0x4 ..\main.o
+ .init_array    0x00017ddc        0x4 FEHProteus.o
+ .init_array    0x00017de0        0x4 Libraries\FEHBuzzer.o
+ .init_array    0x00017de4        0x4 Libraries\FEHLCD.o
+ .init_array    0x00017de8        0x4 Libraries\FEHBattery.o
+ .init_array    0x00017dec        0x4 Libraries\FEHWONKA.o
+                0x00017df0                PROVIDE (__init_array_end, .)
 
-.fini_array     0x00017dd8        0x0
-                0x00017dd8                PROVIDE (__fini_array_start, .)
+.fini_array     0x00017df0        0x0
+                0x00017df0                PROVIDE (__fini_array_start, .)
  *(SORT(.fini_array.*))
  *(.fini_array*)
-                0x00017dd8                PROVIDE (__fini_array_end, .)
-                0x00017dd8                ___ROM_AT = .
+                0x00017df0                PROVIDE (__fini_array_end, .)
+                0x00017df0                ___ROM_AT = .
 
-.data           0x1fff0400     0x3228 load address 0x00017dd8
+.data           0x1fff0400     0x3228 load address 0x00017df0
                 0x1fff0400                . = ALIGN (0x4)
                 0x1fff0400                _sdata = .
  *(.data)
@@ -2608,9 +2609,9 @@ END GROUP
                 0x1fff3628                . = ALIGN (0x4)
                 0x1fff3628                _edata = .
                 0x00003228                ___data_size = (_edata - _sdata)
-                0x0001b000                ___m_data2_ROMStart = (___ROM_AT + SIZEOF (.data))
+                0x0001b018                ___m_data2_ROMStart = (___ROM_AT + SIZEOF (.data))
 
-.user_data2     0x20000000        0x0 load address 0x0001b000
+.user_data2     0x20000000        0x0 load address 0x0001b018
                 0x20000000                . = ALIGN (0x4)
                 0x20000000                ___m_data2_RAMStart = .
  *(.data2)
@@ -2619,7 +2620,7 @@ END GROUP
                 0x00000000                ___m_data2_ROMSize = (___m_data2_RAMEnd - ___m_data2_RAMStart)
                 0x20000000                . = ALIGN (0x4)
 
-.bss            0x1fff3628      0x978 load address 0x0001b000
+.bss            0x1fff3628      0x978 load address 0x0001b018
                 0x1fff3628                __START_BSS = .
                 0x1fff3628                PROVIDE (__bss_start__, __START_BSS)
  *(.bss)
@@ -2796,7 +2797,7 @@ END GROUP
                 0x1fff3fa0                PROVIDE (__bss_end__, __END_BSS)
 
 ._user_heap_stack
-                0x1fff3fa0     0x1000 load address 0x0001b978
+                0x1fff3fa0     0x1000 load address 0x0001b990
                 0x1fff3fa0                . = ALIGN (0x4)
                 0x1fff3fa0                PROVIDE (end, .)
                 0x1fff3fa0                PROVIDE (_end, .)
@@ -2806,14 +2807,14 @@ END GROUP
                 0x1fff4fa0                . = (. + __stack_size)
  *fill*         0x1fff47a0      0x800 00
                 0x1fff4fa0                . = ALIGN (0x4)
-                0x0001b000                _romp_at = ((___ROM_AT + SIZEOF (.data)) + SIZEOF (.user_data2))
+                0x0001b018                _romp_at = ((___ROM_AT + SIZEOF (.data)) + SIZEOF (.user_data2))
 
-.romp           0x20000000       0x24 load address 0x0001b000
-                0x0001b000                __S_romp = _romp_at
-                0x20000000        0x4 LONG 0x17dd8 ___ROM_AT
+.romp           0x20000000       0x24 load address 0x0001b018
+                0x0001b018                __S_romp = _romp_at
+                0x20000000        0x4 LONG 0x17df0 ___ROM_AT
                 0x20000004        0x4 LONG 0x1fff0400 _sdata
                 0x20000008        0x4 LONG 0x3228 ___data_size
-                0x2000000c        0x4 LONG 0x1b000 ___m_data2_ROMStart
+                0x2000000c        0x4 LONG 0x1b018 ___m_data2_ROMStart
                 0x20000010        0x4 LONG 0x20000000 ___m_data2_RAMStart
                 0x20000014        0x4 LONG 0x0 ___m_data2_ROMSize
                 0x20000018        0x4 LONG 0x0
@@ -3196,50 +3197,50 @@ OUTPUT(../SimpleCode.elf elf32-littlearm)
  .debug_aranges
                 0x00000cb8       0x20 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(signal.o)
 
-.debug_line     0x00000000     0x5da9
- .debug_line    0x00000000      0x3b3 ..\main.o
- .debug_line    0x000003b3      0x303 ..\io.o
- .debug_line    0x000006b6      0x154 ..\timer.o
- .debug_line    0x0000080a      0x410 ..\drive.o
- .debug_line    0x00000c1a      0x367 Startup\__arm_start.o
- .debug_line    0x00000f81      0x21a Startup\__arm_end.o
- .debug_line    0x0000119b      0x1e7 Startup\kinetis_sysinit.o
- .debug_line    0x00001382      0x22c Libraries\FEHMotor.o
- .debug_line    0x000015ae      0x212 Drivers\uart.o
- .debug_line    0x000017c0      0x1c0 Drivers\lptmr.o
- .debug_line    0x00001980      0x1da FEHProteus.o
- .debug_line    0x00001b5a      0x264 Drivers\FEHPropeller.o
- .debug_line    0x00001dbe      0x282 Libraries\FEHUtility.o
- .debug_line    0x00002040      0x559 Libraries\FEHIO.o
- .debug_line    0x00002599      0x20f Drivers\adc16.o
- .debug_line    0x000027a8      0x2df Libraries\FEHBuzzer.o
- .debug_line    0x00002a87      0x384 Libraries\FEHServo.o
- .debug_line    0x00002e0b      0xe7e Libraries\FEHLCD.o
- .debug_line    0x00003c89      0x218 Libraries\FEHBattery.o
- .debug_line    0x00003ea1      0x303 Drivers\FEHXBee.o
- .debug_line    0x000041a4      0x527 Libraries\FEHWONKA.o
- .debug_line    0x000046cb       0x94 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(sprintf.o)
- .debug_line    0x0000475f       0xd2 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(vsnprintf.o)
- .debug_line    0x00004831       0x94 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(exit.o)
- .debug_line    0x000048c5       0x8d C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(memcpy.o)
- .debug_line    0x00004952       0x8f C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(memset.o)
- .debug_line    0x000049e1      0x2c6 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(printformat_.o)
- .debug_line    0x00004ca7      0x2e3 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(scanformat_.o)
- .debug_line    0x00004f8a      0x1dd C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(ctype_aeabi.o)
- .debug_line    0x00005167      0x141 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(__strtoul.o)
- .debug_line    0x000052a8      0x121 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(__filll_mem.o)
- .debug_line    0x000053c9       0xa3 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(memchr.o)
- .debug_line    0x0000546c       0x84 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(strchr.o)
- .debug_line    0x000054f0       0x89 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(strlen.o)
- .debug_line    0x00005579       0x94 C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(gcc_ctor_dtor.o)
- .debug_line    0x0000560d       0xc0 C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(ROMCopy.o)
- .debug_line    0x000056cd      0x119 C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(__arm_eabi_init.o)
- .debug_line    0x000057e6      0x21e C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(New.o)
- .debug_line    0x00005a04       0x77 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(abort.o)
- .debug_line    0x00005a7b      0x18c C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(alloc.o)
- .debug_line    0x00005c07       0x88 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(strcmp.o)
- .debug_line    0x00005c8f       0x96 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(raise.o)
- .debug_line    0x00005d25       0x84 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(signal.o)
+.debug_line     0x00000000     0x5daa
+ .debug_line    0x00000000      0x3b4 ..\main.o
+ .debug_line    0x000003b4      0x303 ..\io.o
+ .debug_line    0x000006b7      0x154 ..\timer.o
+ .debug_line    0x0000080b      0x410 ..\drive.o
+ .debug_line    0x00000c1b      0x367 Startup\__arm_start.o
+ .debug_line    0x00000f82      0x21a Startup\__arm_end.o
+ .debug_line    0x0000119c      0x1e7 Startup\kinetis_sysinit.o
+ .debug_line    0x00001383      0x22c Libraries\FEHMotor.o
+ .debug_line    0x000015af      0x212 Drivers\uart.o
+ .debug_line    0x000017c1      0x1c0 Drivers\lptmr.o
+ .debug_line    0x00001981      0x1da FEHProteus.o
+ .debug_line    0x00001b5b      0x264 Drivers\FEHPropeller.o
+ .debug_line    0x00001dbf      0x282 Libraries\FEHUtility.o
+ .debug_line    0x00002041      0x559 Libraries\FEHIO.o
+ .debug_line    0x0000259a      0x20f Drivers\adc16.o
+ .debug_line    0x000027a9      0x2df Libraries\FEHBuzzer.o
+ .debug_line    0x00002a88      0x384 Libraries\FEHServo.o
+ .debug_line    0x00002e0c      0xe7e Libraries\FEHLCD.o
+ .debug_line    0x00003c8a      0x218 Libraries\FEHBattery.o
+ .debug_line    0x00003ea2      0x303 Drivers\FEHXBee.o
+ .debug_line    0x000041a5      0x527 Libraries\FEHWONKA.o
+ .debug_line    0x000046cc       0x94 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(sprintf.o)
+ .debug_line    0x00004760       0xd2 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(vsnprintf.o)
+ .debug_line    0x00004832       0x94 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(exit.o)
+ .debug_line    0x000048c6       0x8d C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(memcpy.o)
+ .debug_line    0x00004953       0x8f C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(memset.o)
+ .debug_line    0x000049e2      0x2c6 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(printformat_.o)
+ .debug_line    0x00004ca8      0x2e3 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(scanformat_.o)
+ .debug_line    0x00004f8b      0x1dd C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(ctype_aeabi.o)
+ .debug_line    0x00005168      0x141 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(__strtoul.o)
+ .debug_line    0x000052a9      0x121 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(__filll_mem.o)
+ .debug_line    0x000053ca       0xa3 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(memchr.o)
+ .debug_line    0x0000546d       0x84 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(strchr.o)
+ .debug_line    0x000054f1       0x89 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(strlen.o)
+ .debug_line    0x0000557a       0x94 C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(gcc_ctor_dtor.o)
+ .debug_line    0x0000560e       0xc0 C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(ROMCopy.o)
+ .debug_line    0x000056ce      0x119 C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(__arm_eabi_init.o)
+ .debug_line    0x000057e7      0x21e C:\fehqt\Proteus/EWL/lib/armv7e-m\librt.a(New.o)
+ .debug_line    0x00005a05       0x77 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(abort.o)
+ .debug_line    0x00005a7c      0x18c C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(alloc.o)
+ .debug_line    0x00005c08       0x88 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(strcmp.o)
+ .debug_line    0x00005c90       0x96 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(raise.o)
+ .debug_line    0x00005d26       0x84 C:\fehqt\Proteus/EWL/lib/armv7e-m\libc.a(signal.o)
 
 .debug_macinfo  0x00000000   0x7640f1
  .debug_macinfo
