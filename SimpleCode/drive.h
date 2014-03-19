@@ -35,6 +35,7 @@ public:
     void TurnAmount(int degrees, Drive::Side pivot);
     void TurnAngle(int degrees, Drive::Side direction, Drive::Side pivot);
     void DriveDist(int forward, float dist);
+    void turnLeft90();
 
     float TURN_MIN_POWER;
 

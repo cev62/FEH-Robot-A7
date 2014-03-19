@@ -26,7 +26,7 @@ public:
     static const int ARM_PULL_PIN = 90;
 
     static const int BOX_STORE = 30;
-    static const int BOX_DUMP = 120;
+    static const int BOX_DUMP = 150;
 
     typedef enum
     {

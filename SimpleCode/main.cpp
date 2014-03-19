@@ -53,7 +53,7 @@ int main(void)
     arm->SetMin(500);
     arm->SetMax(2431);
     box->SetMin(500);
-    box->SetMax(2431);
+    box->SetMax(2500);
 
     lcd = &LCD;
     lcd->Clear( FEHLCD::Black );
@@ -213,7 +213,8 @@ void comp()
 
 void encoderTest()
 {
-    while(!button_board->LeftPressed())
+    drive->turnLeft90();
+    /*while(!button_board->LeftPressed())
     {
         drive->TurnAngle(90, Drive::RIGHT, Drive::LEFT);
                 lcd->Write(left_encoder->Counts());
@@ -239,5 +240,5 @@ void encoderTest()
                 lcd->WriteLine(right_encoder->Counts());
                 io->ResetEncoders();
                 Sleep(1.0);
-    }
+    }*/
 }
