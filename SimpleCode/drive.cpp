@@ -174,10 +174,14 @@ void Drive::SquareToWallForward()
     io->lcd->Clear();
     io->lcd->WriteLine("SUARE FORWARD");
     Sleep(2.0);
-    while(io->fl_switch->Value() == 1 && io->fr_switch->Value() == 1)
+    while(true)
     {
         SetDriveLR(io->fl_switch->Value() ? 100 : 0, io->fr_switch->Value() ? 100 : 0);
         Sleep(IO::LOOP_TIMEOUT);
+    }
+    if(!io->fl_switch->Value() && !io->fr_switch->Value())
+    {
+        break;
     }
     SetDrive(0, 0);
 }
@@ -188,9 +192,13 @@ void Drive::SquareToWallBackward()
     io->lcd->Clear();
     io->lcd->WriteLine("SUARE BACKWARD");
     Sleep(2.0);
-    while(io->bl_switch->Value() == 1 && io->br_switch->Value() == 1)
+    while(true)
     {
         SetDriveLR(io->bl_switch->Value() ? -100 : 0, io->br_switch->Value() ? -100 : 0);
+        if(!io->bl_switch->Value() && !io->br_switch->Value())
+        {
+            break;
+        }
         if(io->print_timer->IsTimeout())
         {
             io->lcd->Clear();
