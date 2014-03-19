@@ -159,13 +159,15 @@ void pt7()
 
     io->InitializeScoopLight();
     Sleep(1.0);
-    drive->DriveDist(100, 8);
+    drive->DriveDist(100, 9);
     Sleep(1.0);
     io->ReadScoopLight();
     Sleep(1.0);
     if(io->counter == IO::LEFT_COUNTER)
     {
         drive->TurnAngle(0, Drive::LEFT, Drive::RIGHT);
+        Sleep(1.0);
+        drive->DriveDist(100, 4);
         Sleep(1.0);
         drive->TurnAngle(90, Drive::RIGHT, Drive::LEFT);
         Sleep(1.0);
@@ -177,6 +179,8 @@ void pt7()
     else // RIGHT COUNTER
     {
         drive->TurnAngle(0, Drive::RIGHT, Drive::LEFT);
+        Sleep(1.0);
+        drive->DriveDist(-100, 4);
         Sleep(1.0);
         drive->TurnAngle(90, Drive::LEFT, Drive::RIGHT);
         Sleep(1.0);
@@ -203,7 +207,7 @@ void test()
 
 void comp()
 {
-    drive->SquareToWallBackward();
+    box->Calibrate();
 }
 
 void encoderTest()

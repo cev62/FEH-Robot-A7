@@ -14,7 +14,7 @@ public:
 
     static const float COUNTS_PER_INCH = (24.0 * 2) / (2.75 * 3.14); // 24.0*2 is because 48 ticks are registered per revolution
     static const float START_LIGHT_THRESHOLD = -0.375;
-    static const float SCOOP_LIGHT_THRESHOLD = -1.0;
+    static const float SCOOP_LIGHT_THRESHOLD = 1.0;
 
     static const float PRINT_TIMEOUT = 0.100;
     static const float LOOP_TIMEOUT = 0.010;
