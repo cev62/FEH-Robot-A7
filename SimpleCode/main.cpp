@@ -14,6 +14,7 @@ void RunScript(char* script);
 void pt7();
 void test();
 void comp();
+void encoderTest();
 
 // Variable Declarations
 ButtonBoard *button_board;
@@ -63,12 +64,13 @@ int main(void)
     io = new IO(print_timer, button_board, lcd, rps, left_encoder, right_encoder, fl_switch, fr_switch, bl_switch, br_switch, arm_switch, optosensor, cds_cell);
     drive = new Drive(left, right, io);
 
-    num_scripts = 4;
-    scripts = new char*[4];
+    num_scripts = 5;
+    scripts = new char*[num_scripts];
     scripts[0] = "pt7";
     scripts[1] = "test";
     scripts[2] = "comp";
-    scripts[3] = "Toggle RPS";
+    scripts[3] = "encoder test";
+    scripts[4] = "Toggle RPS"; //must be last script in array
     script_position = 0;
     is_rps_enabled = true;
 
@@ -133,6 +135,7 @@ void RunScript(char *script)
     if(script == "pt7"){ pt7(); }
     if(script == "test"){ test(); }
     if(script == "comp"){ comp(); }
+    if(script == "encoder test") { encoderTest(); }
     if(script == "Toggle RPS"){ is_rps_enabled = !is_rps_enabled; }
 }
 
@@ -194,4 +197,32 @@ void test()
 void comp()
 {
     drive->SquareToWallBackward();
+}
+
+void encoderTest()
+{
+    while(!button_board->LeftPressed())
+    {
+        drive->TurnAngle(90, Drive::RIGHT, Drive::LEFT);
+                lcd->Write(left_encoder->Counts());
+                lcd->Write("   ");
+                lcd->WriteLine(right_encoder->Counts());
+                io->ResetEncoders();
+        drive->TurnAngle(90, Drive::LEFT, Drive::RIGHT);
+                lcd->Write(left_encoder->Counts());
+                lcd->Write("   ");
+                lcd->WriteLine(right_encoder->Counts());
+                io->ResetEncoders();
+        drive->TurnAngle(90, Drive::RIGHT, Drive::RIGHT);
+                lcd->Write(left_encoder->Counts());
+                lcd->Write("   ");
+                lcd->WriteLine(right_encoder->Counts());
+                io->ResetEncoders();
+        drive->TurnAngle(90, Drive::LEFT, Drive::LEFT);
+                lcd->Write(left_encoder->Counts());
+                lcd->Write("   ");
+                lcd->WriteLine(right_encoder->Counts());
+                io->ResetEncoders();
+
+    }
 }
