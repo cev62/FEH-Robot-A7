@@ -238,3 +238,19 @@ void Drive::DriveDist(int forward, float dist)
     }
     SetDrive(0, 0);
 }
+
+void Drive::turnLeft90()
+{
+
+    int numcounts = 77;
+    float motorPower = 100;
+    io->ResetEncoders();
+
+    while(io->left_encoder->Counts() < numcounts)
+    {
+        motorPower = 100 - (io->left_encoder->Counts()/numcounts)*40;
+        SetDrive(motorPower, 100);
+    }
+
+    SetDrive(0, 0);
+}
