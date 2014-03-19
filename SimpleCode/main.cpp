@@ -175,6 +175,14 @@ void pt7()
         box->SetDegree(IO::BOX_DUMP);
         Sleep(2.0);
         box->SetDegree(IO::BOX_STORE);
+        drive->DriveDist(100, 6);
+        Sleep(1.0);
+        drive->TurnAngle(0, Drive::RIGHT, Drive::LEFT);
+        Sleep(1.0);
+        drive->DriveDist(-100, 2.5);
+        Sleep(1.0);
+        drive->TurnAngle(90, Drive::RIGHT, Drive::LEFT);
+        Sleep(1.0);
     }
     else // RIGHT COUNTER
     {
@@ -196,10 +204,22 @@ void pt7()
         Sleep(1.0);
         drive->TurnAngle(90, Drive::RIGHT, Drive::LEFT);
         Sleep(1.0);
-        drive->SquareToWallBackward();
-        drive->DriveDist(100, 35);
 
     }
+
+    // drive back up ramp
+    drive->SquareToWallBackward();
+    drive->DriveDist(100, 41);
+    Sleep(1.0);
+
+    // Turn toward charge zone
+    drive->TurnAngle(0, Drive::LEFT, Drive::RIGHT);
+    Sleep(1.0);
+
+    // Drive to charge zone
+    drive->SquareToWallForward();
+    // Ram into charge zone pusher
+    drive->SetDriveTime(100, 0, 0.25);
 
 }
 
