@@ -171,9 +171,6 @@ void Drive::TurnAngle(int degrees, Drive::Side direction, Drive::Side pivot) // 
 // TODO: add failure timeout
 void Drive::SquareToWallForward()
 {
-    io->lcd->Clear();
-    io->lcd->WriteLine("SUARE FORWARD");
-    Sleep(2.0);
     while(true)
     {
         SetDriveLR(io->fl_switch->Value() ? 100 : 0, io->fr_switch->Value() ? 100 : 0);
@@ -189,9 +186,6 @@ void Drive::SquareToWallForward()
 // TODO: add failure timeout
 void Drive::SquareToWallBackward()
 {
-    io->lcd->Clear();
-    io->lcd->WriteLine("SUARE BACKWARD");
-    Sleep(2.0);
     while(true)
     {
         SetDriveLR(io->bl_switch->Value() ? -100 : 0, io->br_switch->Value() ? -100 : 0);
@@ -239,7 +233,7 @@ void Drive::DriveDist(int forward, float dist)
     SetDrive(0, 0);
 }
 
-void Drive::turnLeft90()
+void Drive::TurnLeft90()
 {
 
     int numcounts = 77;
@@ -248,7 +242,7 @@ void Drive::turnLeft90()
 
     while(io->left_encoder->Counts() < numcounts)
     {
-        motorPower = 100 - (io->left_encoder->Counts()/numcounts)*40;
+        motorPower = -100 + (io->left_encoder->Counts()/numcounts)*40;
         SetDrive(motorPower, 100);
     }
 

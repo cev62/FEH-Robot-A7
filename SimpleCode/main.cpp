@@ -188,6 +188,17 @@ void pt7()
         box->SetDegree(IO::BOX_DUMP);
         Sleep(2.0);
         box->SetDegree(IO::BOX_STORE);
+        drive->DriveDist(100, 6);
+        Sleep(1.0);
+        drive->TurnAngle(0, Drive::LEFT, Drive::RIGHT);
+        Sleep(1.0);
+        drive->DriveDist(-100, 4);
+        Sleep(1.0);
+        drive->TurnAngle(90, Drive::RIGHT, Drive::LEFT);
+        Sleep(1.0);
+        drive->SquareToWallBackward();
+        drive->DriveDist(100, 35);
+
     }
 
 }
@@ -213,7 +224,7 @@ void comp()
 
 void encoderTest()
 {
-    drive->turnLeft90();
+    drive->TurnLeft90();
     /*while(!button_board->LeftPressed())
     {
         drive->TurnAngle(90, Drive::RIGHT, Drive::LEFT);
