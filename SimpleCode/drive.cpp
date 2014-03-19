@@ -243,7 +243,7 @@ void Drive::TurnLeft90()
     while(io->left_encoder->Counts() < numcounts)
     {
         motorPower = -100 + (io->left_encoder->Counts()/numcounts)*40;
-        SetDrive(motorPower, 100);
+        SetDrive(motorPower, -100);
     }
 
     SetDrive(0, 0);
