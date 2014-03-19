@@ -187,3 +187,12 @@ void Drive::SquareToWallForward()
         Sleep(.020);
     }
 }
+
+void Drive::SquareToWallForward()
+{
+    while(right_switch->Value() == 1 && left_switch->Value() == 1)
+    {
+        SetDriveLR(left_switch->Value() == 1 ? 100 : 0, right_switch->Value() == 1 ? 100 : 0);
+        Sleep(.020);
+    }
+}

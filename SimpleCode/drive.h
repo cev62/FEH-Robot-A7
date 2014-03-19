@@ -11,6 +11,14 @@
 class Drive
 {
 public:
+
+    static const float P_TURN= 20.0 / 45.0;
+    static const float TURN_MIN_POWER_FACTORY = 50; // 50 for factory, 60 for shop;
+    static const float TURN_MIN_POWER_SHOP = 60; // 50 for factory, 60 for shop;
+
+    static const float STRAIGHT_MIN_POWER = 60;
+    static const float RAMP_DOWN_DIST = 6.0;
+
     typedef enum
     {
         LEFT = 0,
@@ -23,14 +31,15 @@ public:
     void SetDriveTime(int forward, int turn, float time);
     void PushButton();
     void SquareToWallForward();
-    void TurnAmount(int degrees, Pivot pivot);
-    void TurnAngle(int degrees, Pivot direction, Pivot pivot);
+    void SquareToWallBackward();
+    void TurnAmount(int degrees, Drive::Side pivot);
+    void TurnAngle(int degrees, Drive::Side direction, Drive::Side pivot);
+    void DriveDist(int forward, float dist);
+
+    float TURN_MIN_POWER;
 
     FEHMotor *left, *right;
     IO *io;
-    int forward, turn;
-    float pTurn;
-    float turn_min_power;
 };
 
 #endif // DRIVE_H

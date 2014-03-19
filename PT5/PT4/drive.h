@@ -20,6 +20,7 @@ public:
     void SetDriveTime(int forward, int turn, float time);
     void PushButton();
     void SquareToWallForward();
+    void SquareToWallBackward();
     void TurnAmount(int degrees, Pivot pivot);
     void TurnAngle(int degrees, Pivot direction, Pivot pivot);
 

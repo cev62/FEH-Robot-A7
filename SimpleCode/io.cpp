@@ -1,6 +1,6 @@
 #include "io.h"
 
-IO::IO(Timer *print_timer_in, ButtonBoard *button_board_in, FEHLCD *lcd_in, FEHWONKA *rps_in, FEHEncoder *left_encoder_in, FEHEncoder *right_encoder_in, DigitalInputPin *left_switch_in, DigitalInputPin *right_switch_in, DigitalInputPin *arm_switch_in, AnalogInputPin *optosensor_in, AnalogInputPin *cds_cell_in)
+IO::IO(Timer *print_timer_in, ButtonBoard *button_board_in, FEHLCD *lcd_in, FEHWONKA *rps_in, FEHEncoder *left_encoder_in, FEHEncoder *right_encoder_in, DigitalInputPin *fl_switch_in, DigitalInputPin *fr_switch_in, DigitalInputPin *bl_switch_in, DigitalInputPin *br_switch_in, DigitalInputPin *arm_switch_in, AnalogInputPin *optosensor_in, AnalogInputPin *cds_cell_in)
 {
     button_board_current_states = new bool[3];
     button_board_prev_states = new bool[3];
@@ -16,8 +16,10 @@ IO::IO(Timer *print_timer_in, ButtonBoard *button_board_in, FEHLCD *lcd_in, FEHW
     lcd = lcd_in;
     left_encoder = left_encoder_in;
     right_encoder = right_encoder_in;
-    left_switch = left_switch_in;
-    right_switch = right_switch_in;
+    fl_switch = fl_switch_in;
+    fr_switch = fr_switch_in;
+    bl_switch = bl_switch_in;
+    br_switch = br_switch_in;
     arm_switch = arm_switch_in;
     optosensor = optosensor_in;
     cds_cell = cds_cell_in;
@@ -87,4 +89,25 @@ void IO::WaitForStartLight()
         }
         Sleep(IO::LOOP_TIMEOUT);
     }
+}
+
+void IO::InitializeScoopLight()
+{
+    cds_cell_shop_floor = cds_cell->Value();
+}
+
+void IO::ReadScoopLight()
+{
+    cds_cell_scoop_light = cds_cell->Value();
+    if(cds_cell_shop_floor - IO::SCOOP_LIGHT_THRESHOLD > cds_cell_scoop_light)
+    {
+        counter = IO::RIGHT_COUNTER;
+        lcd->WriteLine("RIGHT COUNTER");
+    }
+    else
+    {
+        counter = IO::LEFT_COUNTER;
+        lcd->WriteLine("LEFT COUNTER");
+    }
+
 }

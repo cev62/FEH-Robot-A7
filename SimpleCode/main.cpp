@@ -7,6 +7,7 @@
 
 #include "timer.h"
 #include "io.h"
+#include "drive.h"
 
 // Function prototypes
 void RunScript(char* script);
@@ -17,12 +18,12 @@ void comp();
 // Variable Declarations
 ButtonBoard *button_board;
 AnalogInputPin *cds_cell, *optosensor;
-DigitalInputPin *right_switch, *left_switch, *arm_switch;
+DigitalInputPin *fl_switch, *fr_switch, *bl_switch, *br_switch, *arm_switch;
 FEHMotor *left, *right;
 FEHServo *arm, *box;
 FEHEncoder *left_encoder, *right_encoder;
 IO *io;
-//Drive *drive;
+Drive *drive;
 FEHLCD *lcd;
 FEHWONKA RPS, *rps;
 Timer *print_timer;
@@ -35,12 +36,15 @@ int main(void)
 {
     button_board = new ButtonBoard(FEHIO::Bank3);
     cds_cell = new AnalogInputPin(FEHIO::P0_0);
-    right_switch = new DigitalInputPin(FEHIO::P0_1);
-    left_switch = new DigitalInputPin(FEHIO::P0_2);
+    fr_switch = new DigitalInputPin(FEHIO::P0_1);
+    fl_switch = new DigitalInputPin(FEHIO::P0_2);
     arm_switch = new DigitalInputPin(FEHIO::P0_3);
     optosensor = new AnalogInputPin(FEHIO::P0_4);
     left_encoder = new FEHEncoder(FEHIO::P1_0);
     right_encoder = new FEHEncoder(FEHIO::P1_1);
+    br_switch = new DigitalInputPin(FEHIO::P2_0);
+    bl_switch = new DigitalInputPin(FEHIO::P2_1);
+
     left = new FEHMotor(FEHMotor::Motor0);
     right = new FEHMotor(FEHMotor::Motor1);
     arm = new FEHServo(FEHServo::Servo0);
@@ -49,17 +53,22 @@ int main(void)
     arm->SetMax(2431);
     box->SetMin(500);
     box->SetMax(2431);
+
     lcd = &LCD;
+    lcd->Clear( FEHLCD::Black );
+    lcd->SetFontColor( FEHLCD::White );
     rps = &RPS;
     print_timer = new Timer();
 
-    io = new IO(print_timer, button_board, lcd, rps, left_encoder, right_encoder, left_switch, right_switch, arm_switch, optosensor, cds_cell);
+    io = new IO(print_timer, button_board, lcd, rps, left_encoder, right_encoder, fl_switch, fr_switch, bl_switch, br_switch, arm_switch, optosensor, cds_cell);
+    drive = new Drive(left, right, io);
 
+    num_scripts = 4;
+    scripts = new char*[4];
     scripts[0] = "pt7";
     scripts[1] = "test";
     scripts[2] = "comp";
     scripts[3] = "Toggle RPS";
-    num_scripts = 4;
     script_position = 0;
     is_rps_enabled = true;
 
@@ -71,6 +80,7 @@ int main(void)
         {
             // Middle Button pressed: run the current selected script
             RunScript(scripts[script_position]);
+            continue;
         }
         if(io->ButtonBoardGetPressedEvent(IO::LEFT))
         {
@@ -128,15 +138,60 @@ void RunScript(char *script)
 
 void pt7()
 {
+    lcd->WriteLine("PT7");
+
+    // drive from start light to ramp
+    /*drive->DriveDist(100, 35);
+    Sleep(1.0);
+    drive->TurnAngle(90, Drive::LEFT, Drive::RIGHT);
+    Sleep(1.0);*/
+
+    // Drive down ramp past scoop light
+    drive->SquareToWallBackward();
+    Sleep(1.0);
+
+    // In the shop
+    drive->TURN_MIN_POWER = Drive::TURN_MIN_POWER_SHOP;
+
+    io->InitializeScoopLight();
+    Sleep(1.0);
+    drive->DriveDist(100, 8);
+    Sleep(1.0);
+    io->ReadScoopLight();
+    Sleep(1.0);
+    if(io->counter == IO::LEFT_COUNTER)
+    {
+        drive->TurnAngle(0, Drive::LEFT, Drive::RIGHT);
+        Sleep(1.0);
+        drive->TurnAngle(90, Drive::RIGHT, Drive::LEFT);
+        Sleep(1.0);
+        drive->SquareToWallBackward();
+    }
+    else // RIGHT COUNTER
+    {
+        drive->TurnAngle(0, Drive::RIGHT, Drive::LEFT);
+        Sleep(1.0);
+        drive->TurnAngle(90, Drive::LEFT, Drive::RIGHT);
+        Sleep(1.0);
+        drive->SquareToWallBackward();
+    }
 
 }
 
 void test()
 {
-
+    while(true)
+    {
+        lcd->Clear();
+        lcd->WriteLine(io->fl_switch->Value());
+        lcd->WriteLine(io->fr_switch->Value());
+        lcd->WriteLine(io->bl_switch->Value());
+        lcd->WriteLine(io->br_switch->Value());
+        Sleep(IO::PRINT_TIMEOUT);
+    }
 }
 
 void comp()
 {
-
+    drive->SquareToWallBackward();
 }
