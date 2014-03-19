@@ -1,6 +1,6 @@
 #include "io.h"
 
-IO::IO(ButtonBoard *button_board_in, FEHLCD *lcd_in, FEHWONKA *rps_in, FEHEncoder *left_encoder_in, FEHEncoder *right_encoder_in, DigitalInputPin *left_switch_in, DigitalInputPin *right_switch_in, DigitalInputPin *arm_switch_in, AnalogInputPin *optosensor_in, AnalogInputPin *cds_cell_in)
+IO::IO(Timer *print_timer_in, ButtonBoard *button_board_in, FEHLCD *lcd_in, FEHWONKA *rps_in, FEHEncoder *left_encoder_in, FEHEncoder *right_encoder_in, DigitalInputPin *left_switch_in, DigitalInputPin *right_switch_in, DigitalInputPin *arm_switch_in, AnalogInputPin *optosensor_in, AnalogInputPin *cds_cell_in)
 {
     button_board_current_states = new bool[3];
     button_board_prev_states = new bool[3];
@@ -21,6 +21,9 @@ IO::IO(ButtonBoard *button_board_in, FEHLCD *lcd_in, FEHWONKA *rps_in, FEHEncode
     arm_switch = arm_switch_in;
     optosensor = optosensor_in;
     cds_cell = cds_cell_in;
+    print_timer = print_timer_in;
+
+    print_timer->SetTimeout(IO::PRINT_TIMEOUT);
 }
 
 void IO::Update()
@@ -66,8 +69,12 @@ void IO::WaitForStartLight()
     while(true)
     {
         curr_value = cds_cell->Value();
-        lcd->Write("CdS cell: ");
-        lcd->WriteLine(curr_value);
+        if(print_timer->IsTimeout())
+        {
+            lcd->Clear();
+            lcd->Write("CdS cell: ");
+            lcd->WriteLine(curr_value);
+        }
         if(curr_value - initial_value < IO::START_LIGHT_THRESHOLD)
         {
             lcd->Clear();
@@ -78,7 +85,6 @@ void IO::WaitForStartLight()
             lcd->Clear();
             return;
         }
-        Sleep(0.100);
-        lcd->Clear();
+        Sleep(IO::LOOP_TIMEOUT);
     }
 }

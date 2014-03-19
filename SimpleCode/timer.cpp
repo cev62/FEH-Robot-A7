@@ -27,8 +27,14 @@ void Timer::SetTimeout(float timeout_in)
     timeout = timeout_in;
 }
 
+// Returns whether the timeout has expired, and if it has, resets the timer
 bool Timer::IsTimeout()
 {
-    return GetTime() > timeout;
+    bool is_timeout = GetTime() > timeout;
+    if(is_timeout)
+    {
+        Reset();
+    }
+    return is_timeout;
 }
 

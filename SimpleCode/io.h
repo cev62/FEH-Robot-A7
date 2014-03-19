@@ -6,6 +6,8 @@
 #include <FEHLCD.h>
 #include <FEHUtility.h>
 
+#include "timer.h"
+
 class IO
 {
 public:
@@ -42,8 +44,9 @@ public:
     DigitalInputPin *left_switch, *right_switch, *arm_switch;
     AnalogInputPin *optosensor, *cds_cell;
     bool *button_board_prev_states, *button_board_current_states;
+    Timer *print_timer;
 
-    IO(ButtonBoard *button_board_in, FEHLCD *lcd_in, FEHWONKA *rps_in, FEHEncoder *left_encoder_in, FEHEncoder *right_encoder_in, DigitalInputPin *left_switch_in, DigitalInputPin *right_switch_in, DigitalInputPin *arm_switch_in, AnalogInputPin *optosensor_in, AnalogInputPin *cds_cell_in);
+    IO(Timer *print_timer_in, ButtonBoard *button_board_in, FEHLCD *lcd_in, FEHWONKA *rps_in, FEHEncoder *left_encoder_in, FEHEncoder *right_encoder_in, DigitalInputPin *left_switch_in, DigitalInputPin *right_switch_in, DigitalInputPin *arm_switch_in, AnalogInputPin *optosensor_in, AnalogInputPin *cds_cell_in);
 };
 
 #endif // IO_H

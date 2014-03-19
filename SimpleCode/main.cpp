@@ -53,7 +53,7 @@ int main(void)
     rps = &RPS;
     print_timer = new Timer();
 
-    io = new IO(button_board, lcd, rps, left_encoder, right_encoder, left_switch, right_switch, arm_switch, optosensor, cds_cell);
+    io = new IO(print_timer, button_board, lcd, rps, left_encoder, right_encoder, left_switch, right_switch, arm_switch, optosensor, cds_cell);
 
     scripts[0] = "pt7";
     scripts[1] = "test";
@@ -90,7 +90,7 @@ int main(void)
                 script_position -= num_scripts;
             }
         }
-        if(print_timer->GetTime() > IO::PRINT_TIMEOUT)
+        if(print_timer->IsTimeout())
         {
             // Print status of script choosing
             lcd->Clear();
@@ -100,7 +100,6 @@ int main(void)
             lcd->WriteLine("Middle button --> run");
             lcd->Write("RPS is: ");
             lcd->WriteLine(is_rps_enabled ? "Enabled" : "Disabled");
-            print_timer->Reset();
         }
         Sleep(IO::LOOP_TIMEOUT);
     }
