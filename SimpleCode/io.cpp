@@ -103,6 +103,8 @@ void IO::ReadScoopLight()
     {
         counter = IO::RIGHT_COUNTER;
         lcd->WriteLine("RIGHT COUNTER");
+        lcd->WriteLine(cds_cell_shop_floor);
+        lcd->WriteLine(cds_cell_scoop_light);
     }
     else
     {

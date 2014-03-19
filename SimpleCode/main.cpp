@@ -147,6 +147,7 @@ void pt7()
     Sleep(1.0);*/
 
     // Drive down ramp past scoop light
+    box->SetDegree(IO::BOX_STORE);
     drive->SquareToWallBackward();
     Sleep(1.0);
 
@@ -166,6 +167,9 @@ void pt7()
         drive->TurnAngle(90, Drive::RIGHT, Drive::LEFT);
         Sleep(1.0);
         drive->SquareToWallBackward();
+        box->SetDegree(IO::BOX_DUMP);
+        Sleep(2.0);
+        box->SetDegree(IO::BOX_STORE);
     }
     else // RIGHT COUNTER
     {
@@ -174,6 +178,9 @@ void pt7()
         drive->TurnAngle(90, Drive::LEFT, Drive::RIGHT);
         Sleep(1.0);
         drive->SquareToWallBackward();
+        box->SetDegree(IO::BOX_DUMP);
+        Sleep(2.0);
+        box->SetDegree(IO::BOX_STORE);
     }
 
 }
