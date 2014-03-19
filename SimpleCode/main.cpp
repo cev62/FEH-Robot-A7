@@ -220,21 +220,24 @@ void encoderTest()
                 lcd->Write("   ");
                 lcd->WriteLine(right_encoder->Counts());
                 io->ResetEncoders();
+                Sleep(1.0);
         drive->TurnAngle(90, Drive::LEFT, Drive::RIGHT);
                 lcd->Write(left_encoder->Counts());
                 lcd->Write("   ");
                 lcd->WriteLine(right_encoder->Counts());
                 io->ResetEncoders();
+                Sleep(1.0);
         drive->TurnAngle(90, Drive::RIGHT, Drive::RIGHT);
                 lcd->Write(left_encoder->Counts());
                 lcd->Write("   ");
                 lcd->WriteLine(right_encoder->Counts());
                 io->ResetEncoders();
+                Sleep(1.0);
         drive->TurnAngle(90, Drive::LEFT, Drive::LEFT);
                 lcd->Write(left_encoder->Counts());
                 lcd->Write("   ");
                 lcd->WriteLine(right_encoder->Counts());
                 io->ResetEncoders();
-
+                Sleep(1.0);
     }
 }
