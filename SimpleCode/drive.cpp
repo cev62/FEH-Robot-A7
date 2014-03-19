@@ -178,10 +178,10 @@ void Drive::SquareToWallForward()
     {
         SetDriveLR(io->fl_switch->Value() ? 100 : 0, io->fr_switch->Value() ? 100 : 0);
         Sleep(IO::LOOP_TIMEOUT);
-    }
-    if(!io->fl_switch->Value() && !io->fr_switch->Value())
-    {
-        break;
+        if(!io->fl_switch->Value() && !io->fr_switch->Value())
+        {
+            break;
+        }
     }
     SetDrive(0, 0);
 }
