@@ -243,18 +243,31 @@ void Drive::DriveDist(int forward, float dist)
     SetDrive(0, 0);
 }
 
-void Drive::TurnLeft90()
+void Drive::EncoderTurn(int angle)
 {
 
-    int numcounts = 70;
-    float motorPower = 100;
+    float countsPerDegree = 7/9;
+    float motorPower;
     io->ResetEncoders();
 
-    while(io->left_encoder->Counts() < numcounts)
+    if(angle < 100)
     {
-        motorPower = -100 + (io->left_encoder->Counts()/numcounts)*40;
-        SetDrive(motorPower, -100);
+        angle *= -1;
+        while(io->left_encoder->Counts() < (countsPerDegree*angle))
+        {
+            motorPower = -100 + ((io->left_encoder->Counts()/(countsPerDegree*angle))*40);
+            SetDriveLR(motorPower, 0);
+        }
     }
+    else
+    {
+        while(io->right_encoder->Counts() < (countsPerDegree*angle))
+        {
+            motorPower = -100 + ((io->right_encoder->Counts()/(countsPerDegree*angle))*40);
+            SetDriveLR(0, motorPower);
+        }
+    }
+
 
     SetDrive(0, 0);
 }

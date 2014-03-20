@@ -274,32 +274,13 @@ void comp()
 
 void encoderTest()
 {
-    drive->TurnLeft90();
-    /*while(!button_board->LeftPressed())
-    {
-        drive->TurnAngle(90, Drive::RIGHT, Drive::LEFT);
-                lcd->Write(left_encoder->Counts());
-                lcd->Write("   ");
-                lcd->WriteLine(right_encoder->Counts());
-                io->ResetEncoders();
-                Sleep(1.0);
-        drive->TurnAngle(90, Drive::LEFT, Drive::RIGHT);
-                lcd->Write(left_encoder->Counts());
-                lcd->Write("   ");
-                lcd->WriteLine(right_encoder->Counts());
-                io->ResetEncoders();
-                Sleep(1.0);
-        drive->TurnAngle(90, Drive::RIGHT, Drive::RIGHT);
-                lcd->Write(left_encoder->Counts());
-                lcd->Write("   ");
-                lcd->WriteLine(right_encoder->Counts());
-                io->ResetEncoders();
-                Sleep(1.0);
-        drive->TurnAngle(90, Drive::LEFT, Drive::LEFT);
-                lcd->Write(left_encoder->Counts());
-                lcd->Write("   ");
-                lcd->WriteLine(right_encoder->Counts());
-                io->ResetEncoders();
-                Sleep(1.0);
-    }*/
+
+    drive->EncoderTurn(90);
+    Sleep(1.0);
+    drive->EncoderTurn(-90);
+    Sleep(1.0);
+    drive->EncoderTurn(180);
+    Sleep(1.0);
+    drive->EncoderTurn(-180);
+    Sleep(1.0);
 }
