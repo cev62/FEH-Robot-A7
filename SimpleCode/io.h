@@ -49,6 +49,7 @@ public:
     void ReadScoopLight();
 
     float cds_cell_shop_floor, cds_cell_scoop_light;
+    int num_button_pushes_required;
     Counter counter;
 
     FEHWONKA *rps;

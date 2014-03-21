@@ -67,10 +67,10 @@ int main(void)
 
     num_scripts = 6;
     scripts = new char*[num_scripts];
-    scripts[0] = "pt7_bonus";
-    scripts[1] = "pt7";
-    scripts[2] = "test";
-    scripts[3] = "comp";
+    scripts[0] = "comp";
+    scripts[1] = "pt7_bonus";
+    scripts[2] = "pt7";
+    scripts[3] = "test";
     scripts[4] = "encoder test";
     scripts[5] = "Toggle RPS"; //must be last script in array
     script_position = 0;
@@ -251,8 +251,48 @@ void test()
 
 void comp()
 {
-    box->Calibrate();
-    Sleep(10.0);
+    // Init
+    arm->SetDegree(IO::ARM_STORE);
+    box->SetDegree(IO::BOX_STORE);
+    io->WaitForStartLight();
+    io->num_button_pushes_required = rps->Oven();
+
+    // Drive to button
+    drive->DriveDist(-100, 8);
+    Sleep(1.0);
+    drive->TurnAngle(90, Drive::LEFT, Drive::RIGHT);
+    Sleep(1.0);
+    drive->SquareToWallForward();
+    Sleep(1.0);
+    drive->DriveDist(-100, 1);
+    Sleep(1.0);
+    drive->TurnAngle(0, Drive::RIGHT, Drive::LEFT);
+    Sleep(1.0);
+
+    // Push button multiple times
+    int times_attempted_press = 0;
+    while(rps->OvenPressed() < io->num_button_pushes_required && times_attempted_press < 6)
+    {
+        drive->PushButton();
+        times_attempted_press++;
+        Sleep(1.0);
+    }
+    Sleep(1.0);
+
+    // Drive to Switch
+    drive->DriveDist(-100, 16);
+    Sleep(1.0);
+    drive->TurnAngle(0, Drive::RIGHT, Drive::LEFT);
+    Sleep(1.0);
+    drive->SquareToWallForward();
+    Sleep(1.0);
+
+    // Flip Switch
+    drive->TurnAngle(120, Drive::LEFT, Drive::RIGHT);
+    Sleep(1.0);
+    drive->TurnAngle(90, Drive::RIGHT, Drive::LEFT);
+    Sleep(1.0);
+    drive->SquareToWallForward();
 }
 
 void encoderTest()

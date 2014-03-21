@@ -250,7 +250,7 @@ void Drive::EncoderTurn(int angle)
     float motorPower;
     io->ResetEncoders();
 
-    if(angle < 100)
+    if(angle < 0)
     {
         angle *= -1;
         while(io->left_encoder->Counts() < (countsPerDegree*angle))

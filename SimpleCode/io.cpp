@@ -4,6 +4,7 @@ IO::IO(Timer *print_timer_in, ButtonBoard *button_board_in, FEHLCD *lcd_in, FEHW
 {
     button_board_current_states = new bool[3];
     button_board_prev_states = new bool[3];
+    num_button_pushes_required = 1;
 
     for(int i = 0; i < 3; i++)
     {
