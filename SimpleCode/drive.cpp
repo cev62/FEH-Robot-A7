@@ -181,6 +181,11 @@ void Drive::SquareToWallForward()
         }
     }
     SetDrive(0, 0);
+    Sleep(0.5);
+    if(io->fl_switch->Value() || io->fr_switch->Value())
+    {
+        SquareToWallBackward();
+    }
 }
 
 // TODO: add failure timeout
@@ -204,6 +209,11 @@ void Drive::SquareToWallBackward()
         Sleep(IO::LOOP_TIMEOUT);
     }
     SetDrive(0, 0);
+    Sleep(0.5);
+    if(io->bl_switch->Value() || io->br_switch->Value())
+    {
+        SquareToWallBackward();
+    }
 }
 
 // TODO: add timer
@@ -236,7 +246,7 @@ void Drive::DriveDist(int forward, float dist)
 void Drive::TurnLeft90()
 {
 
-    int numcounts = 77;
+    int numcounts = 70;
     float motorPower = 100;
     io->ResetEncoders();
 

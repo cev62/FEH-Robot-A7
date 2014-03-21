@@ -12,6 +12,7 @@
 // Function prototypes
 void RunScript(char* script);
 void pt7();
+void pt7_bonus();
 void test();
 void comp();
 void encoderTest();
@@ -64,9 +65,10 @@ int main(void)
     io = new IO(print_timer, button_board, lcd, rps, left_encoder, right_encoder, fl_switch, fr_switch, bl_switch, br_switch, arm_switch, optosensor, cds_cell);
     drive = new Drive(left, right, io);
 
-    num_scripts = 5;
+    num_scripts = 6;
     scripts = new char*[num_scripts];
     scripts[0] = "pt7";
+    scripts[0] = "pt7_bonus";
     scripts[1] = "test";
     scripts[2] = "comp";
     scripts[3] = "encoder test";
@@ -105,7 +107,7 @@ int main(void)
         if(print_timer->IsTimeout())
         {
             // Print status of script choosing
-            lcd->Clear();
+            lcd->Clear(FEHLCD::Black);
             lcd->Write("Selected: ");
             lcd->WriteLine(scripts[script_position]);
             lcd->WriteLine("Side Buttons --> choose");
@@ -133,6 +135,7 @@ void RunScript(char *script)
     }
 
     if(script == "pt7"){ pt7(); }
+    if(script == "pt7_bonus"){ pt7_bonus(); }
     if(script == "test"){ test(); }
     if(script == "comp"){ comp(); }
     if(script == "encoder test") { encoderTest(); }
@@ -175,20 +178,20 @@ void pt7()
         box->SetDegree(IO::BOX_DUMP);
         Sleep(2.0);
         box->SetDegree(IO::BOX_STORE);
-        drive->DriveDist(100, 6);
+        /*drive->DriveDist(100, 6);
         Sleep(1.0);
         drive->TurnAngle(0, Drive::RIGHT, Drive::LEFT);
         Sleep(1.0);
-        drive->DriveDist(-100, 2.5);
+        drive->DriveDist(100, 2.5);
         Sleep(1.0);
-        drive->TurnAngle(90, Drive::RIGHT, Drive::LEFT);
-        Sleep(1.0);
+        drive->TurnAngle(90, Drive::LEFT, Drive::RIGHT);
+        Sleep(1.0);*/
     }
     else // RIGHT COUNTER
     {
         drive->TurnAngle(0, Drive::RIGHT, Drive::LEFT);
         Sleep(1.0);
-        drive->DriveDist(-100, 4);
+        drive->DriveDist(-100, 3);
         Sleep(1.0);
         drive->TurnAngle(90, Drive::LEFT, Drive::RIGHT);
         Sleep(1.0);
@@ -196,24 +199,37 @@ void pt7()
         box->SetDegree(IO::BOX_DUMP);
         Sleep(2.0);
         box->SetDegree(IO::BOX_STORE);
-        drive->DriveDist(100, 6);
+        /*drive->DriveDist(100, 6);
         Sleep(1.0);
         drive->TurnAngle(0, Drive::LEFT, Drive::RIGHT);
         Sleep(1.0);
         drive->DriveDist(-100, 4);
         Sleep(1.0);
         drive->TurnAngle(90, Drive::RIGHT, Drive::LEFT);
-        Sleep(1.0);
+        Sleep(1.0);*/
 
     }
 
-    // drive back up ramp
+    // Square up on side wall and in front of ramp
+    drive->DriveDist(100, 7);
+    Sleep(1.0);
+    drive->TurnAngle(0, Drive::LEFT, Drive::RIGHT);
+    Sleep(1.0);
     drive->SquareToWallBackward();
-    drive->DriveDist(100, 41);
+    Sleep(1.0);
+    drive->DriveDist(100, 18.5);
+    Sleep(1.0);
+    drive->TurnAngle(90, Drive::RIGHT, Drive::LEFT);
+    Sleep(1.0);
+    drive->SquareToWallBackward();
+    Sleep(1.0);
+
+    // drive back up ramp
+    drive->DriveDist(100, 34);
     Sleep(1.0);
 
     // Turn toward charge zone
-    drive->TurnAngle(0, Drive::LEFT, Drive::RIGHT);
+    drive->TurnAngle(10, Drive::LEFT, Drive::LEFT);
     Sleep(1.0);
 
     // Drive to charge zone
@@ -221,6 +237,20 @@ void pt7()
     // Ram into charge zone pusher
     drive->SetDriveTime(100, 0, 0.25);
 
+}
+
+void pt7_bonus()
+{
+    arm->SetDegree(IO::ARM_SENSE_PIN);
+    Sleep(1.0);
+    drive->TurnAngle(120, Drive::LEFT, Drive::RIGHT);
+    Sleep(1.0);
+    drive->TurnAngle(90, Drive::RIGHT, Drive::RIGHT);
+    Sleep(1.0);
+    arm->SetDegree(IO::ARM_STORE);
+
+    // All the rest
+    pt7();
 }
 
 void test()

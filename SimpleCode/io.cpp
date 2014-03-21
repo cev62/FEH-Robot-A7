@@ -102,6 +102,7 @@ void IO::ReadScoopLight()
     if(cds_cell_shop_floor - IO::SCOOP_LIGHT_THRESHOLD > cds_cell_scoop_light)
     {
         counter = IO::RIGHT_COUNTER;
+        lcd->Clear(FEHLCD::Red);
         lcd->WriteLine("RIGHT COUNTER");
         lcd->WriteLine(cds_cell_shop_floor);
         lcd->WriteLine(cds_cell_scoop_light);
@@ -109,7 +110,10 @@ void IO::ReadScoopLight()
     else
     {
         counter = IO::LEFT_COUNTER;
+        lcd->Clear(FEHLCD::Blue);
         lcd->WriteLine("LEFT COUNTER");
+        lcd->WriteLine(cds_cell_shop_floor);
+        lcd->WriteLine(cds_cell_scoop_light);
     }
 
 }
