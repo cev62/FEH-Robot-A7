@@ -251,8 +251,7 @@ void test()
 
 void comp()
 {
-    box->Calibrate();
-    Sleep(10.0);
+    
 }
 
 void encoderTest()
