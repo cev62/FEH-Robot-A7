@@ -243,24 +243,52 @@ void Drive::DriveDist(int forward, float dist)
     SetDrive(0, 0);
 }
 
-void Drive::EncoderTurn(int angle)
+void Drive::LineFollowPin()
+{
+    while(true)
+    {
+        if(io->IsOnLinePin())
+        {
+            // Need to go right
+            SetDriveLR(65, 30);
+        }
+        else
+        {
+            // Need to go left
+            SetDriveLR(30, 55);
+        }
+
+        if(!io->arm_switch->Value())
+        {
+            SetDrive(0, 0);
+            return;
+        }
+        Sleep(IO::LOOP_TIMEOUT);
+    }
+}
+
+void Drive::EncoderTurn(float angle)
 {
 
-    float countsPerDegree = 7/9;
+    float countsPerDegree = .777777777;
     float motorPower;
     io->ResetEncoders();
 
     if(angle < 0)
     {
         angle *= -1;
-        while(io->left_encoder->Counts() < (countsPerDegree*angle))
+        io->lcd->Write("Turn Left  ");
+        io->lcd->WriteLine(countsPerDegree*angle);
+        while(io->left_encoder->Counts() < (countsPerDegree*angle*0.9))
         {
-            motorPower = -100 + ((io->left_encoder->Counts()/(countsPerDegree*angle))*40);
+            motorPower = -100 + ((io->left_encoder->Counts()/(countsPerDegree*angle*0.9))*40);
             SetDriveLR(motorPower, 0);
         }
     }
     else
     {
+        io->lcd->Write("Turn Right ");
+        io->lcd->WriteLine(countsPerDegree*angle);
         while(io->right_encoder->Counts() < (countsPerDegree*angle))
         {
             motorPower = -100 + ((io->right_encoder->Counts()/(countsPerDegree*angle))*40);

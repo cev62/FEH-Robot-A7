@@ -6,6 +6,8 @@ IO::IO(Timer *print_timer_in, ButtonBoard *button_board_in, FEHLCD *lcd_in, FEHW
     button_board_prev_states = new bool[3];
     num_button_pushes_required = 1;
 
+    optosensor_curr_value = 0.0;
+
     for(int i = 0; i < 3; i++)
     {
         button_board_current_states[i] = false;
@@ -117,4 +119,15 @@ void IO::ReadScoopLight()
         lcd->WriteLine(cds_cell_scoop_light);
     }
 
+}
+
+void IO::InitializeLineFollowingPin()
+{
+    optosensor_factory_floor = optosensor->Value();
+}
+
+bool IO::IsOnLinePin()
+{
+    optosensor_curr_value = optosensor->Value();
+    return optosensor_curr_value < optosensor_factory_floor - IO::LINE_THRESHOLD_FACTORY;
 }

@@ -256,22 +256,24 @@ void comp()
     box->SetDegree(IO::BOX_STORE);
     io->WaitForStartLight();
     io->num_button_pushes_required = rps->Oven();
+    lcd->Write("Buttons: ");
+    lcd->Write(io->num_button_pushes_required);
 
     // Drive to button
-    drive->DriveDist(-100, 8);
-    Sleep(1.0);
     drive->TurnAngle(90, Drive::LEFT, Drive::RIGHT);
     Sleep(1.0);
     drive->SquareToWallForward();
     Sleep(1.0);
-    drive->DriveDist(-100, 1);
+    drive->DriveDist(-100, 0.5);
     Sleep(1.0);
     drive->TurnAngle(0, Drive::RIGHT, Drive::LEFT);
     Sleep(1.0);
 
     // Push button multiple times
-    int times_attempted_press = 0;
-    while(rps->OvenPressed() < io->num_button_pushes_required && times_attempted_press < 6)
+    drive->PushButton();
+    int times_attempted_press = 1;
+    //while(rps->OvenPressed() < io->num_button_pushes_required && times_attempted_press < 6)
+    for(int i = 1; i < io->num_button_pushes_required; i++)
     {
         drive->PushButton();
         times_attempted_press++;
@@ -280,9 +282,9 @@ void comp()
     Sleep(1.0);
 
     // Drive to Switch
-    drive->DriveDist(-100, 16);
+    drive->DriveDist(-100, 14);
     Sleep(1.0);
-    drive->TurnAngle(0, Drive::RIGHT, Drive::LEFT);
+    drive->TurnAngle(90, Drive::RIGHT, Drive::LEFT);
     Sleep(1.0);
     drive->SquareToWallForward();
     Sleep(1.0);
@@ -293,6 +295,19 @@ void comp()
     drive->TurnAngle(90, Drive::RIGHT, Drive::LEFT);
     Sleep(1.0);
     drive->SquareToWallForward();
+    Sleep(1.0);
+
+    // Drive to PIN
+    drive->DriveDist(-100, 3);
+    Sleep(1.0);
+    drive->TurnAngle(0, Drive::RIGHT, Drive::LEFT);
+    Sleep(1.0);
+    drive->DriveDist(100, 3);
+    Sleep(1.0);
+    io->InitializeLineFollowingPin();
+    drive->LineFollowPin();
+    Sleep(1.0);
+
 }
 
 void encoderTest()
