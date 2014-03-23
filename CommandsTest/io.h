@@ -28,7 +28,7 @@ public:
     float COUNTS_PER_INCH;
     IO(ButtonBoard *button_board_in, FEHWONKA *rps_in, FEHEncoder *left_encoder_in, FEHEncoder *right_encoder_in, DigitalInputPin *left_switch_in, DigitalInputPin *right_switch_in, DigitalInputPin *arm_switch_in, AnalogInputPin *optosensor_in, AnalogInputPin *cds_cell_in)
     {
-        COUNTS_PER_INCH = 24.0 / (2.75 * 3.14);
+        COUNTS_PER_INCH = (24.0 * 2) / (2.75 * 3.14); // 24.0*2 is because 48 ticks are registered per revolution
         button_board = button_board_in;
 
         button_board_current_states = new bool[3];

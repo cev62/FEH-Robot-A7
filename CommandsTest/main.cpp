@@ -22,7 +22,7 @@
 
 const float LOOP_TIMEOUT = 0.010;
 const float PRINT_TIMEOUT = 0.100;
-const int NUM_SCRIPTS= 5;
+const int NUM_SCRIPTS= 7;
 
 const int ARM_STORE = 45;
 const int ARM_APPROACH_SKID = 170;
@@ -216,18 +216,22 @@ void InitScripts()
     }
 
     // These are just handle for clarity when adding commands below
-    Script<Command> *test = scripts[0];
-    Script<Command> *comp = scripts[1];
-    Script<Command> *pt6 = scripts[2];
-    Script<Command> *line = scripts[3];
-    Script<Command> *toggle_rps = scripts[4];
+    Script<Command> *pt7 = scripts[0];
+    Script<Command> *test = scripts[1];
+    Script<Command> *comp = scripts[2];
+    Script<Command> *pt6 = scripts[3];
+    Script<Command> *line = scripts[4];
+    Script<Command> *drivedist = scripts[5];
+    Script<Command> *toggle_rps = scripts[6];
     // TODO: add test script to enable the user to manually set command parameters and run them
 
     // Set Script Names
     test->SetName("Test");
     comp->SetName("Competition");
     pt6->SetName("PT 6");
+    pt7->SetName("PT 7");
     line->SetName("Line Following to Pin");
+    drivedist->SetName("Encoder Testing");
     toggle_rps->SetName("Toggle RPS");
 
 
@@ -242,6 +246,15 @@ void InitScripts()
     comp->AddSequential(new WaitForStartLightCommand());
     // *** COMPETITION *** END //
 
+
+    // *** PT 7 *** BEGIN //
+    pt7->AddSequential(new WaitForStartLightCommand());
+    // *** PT 7 *** END //
+
+
+    // *** DRIVEDIST *** BEGIN //
+    drivedist->AddSequential(new DriveDistCommand(100, 10));
+    // *** DRIVEDIST *** END //
 
 
     // *** PT 6 *** BEGIN //

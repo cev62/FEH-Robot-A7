@@ -16,12 +16,15 @@ public:
     void PrintStatus();
 
     int forward;
-    float dist;
+    float dist, error, STRAIGHT_MIN_POWER, P_STRAIGHT;
     DriveDistCommand(int forward_in, float dist_in) : Command()
     {
         name = "DriveDistCommand";
         forward = forward_in;
         dist = dist_in;
+        STRAIGHT_MIN_POWER = 40;
+        P_STRAIGHT = (forward - STRAIGHT_MIN_POWER) / 6.0;
+        error = dist;
     }
 };
 
