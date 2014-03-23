@@ -14,6 +14,7 @@
 #include "commands/linefollowtopincommand.h"
 #include "commands/squareforwardtowallcommand.h"
 #include "commands/waitforstartlightcommand.h"
+#include "commands/testcommand.h"
 #include "util/script.h"
 #include "util/script.cpp" // Needs to be here to eliminate Template definition madness
 #include "io.h"
@@ -226,7 +227,7 @@ void InitScripts()
     // TODO: add test script to enable the user to manually set command parameters and run them
 
     // Set Script Names
-    test->SetName("Test");
+    test->SetName("Test Sensors");
     comp->SetName("Competition");
     pt6->SetName("PT 6");
     pt7->SetName("PT 7");
@@ -236,7 +237,7 @@ void InitScripts()
 
 
     // *** TEST *** BEGIN //
-    test->AddSequential(new SquareForwardToWallCommand(5.0));
+    test->AddSequential(new TestCommand());
     // *** TEST *** END //
 
 

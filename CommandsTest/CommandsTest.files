@@ -29,3 +29,5 @@ commands/squareforwardtowallcommand.h
 commands/squareforwardtowallcommand.cpp
 commands/waitforstartlightcommand.h
 commands/waitforstartlightcommand.cpp
+commands/testcommand.h
+commands/testcommand.cpp
