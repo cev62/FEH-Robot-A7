@@ -25,9 +25,9 @@ const float PRINT_TIMEOUT = 0.100;
 const int NUM_SCRIPTS= 5;
 
 const int ARM_STORE = 45;
-const int ARM_APPROACH_SKID = 168;
+const int ARM_APPROACH_SKID = 170;
 const int ARM_PICKUP_SKID = 90;
-const int ARM_SENSE_PIN = 118;
+const int ARM_SENSE_PIN = 120;
 const int ARM_PULL_PIN = 90;
 const int ARM_STOP = -1;
 
@@ -258,11 +258,15 @@ void InitScripts()
     pt6->AddSequential(new SetArmCommand(ARM_STORE, 1.0));
     pt6->AddSequential(new SetArmCommand(ARM_APPROACH_SKID, 1.0));
     pt6->AddSequential(new SetArmCommand(ARM_STORE, 1.0));
-    pt6->AddSequential(new DriveCommand(100, 0, 0.6));
-    pt6->AddSequential(new DriveCommand(0, 0, 1.0)); // WAIT
+    //pt6->AddSequential(new DriveCommand(100, 0, 0.6));
+    pt6->AddSequential(new DriveCommand(0, 50, 0.3)); // Turn right to initiate line following
+    pt6->AddSequential(new SetArmCommand(ARM_SENSE_PIN, 1.0));
+    pt6->AddSequential(new LineFollowToPinCommand());
+    pt6->AddSequential(new SetArmCommand(ARM_STORE, 1.0));
+    //pt6->AddSequential(new DriveCommand(0, 0, 1.0)); // WAIT
 
     // Turn to and approach skid
-    pt6->AddSequential(new TurnToAngleCommand(85, Drive::LEFT, Drive::LEFT));
+    pt6->AddSequential(new TurnToAngleCommand(80, Drive::LEFT, Drive::LEFT));
     pt6->AddSequential(new DriveCommand(0, 0, 1.0)); // WAIT
     pt6->AddSequential(new SetArmCommand(ARM_APPROACH_SKID, 2.0));
 
@@ -283,7 +287,7 @@ void InitScripts()
     pt6->AddSequential(new DriveCommand(-100, 0, 0.15));
     pt6->AddSequential(new DriveCommand(0, 0, 1.0)); // WAIT
     pt6->AddSequential(new TurnToAngleCommand(0, Drive::RIGHT, Drive::LEFT));
-    pt6->AddSequential(new TurnToAngleCommand(85, Drive::RIGHT, Drive::LEFT));
+    pt6->AddSequential(new TurnToAngleCommand(83, Drive::RIGHT, Drive::LEFT));
     pt6->AddSequential(new DriveCommand(0, 0, 1.0)); // WAIT
 
     // Go down ramp
@@ -291,7 +295,7 @@ void InitScripts()
     pt6->AddSequential(new DriveCommand(0, 0, 1.0)); // WAIT
     pt6->AddSequential(new TurnToAngleCommand(0, Drive::LEFT, Drive::RIGHT));
     pt6->AddSequential(new DriveCommand(0, 0, 1.0)); // WAIT
-    pt6->AddSequential(new TurnToAngleCommand(90, Drive::LEFT, Drive::RIGHT));
+    pt6->AddSequential(new TurnToAngleCommand(85, Drive::LEFT, Drive::RIGHT));
 
     // Put Skid in chiller
     pt6->AddSequential(new SetArmCommand(ARM_APPROACH_SKID, 1.0));

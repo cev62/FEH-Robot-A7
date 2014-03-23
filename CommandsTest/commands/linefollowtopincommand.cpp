@@ -16,7 +16,7 @@ void LineFollowToPinCommand::Run()
     if(is_on_line)
     {
         // Need to go right
-        drive->SetDriveLR(55, 30);
+        drive->SetDriveLR(65, 30);
     }
     else
     {
