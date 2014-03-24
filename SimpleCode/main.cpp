@@ -424,7 +424,7 @@ void comp()
     Sleep(0.5);
     drive->SquareToWallBackward();
 
-    // Drive up ramp
+    // Drive up Ramp
     drive->DriveDist(100, 34);
 
     // Navigate to charge zone
