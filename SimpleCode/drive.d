@@ -13,7 +13,8 @@
  C:\fehqt\Proteus/EWL/EWL_C/include/limits_api.h \
  C:\fehqt\Proteus/EWL/EWL_C/include/ewl_lib_ext1.h Libraries/FEHIO.h \
  Drivers/adc16.h Libraries/FEHUtility.h Libraries/FEHWONKA.h \
- Drivers/FEHXBee.h ..\/io.h Libraries/FEHLCD.h ..\/timer.h
+ Drivers/FEHXBee.h ..\/io.h Libraries/FEHLCD.h ..\/timer.h \
+ ..\/PIDController.h
 
 C:\fehqt\Proteus/EWL/EWL_C++/include/lib_ewl_c++.prefix:
 
@@ -62,3 +63,5 @@ Drivers/FEHXBee.h:
 Libraries/FEHLCD.h:
 
 ..\/timer.h:
+
+..\/PIDController.h:

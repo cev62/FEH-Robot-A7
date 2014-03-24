@@ -8,6 +8,7 @@
 #include "timer.h"
 #include "io.h"
 #include "drive.h"
+#include "PIDController.h"
 
 // Function prototypes
 void RunScript(char* script);
@@ -15,6 +16,7 @@ void pt7();
 void pt7_bonus();
 void test();
 void comp();
+void coord_pid_test();
 void encoderTest();
 
 // Variable Declarations
@@ -65,14 +67,15 @@ int main(void)
     io = new IO(print_timer, button_board, lcd, rps, left_encoder, right_encoder, fl_switch, fr_switch, bl_switch, br_switch, arm_switch, optosensor, cds_cell);
     drive = new Drive(left, right, io);
 
-    num_scripts = 6;
+    num_scripts = 7;
     scripts = new char*[num_scripts];
     scripts[0] = "comp";
     scripts[1] = "pt7_bonus";
     scripts[2] = "pt7";
     scripts[3] = "test";
     scripts[4] = "encoder test";
-    scripts[5] = "Toggle RPS"; //must be last script in array
+    scripts[5] = "coord pid test";
+    scripts[6] = "Toggle RPS"; //must be last script in array
     script_position = 0;
     is_rps_enabled = true;
 
@@ -140,6 +143,202 @@ void RunScript(char *script)
     if(script == "comp"){ comp(); }
     if(script == "encoder test") { encoderTest(); }
     if(script == "Toggle RPS"){ is_rps_enabled = !is_rps_enabled; }
+}
+
+void comp()
+{
+    // Init
+    io->WaitForStartLight();
+    arm->SetDegree(IO::ARM_STORE);
+    box->SetDegree(IO::BOX_STORE);
+    io->num_button_pushes_required = rps->Oven();
+    lcd->Write("Buttons: ");
+    lcd->Write(io->num_button_pushes_required);
+
+    // Drive to button
+    drive->TurnAngle(90, Drive::LEFT, Drive::RIGHT);
+    Sleep(0.5);
+    drive->SquareToWallForward();
+    Sleep(0.5);
+    drive->DriveDist(-100, 0.5);
+    Sleep(0.5);
+    drive->TurnAngle(0, Drive::RIGHT, Drive::LEFT);
+    Sleep(0.5);
+
+    // Push button multiple times
+    drive->PushButton();
+    int times_attempted_press = 1;
+    while(rps->OvenPressed() < io->num_button_pushes_required && times_attempted_press < 6)
+    //for(int i = 1; i < io->num_button_pushes_required; i++)
+    {
+        drive->PushButton();
+        times_attempted_press++;
+    }
+
+    // Drive to Switch but do not flip
+    /*drive->DriveDist(-100, 15);
+    Sleep(0.5);
+    drive->TurnAngle(90, Drive::RIGHT, Drive::LEFT);
+    Sleep(0.5);
+    drive->SquareToWallForward();*/
+
+    // Drive to PIN
+    drive->DriveDist(-100, 19);
+    Sleep(0.5);
+    io->InitializeLineFollowingPin();
+    drive->TurnAngle(90, Drive::RIGHT, Drive::LEFT);
+    Sleep(0.5);
+    drive->TurnAngle(0, Drive::RIGHT, Drive::LEFT);
+
+    // Sense the CHUTE
+    arm->SetDegree(IO::ARM_SENSE_PIN);
+    drive->LineFollowPin();
+    Sleep(0.5);
+
+    // Pull Pin
+    arm->SetDegree(IO::ARM_PULL_PIN);
+    drive->DriveDist(-100, 6);
+    arm->SetDegree(IO::ARM_APPROACH_SKID);
+    Sleep(1.0);
+    arm->SetDegree(IO::ARM_SENSE_PIN);
+
+    // Drive to skid
+    drive->SetDriveTime(0, 50, 0.3);
+    drive->LineFollowPin();
+    arm->SetDegree(IO::ARM_STORE);
+    Sleep(0.3);
+    //drive->DriveDist(100, 0.5);
+    Sleep(0.5);
+    drive->TurnAngle(90, Drive::LEFT, Drive::LEFT);
+    arm->SetDegree(IO::ARM_APPROACH_SKID);
+    Sleep(1.0);
+    drive->SetDriveTime(70, 0, 1.0);
+
+    // Pick up skid
+    arm->SetDegree(IO::ARM_PICKUP_SKID);
+    Sleep(0.3);
+    drive->DriveDist(-100, 2);
+    Sleep(1.5);
+    drive->SetDriveTime(100, 0, 0.5);
+    Sleep(0.5);
+    drive->DriveDist(-100, 2);
+    Sleep(0.5);
+
+    // Drive down ramp
+    drive->TurnAngle(0, Drive::RIGHT, Drive::LEFT);
+    Sleep(0.5);
+    drive->TurnAngle(90, Drive::LEFT, Drive::RIGHT);
+    Sleep(0.5);
+
+    // Drive down ramp, holding angle
+    // Set point is the 0.0 X-coord
+    drive->coord_pid->SetSetpoint(IO::X_COORD_DRIVE_RAMP);
+    drive->pid_mode = Drive::X;
+    drive->SquareToWallBackward();
+    drive->pid_mode = Drive::OFF;
+
+    // Read scoop light
+    io->InitializeScoopLight();
+    drive->DriveDist(100, 9);
+    Sleep(1.0);
+    io->ReadScoopLight();
+
+    // Drive to chiller and deposit skid
+    drive->TurnAngle(0, Drive::RIGHT, Drive::LEFT);
+    Sleep(0.5);
+    drive->SquareToWallBackward();
+    drive->DriveDist(100, 9);
+    Sleep(0.5);
+    drive->TurnAngle(90, Drive::LEFT, Drive::RIGHT);
+    Sleep(0.5);
+    drive->SquareToWallBackward();
+
+    // Deposit Scoop if RIGHT counter
+    if(io->counter == IO::RIGHT_COUNTER)
+    {
+        // RIGHT Counter
+        box->SetDegree(IO::BOX_DUMP);
+        Sleep(1.0);
+        box->SetDegree(IO::BOX_STORE);
+    }
+
+    arm->SetDegree(IO::ARM_APPROACH_SKID);
+    drive->DriveDist(100, 10);
+    Sleep(1.0);
+    drive->DriveDist(-100, 6);
+    Sleep(1.0);
+    arm->SetDegree(IO::ARM_STORE);
+    Sleep(1.0);
+    drive->SetDriveTime(100, 0, 1.0);
+    drive->SquareToWallBackward();
+
+    // Drive to in shop
+    drive->DriveDist(100, 8);
+    Sleep(0.5);
+    drive->TurnAngle(0, Drive::LEFT, Drive::RIGHT);
+    Sleep(0.5);
+    drive->SquareToWallForward();
+    drive->SquareToWallBackward();
+
+    if(io->counter == IO::LEFT_COUNTER)
+    {
+        // LEFT Counter
+        drive->DriveDist(100, 13);
+        Sleep(0.5);
+        drive->TurnAngle(90, Drive::RIGHT, Drive::LEFT);
+        Sleep(0.5);
+        drive->SquareToWallBackward();
+        box->SetDegree(IO::BOX_DUMP);
+        Sleep(1.0);
+        box->SetDegree(IO::BOX_STORE);
+        drive->DriveDist(100, 8);
+        Sleep(0.5);
+        drive->TurnAngle(0, Drive::LEFT, Drive::RIGHT);
+        Sleep(0.5);
+        drive->SquareToWallBackward();
+    }
+
+    // Square up on walls and go up ramp
+
+    drive->DriveDist(100, 18.5);
+    Sleep(0.5);
+    drive->TurnAngle(90, Drive::RIGHT, Drive::LEFT);
+    Sleep(0.5);
+    drive->SquareToWallBackward();
+
+    // Drive up Ramp
+    drive->DriveDist(100, 34);
+
+    // Use coord pid to drive the robot directly in from of the  switch
+    // Set point is the 0.0 X-coord
+    drive->coord_pid->SetSetpoint(IO::X_COORD_FLIP_SWITCH);
+    drive->pid_mode = Drive::X;
+    drive->SquareToWallForward();
+    drive->pid_mode = Drive::OFF;
+
+    // Flip the switch woth the erector set angle
+    drive->TurnAngle(120, Drive::LEFT, Drive::RIGHT);
+    Sleep(0.3);
+    drive->TurnAngle(90, Drive::RIGHT, Drive::LEFT);
+    Sleep(0.3);
+
+    // Navigate to charge zone
+    drive->SquareToWallBackward();
+    drive->TurnAngle(0, Drive::LEFT, Drive::LEFT);
+    Sleep(0.5);
+    drive->SquareToWallForward();
+    drive->SetDriveTime(100, 0, 0.25);
+
+}
+
+void coord_pid_test()
+{
+    // Use coord pid to drive the robot directly in from of the  switch
+    // Set point is the 0.0 X-coord
+    drive->coord_pid->SetSetpoint(0.0);
+    drive->pid_mode = Drive::X;
+    drive->SquareToWallForward();
+    drive->pid_mode = Drive::OFF;
 }
 
 void pt7()
@@ -268,201 +467,23 @@ void test()
         lcd->Write(",opto: ");
         lcd->Write(io->optosensor->Value());
         Sleep(IO::PRINT_TIMEOUT);
+
+        if(io->ButtonBoardGetButton(IO::RIGHT))
+        {
+            return;
+        }
     }
-}
-
-void comp()
-{
-    // Init
-    io->WaitForStartLight();
-    arm->SetDegree(IO::ARM_STORE);
-    box->SetDegree(IO::BOX_STORE);
-    io->num_button_pushes_required = rps->Oven();
-    lcd->Write("Buttons: ");
-    lcd->Write(io->num_button_pushes_required);
-
-    // Drive to button
-    drive->TurnAngle(90, Drive::LEFT, Drive::RIGHT);
-    Sleep(0.5);
-    drive->SquareToWallForward();
-    Sleep(0.5);
-    drive->DriveDist(-100, 0.5);
-    Sleep(0.5);
-    drive->TurnAngle(0, Drive::RIGHT, Drive::LEFT);
-    Sleep(0.5);
-
-    // Push button multiple times
-    drive->PushButton();
-    int times_attempted_press = 1;
-    //while(rps->OvenPressed() < io->num_button_pushes_required && times_attempted_press < 6)
-    for(int i = 1; i < io->num_button_pushes_required; i++)
-    {
-        drive->PushButton();
-        times_attempted_press++;
-    }
-
-    // Drive to Switch
-    drive->DriveDist(-100, 15);
-    Sleep(0.5);
-    drive->TurnAngle(90, Drive::RIGHT, Drive::LEFT);
-    Sleep(0.5);
-    drive->SquareToWallForward();
-
-    // Flip Switch
-    /*drive->TurnAngle(120, Drive::LEFT, Drive::RIGHT);
-    Sleep(0.5);
-    drive->TurnAngle(90, Drive::RIGHT, Drive::LEFT);
-    Sleep(0.5);
-    drive->SquareToWallForward();*/
-    io->InitializeLineFollowingPin();
-
-    // Drive to PIN
-    drive->DriveDist(-100, 2.5);
-    Sleep(0.5);
-    drive->TurnAngle(0, Drive::RIGHT, Drive::LEFT);
-    Sleep(0.5);
-    drive->DriveDist(100, 3);
-    arm->SetDegree(IO::ARM_SENSE_PIN);
-    drive->LineFollowPin();
-    Sleep(0.5);
-
-    // Pull Pin
-    arm->SetDegree(IO::ARM_PULL_PIN);
-    drive->DriveDist(-100, 6);
-    arm->SetDegree(IO::ARM_APPROACH_SKID);
-    Sleep(1.0);
-    arm->SetDegree(IO::ARM_SENSE_PIN);
-
-    // Drive to skid
-    drive->SetDriveTime(0, 50, 0.3);
-    drive->LineFollowPin();
-    arm->SetDegree(IO::ARM_STORE);
-    Sleep(0.3);
-    //drive->DriveDist(100, 0.5);
-    Sleep(0.5);
-    drive->TurnAngle(90, Drive::LEFT, Drive::LEFT);
-    arm->SetDegree(IO::ARM_APPROACH_SKID);
-    Sleep(1.0);
-    drive->SetDriveTime(70, 0, 1.0);
-
-    // Pick up skid
-    arm->SetDegree(IO::ARM_PICKUP_SKID);
-    Sleep(0.3);
-    drive->DriveDist(-100, 2);
-    Sleep(1.5);
-    drive->SetDriveTime(100, 0, 0.5);
-    Sleep(0.5);
-    drive->DriveDist(-100, 2);
-    Sleep(0.5);
-
-    // Drive down ramp
-    drive->TurnAngle(0, Drive::RIGHT, Drive::LEFT);
-    Sleep(0.5);
-    drive->TurnAngle(90, Drive::LEFT, Drive::RIGHT);
-    Sleep(0.5);
-    drive->SquareToWallBackward();
-
-    // Read scoop light
-    io->InitializeScoopLight();
-    drive->DriveDist(100, 9);
-    Sleep(1.0);
-    io->ReadScoopLight();
-
-    // Drive to chiller and deposit skid
-    drive->TurnAngle(0, Drive::RIGHT, Drive::LEFT);
-    Sleep(0.5);
-    drive->SquareToWallBackward();
-    drive->DriveDist(100, 9);
-    Sleep(0.5);
-    drive->TurnAngle(90, Drive::LEFT, Drive::RIGHT);
-    Sleep(0.5);
-    drive->SquareToWallBackward();
-
-    // Deposit Scoop if RIGHT counter
-    if(io->counter == IO::RIGHT_COUNTER)
-    {
-        // RIGHT Counter
-        box->SetDegree(IO::BOX_DUMP);
-        Sleep(2.0);
-        box->SetDegree(IO::BOX_STORE);
-    }
-
-    arm->SetDegree(IO::ARM_APPROACH_SKID);
-    drive->DriveDist(100, 10);
-    Sleep(1.0);
-    drive->DriveDist(-100, 6);
-    Sleep(1.0);
-    arm->SetDegree(IO::ARM_STORE);
-    Sleep(1.0);
-    drive->SetDriveTime(100, 0, 1.0);
-    drive->SquareToWallBackward();
-
-    // Drive to in shop
-    drive->DriveDist(100, 8);
-    Sleep(0.5);
-    drive->TurnAngle(0, Drive::LEFT, Drive::RIGHT);
-    Sleep(0.5);
-    drive->SquareToWallForward();
-    drive->SquareToWallBackward();
-
-    if(io->counter == IO::LEFT_COUNTER)
-    {
-        // LEFT Counter
-        drive->DriveDist(100, 9);
-        Sleep(0.5);
-        drive->TurnAngle(90, Drive::RIGHT, Drive::LEFT);
-        Sleep(0.5);
-        drive->SquareToWallBackward();
-        box->SetDegree(IO::BOX_DUMP);
-        Sleep(2.0);
-        box->SetDegree(IO::BOX_STORE);
-        drive->DriveDist(100, 8);
-        Sleep(0.5);
-        drive->TurnAngle(0, Drive::LEFT, Drive::RIGHT);
-        Sleep(0.5);
-        drive->SquareToWallBackward();
-    }
-
-    // Square up on walls and go up ramp
-
-    drive->DriveDist(100, 18.5);
-    Sleep(0.5);
-    drive->TurnAngle(90, Drive::RIGHT, Drive::LEFT);
-    Sleep(0.5);
-    drive->SquareToWallBackward();
-
-    // Drive up Ramp
-    //drive->DriveDist(100, 34);
-    arm->SetDegree(IO::ARM_FLIP_SWITCH);
-    drive->DriveUntilFL();
-    drive->DriveDist(-100, 1);
-    drive->TurnAngle(120, Drive::LEFT, Drive::RIGHT);
-    drive->DriveDist(-100, 6);
-    arm->SetDegree(IO::ARM_STORE);
-
-    // Navigate to charge zone
-    Sleep(0.5);
-    drive->TurnAngle(5, Drive::LEFT, Drive::LEFT);
-    Sleep(0.5);
-    drive->SquareToWallForward();
-    drive->SetDriveTime(100, 0, 0.25);
-
 }
 
 void encoderTest()
 {
 
-    drive->EncoderTurn(90, Drive::LEFT);
-    Sleep(5.0);
-    drive->EncoderTurn(-90, Drive::LEFT);
+    drive->TurnAngle(0, Drive::RIGHT, Drive::LEFT);
     Sleep(1.0);
+    drive->TurnAngle(90, Drive::LEFT, Drive::LEFT);
+    Sleep(5.0);
 
-    drive->EncoderTurn(90, Drive::RIGHT);
-    Sleep(5.0);
-    drive->EncoderTurn(-90, Drive::RIGHT);
+    drive->TurnAngle(0, Drive::LEFT, Drive::RIGHT);
     Sleep(1.0);
-    /*drive->EncoderTurn(180, Drive::LEFT);
-    Sleep(1.0);
-    drive->EncoderTurn(-180, Drive::RIGHT);
-    Sleep(1.0);*/
+    drive->TurnAngle(90, Drive::RIGHT, Drive::RIGHT);
 }

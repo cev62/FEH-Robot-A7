@@ -151,6 +151,7 @@ bool IO::IsRPSGood()
     float rps_heading_new = rps->Heading();
     if(rps_x_new == 0.0 && rps_y_new == 0.0 && rps_heading_new == 0.0)
     {
+        lcd->Clear(FEHLCD::Green);
         return false;
     }
     else

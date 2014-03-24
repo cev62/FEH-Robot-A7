@@ -8,6 +8,7 @@
 
 #include "io.h"
 #include "timer.h"
+#include "PIDController.h"
 
 class Drive
 {
@@ -20,11 +21,22 @@ public:
     static const float STRAIGHT_MIN_POWER = 60;
     static const float RAMP_DOWN_DIST = 6.0;
 
+    static const float COORD_PID_P = 100.0 / 5.0;
+    static const float COORD_PID_I = 0;
+    static const float COORD_PID_D = 0;
+
     typedef enum
     {
         LEFT = 0,
         RIGHT
     } Side;
+
+    typedef enum
+    {
+        OFF = 0,
+        X,
+        Y
+    } PIDMode;
 
     Drive(FEHMotor *left_in, FEHMotor *right_in, IO *io_in);
     void SetDrive(int forward, int turn);
@@ -45,6 +57,8 @@ public:
     FEHMotor *left, *right;
     IO *io;
     Timer *timer;
+    PIDMode pid_mode;
+    PIDController *coord_pid;
 };
 
 #endif // DRIVE_H

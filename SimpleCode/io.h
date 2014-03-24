@@ -25,10 +25,12 @@ public:
     static const int ARM_PICKUP_SKID = 45;
     static const int ARM_SENSE_PIN = 120;
     static const int ARM_PULL_PIN = 60;
-    static const int ARM_FLIP_SWITCH= 110;
 
     static const int BOX_STORE = 30;
     static const int BOX_DUMP = 150;
+
+    static const float X_COORD_FLIP_SWITCH = 0.0;
+    static const float X_COORD_DRIVE_RAMP = -4.0;
 
     typedef enum
     {
