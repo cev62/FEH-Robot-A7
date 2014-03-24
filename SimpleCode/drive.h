@@ -7,13 +7,14 @@
 #include <FEHWONKA.h>
 
 #include "io.h"
+#include "timer.h"
 
 class Drive
 {
 public:
 
     static const float P_TURN= 20.0 / 45.0;
-    static const float TURN_MIN_POWER_FACTORY = 50; // 50 for factory, 60 for shop;
+    static const float TURN_MIN_POWER_FACTORY = 60; // 50 for factory, 60 for shop;
     static const float TURN_MIN_POWER_SHOP = 60; // 50 for factory, 60 for shop;
 
     static const float STRAIGHT_MIN_POWER = 60;
@@ -36,12 +37,13 @@ public:
     void TurnAngle(int degrees, Drive::Side direction, Drive::Side pivot);
     void DriveDist(int forward, float dist);
     void LineFollowPin();
-    void EncoderTurn(float angle);
+    void EncoderTurn(float angle, Drive::Side pivot);
 
     float TURN_MIN_POWER;
 
     FEHMotor *left, *right;
     IO *io;
+    Timer *timer;
 };
 
 #endif // DRIVE_H

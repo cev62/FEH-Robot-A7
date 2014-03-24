@@ -24,7 +24,7 @@ public:
     static const int ARM_APPROACH_SKID = 172;
     static const int ARM_PICKUP_SKID = 45;
     static const int ARM_SENSE_PIN = 120;
-    static const int ARM_PULL_PIN = 90;
+    static const int ARM_PULL_PIN = 45;
 
     static const int BOX_STORE = 30;
     static const int BOX_DUMP = 150;
@@ -44,16 +44,20 @@ public:
     bool ButtonBoardGetPressedEvent(Button button);
     bool ButtonBoardGetButton(Button button);
     float GetDistTravelled();
+    float GetDistTravelledLeft();
+    float GetDistTravelledRight();
     void ResetEncoders();
     void WaitForStartLight();
     void InitializeScoopLight();
     void ReadScoopLight();
     void InitializeLineFollowingPin();
     bool IsOnLinePin();
+    bool IsRPSGood();
 
     float cds_cell_shop_floor, cds_cell_scoop_light;
     float optosensor_factory_floor, optosensor_curr_value;
     int num_button_pushes_required;
+    float rps_x, rps_y, rps_heading;
     Counter counter;
 
     FEHWONKA *rps;

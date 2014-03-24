@@ -67,6 +67,18 @@ float IO::GetDistTravelled()
     return (left_encoder->Counts() + right_encoder->Counts()) / 2.0 / COUNTS_PER_INCH;
 }
 
+// Returns the average distance travelled by the left encoder IN INCHES
+float IO::GetDistTravelledLeft()
+{
+    return left_encoder->Counts() / COUNTS_PER_INCH;
+}
+
+// Returns the average distance travelled by the right encoder IN INCHES
+float IO::GetDistTravelledRight()
+{
+    return right_encoder->Counts() / COUNTS_PER_INCH;
+}
+
 void IO::WaitForStartLight()
 {
     float curr_value = cds_cell->Value();
@@ -130,4 +142,22 @@ bool IO::IsOnLinePin()
 {
     optosensor_curr_value = optosensor->Value();
     return optosensor_curr_value < optosensor_factory_floor - IO::LINE_THRESHOLD_FACTORY;
+}
+
+bool IO::IsRPSGood()
+{
+    float rps_x_new = rps->X();
+    float rps_y_new = rps->Y();
+    float rps_heading_new = rps->Heading();
+    if(rps_x_new == 0.0 && rps_y_new == 0.0 && rps_heading_new == 0.0)
+    {
+        return false;
+    }
+    else
+    {
+        rps_x = rps_x_new;
+        rps_y = rps_y_new;
+        rps_heading = rps_heading_new;
+        return true;
+    }
 }
