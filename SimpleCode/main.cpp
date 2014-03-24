@@ -302,19 +302,18 @@ void comp()
     }
 
     // Drive to Switch
-    drive->DriveDist(-100, 14);
+    drive->DriveDist(-100, 15);
     Sleep(0.5);
     drive->TurnAngle(90, Drive::RIGHT, Drive::LEFT);
     Sleep(0.5);
     drive->SquareToWallForward();
-    Sleep(0.5);
 
     // Flip Switch
-    drive->TurnAngle(120, Drive::LEFT, Drive::RIGHT);
+    /*drive->TurnAngle(120, Drive::LEFT, Drive::RIGHT);
     Sleep(0.5);
     drive->TurnAngle(90, Drive::RIGHT, Drive::LEFT);
     Sleep(0.5);
-    drive->SquareToWallForward();
+    drive->SquareToWallForward();*/
     io->InitializeLineFollowingPin();
 
     // Drive to PIN
@@ -339,7 +338,7 @@ void comp()
     drive->LineFollowPin();
     arm->SetDegree(IO::ARM_STORE);
     Sleep(0.3);
-    drive->DriveDist(100, 0.5);
+    //drive->DriveDist(100, 0.5);
     Sleep(0.5);
     drive->TurnAngle(90, Drive::LEFT, Drive::LEFT);
     arm->SetDegree(IO::ARM_APPROACH_SKID);
@@ -378,46 +377,54 @@ void comp()
     drive->TurnAngle(90, Drive::LEFT, Drive::RIGHT);
     Sleep(0.5);
     drive->SquareToWallBackward();
-    arm->SetDegree(IO::ARM_APPROACH_SKID);
-    drive->SetDriveTime(100, 0, 1.5);
-    Sleep(1.0);
-    drive->SquareToWallBackward();
-    arm->SetDegree(IO::ARM_STORE);
 
-    // Drive to correct counter
-    drive->DriveDist(100, 6);
+    // Deposit Scoop if RIGHT counter
+    if(io->counter == IO::RIGHT_COUNTER)
+    {
+        // RIGHT Counter
+        box->SetDegree(IO::BOX_DUMP);
+        Sleep(2.0);
+        box->SetDegree(IO::BOX_STORE);
+    }
+
+    arm->SetDegree(IO::ARM_APPROACH_SKID);
+    drive->DriveDist(100, 10);
+    Sleep(1.0);
+    drive->DriveDist(-100, 6);
+    Sleep(1.0);
+    arm->SetDegree(IO::ARM_STORE);
+    Sleep(1.0);
+    drive->SetDriveTime(100, 0, 1.0);
+    drive->SquareToWallBackward();
+
+    // Drive to in shop
+    drive->DriveDist(100, 8);
     Sleep(0.5);
-    drive->TurnAngle(0, Drive::RIGHT, Drive::LEFT);
+    drive->TurnAngle(0, Drive::LEFT, Drive::RIGHT);
     Sleep(0.5);
+    drive->SquareToWallForward();
     drive->SquareToWallBackward();
 
     if(io->counter == IO::LEFT_COUNTER)
     {
         // LEFT Counter
-        drive->DriveDist(100, 40);
-    }
-    else
-    {
-        // RIGHT Counter
+        drive->DriveDist(100, 9);
+        Sleep(0.5);
+        drive->TurnAngle(90, Drive::RIGHT, Drive::LEFT);
+        Sleep(0.5);
+        drive->SquareToWallBackward();
+        box->SetDegree(IO::BOX_DUMP);
+        Sleep(2.0);
+        box->SetDegree(IO::BOX_STORE);
         drive->DriveDist(100, 8);
+        Sleep(0.5);
+        drive->TurnAngle(0, Drive::LEFT, Drive::RIGHT);
+        Sleep(0.5);
+        drive->SquareToWallBackward();
     }
-
-    Sleep(0.5);
-    drive->TurnAngle(90, Drive::LEFT, Drive::RIGHT);
-    Sleep(0.5);
-    drive->SquareToWallBackward();
-
-    // Deposit Scoop
-    box->SetDegree(IO::BOX_DUMP);
-    Sleep(2.0);
-    box->SetDegree(IO::BOX_STORE);
 
     // Square up on walls and go up ramp
-    drive->DriveDist(100, 6);
-    Sleep(0.5);
-    drive->TurnAngle(0, Drive::LEFT, Drive::RIGHT);
-    Sleep(0.5);
-    drive->SquareToWallBackward();
+
     drive->DriveDist(100, 18.5);
     Sleep(0.5);
     drive->TurnAngle(90, Drive::RIGHT, Drive::LEFT);
@@ -425,7 +432,13 @@ void comp()
     drive->SquareToWallBackward();
 
     // Drive up Ramp
-    drive->DriveDist(100, 34);
+    //drive->DriveDist(100, 34);
+    arm->SetDegree(IO::ARM_FLIP_SWITCH);
+    drive->DriveUntilFL();
+    drive->DriveDist(-100, 1);
+    drive->TurnAngle(120, Drive::LEFT, Drive::RIGHT);
+    drive->DriveDist(-100, 6);
+    arm->SetDegree(IO::ARM_STORE);
 
     // Navigate to charge zone
     Sleep(0.5);

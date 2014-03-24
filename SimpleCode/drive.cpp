@@ -49,6 +49,17 @@ void Drive::PushButton()
     SetDriveTime(-100, 0, 0.15);
 }
 
+void Drive::DriveUntilFL()
+{
+    SetDrive(100, 0);
+    while(io->fl_switch->Value() == 1)
+    {
+        Sleep(IO::LOOP_TIMEOUT);
+    }
+    SetDrive(0, 0);
+    Sleep(0.3);
+}
+
 // Turns the robot a certain number of degrees, pivoting about the back left wheel. Currently a maximum of a 90 degree turn
 // TODO: add failure timeout
 void Drive::TurnAmount(int degrees, Drive::Side pivot) // degrees < 0 means right turn, degrees > 0 means left turn

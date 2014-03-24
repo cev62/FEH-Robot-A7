@@ -20,11 +20,12 @@ public:
     static const float PRINT_TIMEOUT = 0.100;
     static const float LOOP_TIMEOUT = 0.010;
 
-    static const int ARM_STORE = 45;
+    static const int ARM_STORE = 60;
     static const int ARM_APPROACH_SKID = 172;
     static const int ARM_PICKUP_SKID = 45;
     static const int ARM_SENSE_PIN = 120;
-    static const int ARM_PULL_PIN = 45;
+    static const int ARM_PULL_PIN = 60;
+    static const int ARM_FLIP_SWITCH= 110;
 
     static const int BOX_STORE = 30;
     static const int BOX_DUMP = 150;
