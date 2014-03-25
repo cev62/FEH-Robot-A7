@@ -30,8 +30,9 @@ float PIDController::GetOutput(float input_in)
 {
     float dt = timer->GetTime();
     timer->Reset();
+    input = input_in;
 
-    error = setpoint - input_in;
+    error = setpoint - input;
     total_error += error * dt;
 
     output = kP * error + kI * total_error + kD * (error - prev_error) / dt;

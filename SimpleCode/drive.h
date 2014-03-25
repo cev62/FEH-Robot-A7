@@ -31,13 +31,6 @@ public:
         RIGHT
     } Side;
 
-    typedef enum
-    {
-        OFF = 0,
-        X,
-        Y
-    } PIDMode;
-
     Drive(FEHMotor *left_in, FEHMotor *right_in, IO *io_in);
     void SetDrive(int forward, int turn);
     void SetDriveLR(int left_percent_in, int right_percent_in);
@@ -45,7 +38,6 @@ public:
     void PushButton();
     void SquareToWallForward();
     void SquareToWallBackward();
-    void DriveUntilFL();
     void TurnAmount(int degrees, Drive::Side pivot);
     void TurnAngle(int degrees, Drive::Side direction, Drive::Side pivot);
     void DriveDist(int forward, float dist);
@@ -57,7 +49,6 @@ public:
     FEHMotor *left, *right;
     IO *io;
     Timer *timer;
-    PIDMode pid_mode;
     PIDController *coord_pid;
 };
 

@@ -8,45 +8,12 @@ Drive::Drive(FEHMotor *left_in, FEHMotor *right_in, IO *io_in)
     TURN_MIN_POWER = Drive::TURN_MIN_POWER_FACTORY;
     timer = new Timer();
     coord_pid = new PIDController(Drive::COORD_PID_P, Drive::COORD_PID_I, Drive::COORD_PID_D);
-    pid_mode = Drive::OFF;
 }
 
 void Drive::SetDrive(int forward, int turn)
 {
-    int left_percent, right_percent;
-    if(pid_mode == Drive::OFF)
-    {
-        left_percent = forward + turn;
-        right_percent = forward - turn;
-    }
-    else if(pid_mode == Drive::X || pid_mode == Drive::Y)
-    {
-        float pid_turn;
-        if(!io->IsRPSGood())
-        {
-            Sleep(1.0);
-            if(!io->IsRPSGood())
-            {
-                pid_mode = Drive::OFF;
-            }
-            else
-            {
-                io->lcd->Clear(FEHLCD::Black);
-            }
-        }
-        if(pid_mode == Drive::Y)
-        {
-            pid_turn = coord_pid->GetOutput(io->rps_y);
-        }
-        else
-        {
-            pid_turn = coord_pid->GetOutput(io->rps_x);
-        }
-        int left_percent = forward + pid_turn;
-        int right_percent = forward - pid_turn;
-        io->lcd->Write("Pid Turn: ");
-        io->lcd->WriteLine(pid_turn);
-    }
+    int left_percent = forward + turn;
+    int right_percent = forward - turn;
 
     if(left_percent > 100){ left_percent = 100; }
     if(left_percent < -100){ left_percent = -100; }
@@ -73,25 +40,20 @@ void Drive::SetDriveTime(int forward, int turn, float time)
 
 void Drive::PushButton()
 {
+    timer->Reset();
+    timer->SetTimeout(3.0);
     SetDrive(50, 0);
     while(io->fr_switch->Value() == 1)
     {
+        if(timer->IsTimeout())
+        {
+            break;
+        }
         Sleep(IO::LOOP_TIMEOUT);
     }
     SetDrive(0, 0);
     Sleep(0.3);
     SetDriveTime(-100, 0, 0.15);
-}
-
-void Drive::DriveUntilFL()
-{
-    SetDrive(100, 0);
-    while(io->fl_switch->Value() == 1)
-    {
-        Sleep(IO::LOOP_TIMEOUT);
-    }
-    SetDrive(0, 0);
-    Sleep(0.3);
 }
 
 // Turns the robot a certain number of degrees, pivoting about the back left wheel. Currently a maximum of a 90 degree turn
@@ -104,7 +66,7 @@ void Drive::TurnAmount(int degrees, Drive::Side pivot) // degrees < 0 means righ
         SetDrive(0, 0);
         io->lcd->WriteLine("INIT");
         io->lcd->WriteLine(degrees);
-        EncoderTurn(degrees, pivot);
+        EncoderTurn(-degrees, pivot);
         return;
     }
 
@@ -209,7 +171,17 @@ void Drive::TurnAmount(int degrees, Drive::Side pivot) // degrees < 0 means righ
 
 void Drive::TurnAngle(int degrees, Drive::Side direction, Drive::Side pivot) // degrees < 0 means right turn, degrees > 0 means left turn
 {
-    int curr_heading = io->rps->Heading();
+    timer->Reset();
+    timer->SetTimeout(20.0);
+    while(!io->IsRPSGood())
+    {
+        Sleep(0.100);
+        if(timer->IsTimeout())
+        {
+            break;
+        }
+    }
+    int curr_heading = io->rps_heading;
     int amount_to_turn = 0;
     if(direction == LEFT)
     {
@@ -254,13 +226,22 @@ void Drive::TurnAngle(int degrees, Drive::Side direction, Drive::Side pivot) // 
 // TODO: add failure timeout
 void Drive::SquareToWallForward()
 {
+    timer->Reset();
+    timer->SetTimeout(5.0);
     while(true)
     {
         SetDriveLR(io->fl_switch->Value() ? 100 : 0, io->fr_switch->Value() ? 100 : 0);
+        //SetDrive(100, (io->fl_switch->Value() ? 0 : -100) + (io->fr_switch->Value() ? 0 : 100));
         Sleep(IO::LOOP_TIMEOUT);
         if(!io->fl_switch->Value() && !io->fr_switch->Value())
         {
             break;
+        }
+        if(timer->IsTimeout())
+        {
+            SetDrive(0, 0);
+            Sleep(0.3);
+            return;
         }
     }
     SetDrive(0, 0);
@@ -277,6 +258,7 @@ void Drive::SquareToWallBackward()
     while(true)
     {
         SetDriveLR(io->bl_switch->Value() ? -100 : 0, io->br_switch->Value() ? -100 : 0);
+        //SetDrive(-100, (io->bl_switch->Value() ? 0 : 100) + (io->br_switch->Value() ? 0 : -100));
         if(!io->bl_switch->Value() && !io->br_switch->Value())
         {
             break;

@@ -138,11 +138,13 @@ void RunScript(char *script)
     }
 
     if(script == "pt7"){ pt7(); }
-    if(script == "pt7_bonus"){ pt7_bonus(); }
-    if(script == "test"){ test(); }
-    if(script == "comp"){ comp(); }
-    if(script == "encoder test") { encoderTest(); }
-    if(script == "Toggle RPS"){ is_rps_enabled = !is_rps_enabled; }
+    else if(script == "pt7_bonus"){ pt7_bonus(); }
+    else if(script == "test"){ test(); }
+    else if(script == "comp"){ comp(); }
+    else if(script == "encoder test") { encoderTest(); }
+    else if(script == "coord pid test") { coord_pid_test(); }
+    else if(script == "Toggle RPS"){ is_rps_enabled = !is_rps_enabled; }
+    else {lcd->Clear(FEHLCD::Gray); lcd->WriteLine("Invalid Script"); Sleep(10.0);}
 }
 
 void comp()
@@ -164,6 +166,7 @@ void comp()
     Sleep(0.5);
     drive->TurnAngle(0, Drive::RIGHT, Drive::LEFT);
     Sleep(0.5);
+    drive->DriveDist(100, 3);
 
     // Push button multiple times
     drive->PushButton();
@@ -176,19 +179,27 @@ void comp()
     }
 
     // Drive to Switch but do not flip
-    /*drive->DriveDist(-100, 15);
+    drive->DriveDist(-100, 15);
     Sleep(0.5);
     drive->TurnAngle(90, Drive::RIGHT, Drive::LEFT);
     Sleep(0.5);
-    drive->SquareToWallForward();*/
+    drive->SquareToWallForward();
+    io->InitializeLineFollowingPin();
 
     // Drive to PIN
-    drive->DriveDist(-100, 19);
+    /*drive->DriveDist(-100, 19);
     Sleep(0.5);
     io->InitializeLineFollowingPin();
     drive->TurnAngle(90, Drive::RIGHT, Drive::LEFT);
     Sleep(0.5);
+    drive->DriveDist(100, 2);
+    Sleep(0.3);
+    drive->TurnAngle(0, Drive::RIGHT, Drive::LEFT);*/
+    drive->DriveDist(-100, 3);
+    Sleep(0.3);
     drive->TurnAngle(0, Drive::RIGHT, Drive::LEFT);
+    Sleep(0.3);
+    drive->DriveDist(100, 3);
 
     // Sense the CHUTE
     arm->SetDegree(IO::ARM_SENSE_PIN);
@@ -209,7 +220,7 @@ void comp()
     Sleep(0.3);
     //drive->DriveDist(100, 0.5);
     Sleep(0.5);
-    drive->TurnAngle(90, Drive::LEFT, Drive::LEFT);
+    drive->TurnAngle(85, Drive::LEFT, Drive::LEFT);
     arm->SetDegree(IO::ARM_APPROACH_SKID);
     Sleep(1.0);
     drive->SetDriveTime(70, 0, 1.0);
@@ -232,10 +243,8 @@ void comp()
 
     // Drive down ramp, holding angle
     // Set point is the 0.0 X-coord
-    drive->coord_pid->SetSetpoint(IO::X_COORD_DRIVE_RAMP);
-    drive->pid_mode = Drive::X;
+    //drive->coord_pid->SetSetpoint(IO::X_COORD_DRIVE_RAMP);
     drive->SquareToWallBackward();
-    drive->pid_mode = Drive::OFF;
 
     // Read scoop light
     io->InitializeScoopLight();
@@ -247,7 +256,7 @@ void comp()
     drive->TurnAngle(0, Drive::RIGHT, Drive::LEFT);
     Sleep(0.5);
     drive->SquareToWallBackward();
-    drive->DriveDist(100, 9);
+    drive->DriveDist(100, 10);
     Sleep(0.5);
     drive->TurnAngle(90, Drive::LEFT, Drive::RIGHT);
     Sleep(0.5);
@@ -308,24 +317,33 @@ void comp()
 
     // Drive up Ramp
     drive->DriveDist(100, 34);
+    drive->DriveDist(100, 8);
+
+    // Drive to switch
+    Sleep(0.3);
+    drive->TurnAngle(30, Drive::RIGHT, Drive::LEFT);
+    Sleep(0.3);
+    drive->TurnAngle(90, Drive::LEFT, Drive::RIGHT);
+    Sleep(0.3);
+    drive->SquareToWallForward();
 
     // Use coord pid to drive the robot directly in from of the  switch
     // Set point is the 0.0 X-coord
-    drive->coord_pid->SetSetpoint(IO::X_COORD_FLIP_SWITCH);
-    drive->pid_mode = Drive::X;
-    drive->SquareToWallForward();
-    drive->pid_mode = Drive::OFF;
+    //drive->coord_pid->SetSetpoint(IO::X_COORD_FLIP_SWITCH);
+    //drive->SquareToWallForward();
 
     // Flip the switch woth the erector set angle
     drive->TurnAngle(120, Drive::LEFT, Drive::RIGHT);
     Sleep(0.3);
+    drive->SetDriveTime(100, -100, 0.3);
+    Sleep(0.3);
     drive->TurnAngle(90, Drive::RIGHT, Drive::LEFT);
+    Sleep(0.3);
+    drive->DriveDist(-100, 4);
+    drive->TurnAngle(10, Drive::LEFT, Drive::LEFT);
     Sleep(0.3);
 
     // Navigate to charge zone
-    drive->SquareToWallBackward();
-    drive->TurnAngle(0, Drive::LEFT, Drive::LEFT);
-    Sleep(0.5);
     drive->SquareToWallForward();
     drive->SetDriveTime(100, 0, 0.25);
 
@@ -335,10 +353,32 @@ void coord_pid_test()
 {
     // Use coord pid to drive the robot directly in from of the  switch
     // Set point is the 0.0 X-coord
-    drive->coord_pid->SetSetpoint(0.0);
-    drive->pid_mode = Drive::X;
-    drive->SquareToWallForward();
-    drive->pid_mode = Drive::OFF;
+    drive->coord_pid->SetSetpoint(IO::X_COORD_FLIP_SWITCH);
+    while(true)
+    {
+        if(!io->fl_switch->Value() || !io->fr_switch->Value())
+        {
+            drive->SquareToWallForward();
+            return;
+        }
+        if(io->IsRPSGood())
+        {
+            //drive->SetDrive(0, drive->coord_pid->GetOutput(io->rps_x));
+            drive->SetDrive(60, (IO::X_COORD_FLIP_SWITCH - io->rps_x) * 100.0 / 10.0 + (io->rps_heading - 90) * 100 / 110);
+            lcd->WriteLine((IO::X_COORD_FLIP_SWITCH - io->rps_x) * 100.0 / 30.0);
+        }
+        else
+        {
+            drive->SetDrive(50, 0);
+        }
+        Sleep(IO::LOOP_TIMEOUT);
+        //drive->SetDrive(0, 0);
+        lcd->Clear();
+        lcd->WriteLine("Test:");
+        lcd->WriteLine(!io->fl_switch->Value());
+        lcd->WriteLine(!io->fl_switch->Value());
+        lcd->WriteLine(io->rps_x);
+    }
 }
 
 void pt7()
