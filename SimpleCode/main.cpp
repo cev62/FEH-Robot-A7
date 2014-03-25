@@ -30,7 +30,7 @@ IO *io;
 Drive *drive;
 FEHLCD *lcd;
 FEHWONKA RPS, *rps;
-Timer *print_timer;
+Timer *print_timer, *timer;
 
 int button_presses, script_position, num_scripts;
 bool is_rps_enabled;
@@ -63,6 +63,7 @@ int main(void)
     lcd->SetFontColor( FEHLCD::White );
     rps = &RPS;
     print_timer = new Timer();
+    timer = new Timer();
 
     io = new IO(print_timer, button_board, lcd, rps, left_encoder, right_encoder, fl_switch, fr_switch, bl_switch, br_switch, arm_switch, optosensor, cds_cell);
     drive = new Drive(left, right, io);
@@ -164,7 +165,7 @@ void comp()
     Sleep(0.5);
     drive->DriveDist(-100, 0.5);
     Sleep(0.5);
-    drive->TurnAngle(0, Drive::RIGHT, Drive::LEFT);
+    drive->TurnAngle(5, Drive::RIGHT, Drive::LEFT);
     Sleep(0.5);
     drive->DriveDist(100, 3);
 
@@ -195,7 +196,7 @@ void comp()
     drive->DriveDist(100, 2);
     Sleep(0.3);
     drive->TurnAngle(0, Drive::RIGHT, Drive::LEFT);*/
-    drive->DriveDist(-100, 3);
+    drive->DriveDist(-100, 2);
     Sleep(0.3);
     drive->TurnAngle(0, Drive::RIGHT, Drive::LEFT);
     Sleep(0.3);
@@ -236,15 +237,38 @@ void comp()
     Sleep(0.5);
 
     // Drive down ramp
-    drive->TurnAngle(0, Drive::RIGHT, Drive::LEFT);
+    /*drive->TurnAngle(0, Drive::RIGHT, Drive::LEFT);
     Sleep(0.5);
     drive->TurnAngle(90, Drive::LEFT, Drive::RIGHT);
-    Sleep(0.5);
+    Sleep(0.5);*/
 
     // Drive down ramp, holding angle
-    // Set point is the 0.0 X-coord
-    //drive->coord_pid->SetSetpoint(IO::X_COORD_DRIVE_RAMP);
-    drive->SquareToWallBackward();
+    // Use coord pid to drive the robot down ramp
+    timer->Reset();
+    timer->SetTimeout(8.0);
+    while(true)
+    {
+        if(!io->bl_switch->Value() || !io->br_switch->Value())
+        {
+            drive->SquareToWallBackward();
+            break;
+        }
+        if(io->IsRPSGood())
+        {
+            //drive->SetDrive(0, drive->coord_pid->GetOutput(io->rps_x));
+            drive->SetDrive(-60, -(IO::X_COORD_DRIVE_RAMP - io->rps_x) * 100.0 / 7.0 + (io->rps_heading - 90) * 100 / 35);
+        }
+        else
+        {
+            drive->SetDrive(-50, 0);
+        }
+        if(timer->IsTimeout())
+        {
+            drive->SetDriveTime(100, 0, 1.0);
+        }
+        Sleep(IO::LOOP_TIMEOUT);
+    }
+    //drive->SquareToWallBackward();
 
     // Read scoop light
     io->InitializeScoopLight();
@@ -317,29 +341,54 @@ void comp()
 
     // Drive up Ramp
     drive->DriveDist(100, 34);
-    drive->DriveDist(100, 8);
 
     // Drive to switch
-    Sleep(0.3);
+    /*Sleep(0.3);
     drive->TurnAngle(30, Drive::RIGHT, Drive::LEFT);
     Sleep(0.3);
     drive->TurnAngle(90, Drive::LEFT, Drive::RIGHT);
     Sleep(0.3);
-    drive->SquareToWallForward();
+    drive->SquareToWallForward();*/
 
     // Use coord pid to drive the robot directly in from of the  switch
-    // Set point is the 0.0 X-coord
-    //drive->coord_pid->SetSetpoint(IO::X_COORD_FLIP_SWITCH);
-    //drive->SquareToWallForward();
+    while(true)
+    {
+        if(!io->fl_switch->Value() || !io->fr_switch->Value())
+        {
+            drive->SquareToWallForward();
+            break;
+        }
+        if(io->IsRPSGood())
+        {
+            //drive->SetDrive(0, drive->coord_pid->GetOutput(io->rps_x));
+            drive->SetDrive(60, (IO::X_COORD_FLIP_SWITCH - io->rps_x) * 100.0 / 10.0 + (io->rps_heading - 90) * 100 / 110);
+        }
+        else
+        {
+            drive->SetDrive(50, 0);
+        }
+        Sleep(IO::LOOP_TIMEOUT);
+    }
 
     // Flip the switch woth the erector set angle
-    drive->TurnAngle(120, Drive::LEFT, Drive::RIGHT);
+    //drive->TurnAngle(120, Drive::LEFT, Drive::RIGHT);
+    //Sleep(0.3);
+    //drive->SetDriveTime(100, -100, 0.3);
+    //Sleep(0.3);
+
+    // Bunch of small turns to flip switch
+    drive->SetDriveTime(-100, -100, 0.25);
     Sleep(0.3);
-    drive->SetDriveTime(100, -100, 0.3);
+    drive->SetDriveTime(100, -100, 0.25);
     Sleep(0.3);
+    drive->SetDriveTime(-100, -100, 0.25);
+    Sleep(0.3);
+    drive->SetDriveTime(100, -100, 0.25);
+    Sleep(0.3);
+
     drive->TurnAngle(90, Drive::RIGHT, Drive::LEFT);
     Sleep(0.3);
-    drive->DriveDist(-100, 4);
+    drive->DriveDist(-100, 7);
     drive->TurnAngle(10, Drive::LEFT, Drive::LEFT);
     Sleep(0.3);
 
@@ -351,33 +400,25 @@ void comp()
 
 void coord_pid_test()
 {
-    // Use coord pid to drive the robot directly in from of the  switch
-    // Set point is the 0.0 X-coord
-    drive->coord_pid->SetSetpoint(IO::X_COORD_FLIP_SWITCH);
+    // Drive down ramp, holding angle
+    // Use coord pid to drive the robot down ramp
     while(true)
     {
-        if(!io->fl_switch->Value() || !io->fr_switch->Value())
+        if(!io->bl_switch->Value() || !io->br_switch->Value())
         {
-            drive->SquareToWallForward();
-            return;
+            drive->SquareToWallBackward();
+            break;
         }
         if(io->IsRPSGood())
         {
             //drive->SetDrive(0, drive->coord_pid->GetOutput(io->rps_x));
-            drive->SetDrive(60, (IO::X_COORD_FLIP_SWITCH - io->rps_x) * 100.0 / 10.0 + (io->rps_heading - 90) * 100 / 110);
-            lcd->WriteLine((IO::X_COORD_FLIP_SWITCH - io->rps_x) * 100.0 / 30.0);
+            drive->SetDrive(-60, -(IO::X_COORD_DRIVE_RAMP - io->rps_x) * 100.0 / 10.0 + (io->rps_heading - 90) * 100 / 30);
         }
         else
         {
-            drive->SetDrive(50, 0);
+            drive->SetDrive(-50, 0);
         }
         Sleep(IO::LOOP_TIMEOUT);
-        //drive->SetDrive(0, 0);
-        lcd->Clear();
-        lcd->WriteLine("Test:");
-        lcd->WriteLine(!io->fl_switch->Value());
-        lcd->WriteLine(!io->fl_switch->Value());
-        lcd->WriteLine(io->rps_x);
     }
 }
 
@@ -508,6 +549,7 @@ void test()
         lcd->Write(io->optosensor->Value());
         Sleep(IO::PRINT_TIMEOUT);
 
+        io->Update();
         if(io->ButtonBoardGetButton(IO::RIGHT))
         {
             return;

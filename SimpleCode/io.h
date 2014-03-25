@@ -30,7 +30,7 @@ public:
     static const int BOX_DUMP = 150;
 
     static const float X_COORD_FLIP_SWITCH = -1.0;
-    static const float X_COORD_DRIVE_RAMP = -4.0;
+    static const float X_COORD_DRIVE_RAMP = 4.0;
 
     typedef enum
     {
