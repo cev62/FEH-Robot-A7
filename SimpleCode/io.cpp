@@ -6,6 +6,8 @@ IO::IO(Timer *print_timer_in, ButtonBoard *button_board_in, FEHLCD *lcd_in, FEHW
     button_board_prev_states = new bool[3];
     num_button_pushes_required = 1;
 
+    IO::X_COORD_DRIVE_RAMP = 4.0;
+
     optosensor_curr_value = 0.0;
 
     for(int i = 0; i < 3; i++)

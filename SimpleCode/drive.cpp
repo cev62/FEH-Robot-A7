@@ -255,6 +255,8 @@ void Drive::SquareToWallForward()
 // TODO: add failure timeout
 void Drive::SquareToWallBackward()
 {
+    timer->Reset();
+    timer->SetTimeout(5.0);
     while(true)
     {
         SetDriveLR(io->bl_switch->Value() ? -100 : 0, io->br_switch->Value() ? -100 : 0);
@@ -263,13 +265,11 @@ void Drive::SquareToWallBackward()
         {
             break;
         }
-        if(io->print_timer->IsTimeout())
+        if(timer->IsTimeout())
         {
-            io->lcd->Clear();
-            io->lcd->Write("LEFT: ");
-            io->lcd->Write(!io->bl_switch->Value());
-            io->lcd->Write("RIGHT: ");
-            io->lcd->Write(!io->br_switch->Value());
+            SetDrive(0, 0);
+            Sleep(0.3);
+            return;
         }
         Sleep(IO::LOOP_TIMEOUT);
     }
@@ -310,6 +310,8 @@ void Drive::DriveDist(int forward, float dist)
 
 void Drive::LineFollowPin()
 {
+    timer->Reset();
+    timer->SetTimeout(6.0);
     while(true)
     {
         if(io->IsOnLinePin())
@@ -328,9 +330,69 @@ void Drive::LineFollowPin()
             SetDrive(0, 0);
             return;
         }
+        if(timer->IsTimeout())
+        {
+            SetDriveTime(-100, 0, 1.0);
+            TurnAngle(0, Drive::RIGHT, Drive::LEFT);
+            continue;
+        }
         Sleep(IO::LOOP_TIMEOUT);
     }
 }
+
+void Drive::LineFollowSkid()
+{
+    timer->Reset();
+    timer->SetTimeout(4.0);
+    while(true)
+    {
+        if(!io->IsOnLinePin())
+        {
+            // Need to go right
+            SetDriveLR(65, 30);
+        }
+        else
+        {
+            // Need to go left
+            SetDriveLR(30, 55);
+        }
+        if(timer->IsTimeout())
+        {
+            SetDrive(0, 0);
+            Sleep(0.3);
+            return;
+        }
+        Sleep(IO::LOOP_TIMEOUT);
+    }
+}
+
+void Drive::TurnToLine()
+{
+    timer->Reset();
+    timer->SetTimeout(5.0);
+    while(true)
+    {
+        if(!io->IsOnLinePin())
+        {
+            // Need to go left
+            SetDriveLR(0, 70);
+        }
+        else
+        {
+            SetDrive(0, 0);
+            Sleep(0.3);
+            return;
+        }
+        if(timer->IsTimeout())
+        {
+            SetDrive(0, 0);
+            Sleep(0.3);
+            return;
+        }
+        Sleep(IO::LOOP_TIMEOUT);
+    }
+}
+
 
 void Drive::EncoderTurn(float angle, Drive::Side pivot)
 {

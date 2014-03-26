@@ -42,6 +42,8 @@ public:
     void TurnAngle(int degrees, Drive::Side direction, Drive::Side pivot);
     void DriveDist(int forward, float dist);
     void LineFollowPin();
+    void LineFollowSkid();
+    void TurnToLine();
     void EncoderTurn(float angle, Drive::Side pivot);
 
     float TURN_MIN_POWER;

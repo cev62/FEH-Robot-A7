@@ -16,6 +16,7 @@ void pt7();
 void pt7_bonus();
 void test();
 void comp();
+void skid();
 void coord_pid_test();
 void encoderTest();
 
@@ -68,15 +69,16 @@ int main(void)
     io = new IO(print_timer, button_board, lcd, rps, left_encoder, right_encoder, fl_switch, fr_switch, bl_switch, br_switch, arm_switch, optosensor, cds_cell);
     drive = new Drive(left, right, io);
 
-    num_scripts = 7;
+    num_scripts = 8;
     scripts = new char*[num_scripts];
+    scripts[1] = "skid";
     scripts[0] = "comp";
-    scripts[1] = "pt7_bonus";
-    scripts[2] = "pt7";
-    scripts[3] = "test";
-    scripts[4] = "encoder test";
-    scripts[5] = "coord pid test";
-    scripts[6] = "Toggle RPS"; //must be last script in array
+    scripts[2] = "pt7_bonus";
+    scripts[3] = "pt7";
+    scripts[4] = "test";
+    scripts[5] = "encoder test";
+    scripts[6] = "coord pid test";
+    scripts[7] = "Toggle RPS"; //must be last script in array
     script_position = 0;
     is_rps_enabled = true;
 
@@ -142,6 +144,7 @@ void RunScript(char *script)
     else if(script == "pt7_bonus"){ pt7_bonus(); }
     else if(script == "test"){ test(); }
     else if(script == "comp"){ comp(); }
+    else if(script == "skid"){ skid(); }
     else if(script == "encoder test") { encoderTest(); }
     else if(script == "coord pid test") { coord_pid_test(); }
     else if(script == "Toggle RPS"){ is_rps_enabled = !is_rps_enabled; }
@@ -165,7 +168,7 @@ void comp()
     Sleep(0.5);
     drive->DriveDist(-100, 0.5);
     Sleep(0.5);
-    drive->TurnAngle(5, Drive::RIGHT, Drive::LEFT);
+    drive->TurnAngle(0, Drive::RIGHT, Drive::LEFT);
     Sleep(0.5);
     drive->DriveDist(100, 3);
 
@@ -188,14 +191,6 @@ void comp()
     io->InitializeLineFollowingPin();
 
     // Drive to PIN
-    /*drive->DriveDist(-100, 19);
-    Sleep(0.5);
-    io->InitializeLineFollowingPin();
-    drive->TurnAngle(90, Drive::RIGHT, Drive::LEFT);
-    Sleep(0.5);
-    drive->DriveDist(100, 2);
-    Sleep(0.3);
-    drive->TurnAngle(0, Drive::RIGHT, Drive::LEFT);*/
     drive->DriveDist(-100, 2);
     Sleep(0.3);
     drive->TurnAngle(0, Drive::RIGHT, Drive::LEFT);
@@ -218,13 +213,20 @@ void comp()
     drive->SetDriveTime(0, 50, 0.3);
     drive->LineFollowPin();
     arm->SetDegree(IO::ARM_STORE);
-    Sleep(0.3);
-    //drive->DriveDist(100, 0.5);
     Sleep(0.5);
+    drive->SetDriveTime(100, -100, 0.5);
+    drive->TurnToLine();
+    //drive->SetDriveTime(100, -100, 0.3);
+    arm->SetDegree(IO::ARM_APPROACH_SKID);
+    Sleep(1.0);
+    drive->LineFollowSkid();
+
+    /*drive->TurnAngle(85, Drive::LEFT, Drive::LEFT);
+    Sleep(0.3);
     drive->TurnAngle(85, Drive::LEFT, Drive::LEFT);
     arm->SetDegree(IO::ARM_APPROACH_SKID);
     Sleep(1.0);
-    drive->SetDriveTime(70, 0, 1.0);
+    drive->SetDriveTime(70, 0, 1.0);*/
 
     // Pick up skid
     arm->SetDegree(IO::ARM_PICKUP_SKID);
@@ -235,16 +237,23 @@ void comp()
     Sleep(0.5);
     drive->DriveDist(-100, 2);
     Sleep(0.5);
+    //drive->SetDriveTime(0, 50, 0.5);
 
     // Drive down ramp
-    /*drive->TurnAngle(0, Drive::RIGHT, Drive::LEFT);
-    Sleep(0.5);
-    drive->TurnAngle(90, Drive::LEFT, Drive::RIGHT);
-    Sleep(0.5);*/
+    drive->SquareToWallBackward();
+    drive->DriveDist(100, 8);
+    Sleep(0.3);
+    drive->TurnAngle(0, Drive::LEFT, Drive::RIGHT);
+    Sleep(0.3);
+    drive->DriveDist(100, 16.0);
+    Sleep(0.3);
+    drive->TurnAngle(90, Drive::RIGHT, Drive::LEFT);
+    Sleep(0.3);
+    drive->SquareToWallBackward();
 
     // Drive down ramp, holding angle
     // Use coord pid to drive the robot down ramp
-    timer->Reset();
+    /*timer->Reset();
     timer->SetTimeout(8.0);
     while(true)
     {
@@ -255,8 +264,9 @@ void comp()
         }
         if(io->IsRPSGood())
         {
+            io->lcd->Clear(FEHLCD::Black);
             //drive->SetDrive(0, drive->coord_pid->GetOutput(io->rps_x));
-            drive->SetDrive(-60, -(IO::X_COORD_DRIVE_RAMP - io->rps_x) * 100.0 / 7.0 + (io->rps_heading - 90) * 100 / 35);
+            drive->SetDrive(-60, -(io->X_COORD_DRIVE_RAMP - io->rps_x) * 100.0 / 7.0 + (io->rps_heading - 90) * 100 / 35);
         }
         else
         {
@@ -267,7 +277,7 @@ void comp()
             drive->SetDriveTime(100, 0, 1.0);
         }
         Sleep(IO::LOOP_TIMEOUT);
-    }
+    }*/
     //drive->SquareToWallBackward();
 
     // Read scoop light
@@ -360,8 +370,9 @@ void comp()
         }
         if(io->IsRPSGood())
         {
+            io->lcd->Clear(FEHLCD::Black);
             //drive->SetDrive(0, drive->coord_pid->GetOutput(io->rps_x));
-            drive->SetDrive(60, (IO::X_COORD_FLIP_SWITCH - io->rps_x) * 100.0 / 10.0 + (io->rps_heading - 90) * 100 / 110);
+            drive->SetDrive(60, (io->X_COORD_FLIP_SWITCH - io->rps_x) * 100.0 / 10.0 + (io->rps_heading - 90) * 100 / 110);
         }
         else
         {
@@ -389,10 +400,14 @@ void comp()
     drive->TurnAngle(90, Drive::RIGHT, Drive::LEFT);
     Sleep(0.3);
     drive->DriveDist(-100, 7);
+    drive->TurnAngle(0, Drive::LEFT, Drive::LEFT);
+    Sleep(0.3);
+    drive->DriveDist(100, 8);
     drive->TurnAngle(10, Drive::LEFT, Drive::LEFT);
     Sleep(0.3);
 
     // Navigate to charge zone
+
     drive->SquareToWallForward();
     drive->SetDriveTime(100, 0, 0.25);
 
@@ -411,8 +426,9 @@ void coord_pid_test()
         }
         if(io->IsRPSGood())
         {
+            io->lcd->Clear(FEHLCD::Black);
             //drive->SetDrive(0, drive->coord_pid->GetOutput(io->rps_x));
-            drive->SetDrive(-60, -(IO::X_COORD_DRIVE_RAMP - io->rps_x) * 100.0 / 10.0 + (io->rps_heading - 90) * 100 / 30);
+            drive->SetDrive(-60, -(io->X_COORD_DRIVE_RAMP - io->rps_x) * 100.0 / 10.0 + (io->rps_heading - 90) * 100 / 30);
         }
         else
         {
@@ -568,4 +584,18 @@ void encoderTest()
     drive->TurnAngle(0, Drive::LEFT, Drive::RIGHT);
     Sleep(1.0);
     drive->TurnAngle(90, Drive::RIGHT, Drive::RIGHT);
+}
+
+void skid()
+{
+    arm->SetDegree(IO::ARM_SENSE_PIN);
+    io->InitializeLineFollowingPin();
+    drive->LineFollowPin();
+    arm->SetDegree(IO::ARM_STORE);
+    Sleep(0.5);
+    drive->SetDriveTime(100, -100, 0.5);
+    drive->TurnToLine();
+    arm->SetDegree(IO::ARM_APPROACH_SKID);
+    Sleep(1.0);
+    drive->LineFollowSkid();
 }
