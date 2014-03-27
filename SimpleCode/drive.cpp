@@ -75,6 +75,7 @@ void Drive::TurnAmount(int degrees, Drive::Side pivot) // degrees < 0 means righ
 
     // For storing the current heading
     int curr_heading = io->rps_heading;
+    int prev_heading = curr_heading;
     // For storing te initial heading
     int initial_heading = curr_heading;
     // Stores the target heading NOT on the [0-179] scale. This is literally just adding the degrees to the initial heading
@@ -114,6 +115,16 @@ void Drive::TurnAmount(int degrees, Drive::Side pivot) // degrees < 0 means righ
 
         // TODO: Change this so that we KNOW that rps is good
         curr_heading = io->rps_heading;
+
+        if((prev_heading - curr_heading) % 180 < -15 || (prev_heading - curr_heading) % 180 > 15)
+        {
+            io->lcd->Clear(FEHLCD::White);
+            Sleep(1.0);
+            io->lcd->Clear(FEHLCD::Black);
+            continue;
+        }
+
+        prev_heading = curr_heading;
 
         // Get the current heading NOT on the [0,179] scale (ie. heading can be [-360,360])
         int raw_curr_heading = curr_heading;

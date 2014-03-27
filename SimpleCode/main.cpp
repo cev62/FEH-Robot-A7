@@ -242,8 +242,8 @@ void comp()
     drive->SquareToWallBackward();
     drive->DriveDist(100, 7);
     Sleep(0.3);
-    //drive->TurnAngle(0, Drive::LEFT, Drive::RIGHT);
-    drive->EncoderTurn(-90, Drive::RIGHT);
+    drive->TurnAngle(0, Drive::LEFT, Drive::RIGHT);
+    //drive->EncoderTurn(-90, Drive::RIGHT);
     Sleep(0.3);
     drive->SetDriveLR(-60, -40);
     Sleep(1.0);
@@ -254,8 +254,8 @@ void comp()
     Sleep(0.3);
     drive->DriveDist(100, 8);
     Sleep(0.3);
-    //drive->TurnAngle(90, Drive::RIGHT, Drive::LEFT);
-    drive->EncoderTurn(90, Drive::LEFT);
+    drive->TurnAngle(90, Drive::RIGHT, Drive::LEFT);
+    //drive->EncoderTurn(90, Drive::LEFT);
     Sleep(0.3);
     drive->SquareToWallBackward();
 
