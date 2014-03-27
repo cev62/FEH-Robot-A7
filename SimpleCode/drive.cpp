@@ -116,13 +116,34 @@ void Drive::TurnAmount(int degrees, Drive::Side pivot) // degrees < 0 means righ
         // TODO: Change this so that we KNOW that rps is good
         curr_heading = io->rps_heading;
 
-        if((prev_heading - curr_heading) % 180 < -15 || (prev_heading - curr_heading) % 180 > 15)
+        /*Timer *t = new Timer();
+        t->SetTimeout(10);
+        while(((prev_heading - curr_heading) % 180) < -45 || (prev_heading - curr_heading) % 180 > 45)
         {
+            if(t->IsTimeout()){ break; }
             io->lcd->Clear(FEHLCD::White);
+            SetDrive(0, 0);
             Sleep(1.0);
             io->lcd->Clear(FEHLCD::Black);
-            continue;
-        }
+
+            // If we don't have RPS, dump it off to the encoder turn function
+            if(!io->IsRPSGood())
+            {
+                // Because of the place in the function, error will always have been set
+                // when the RPS was good, so this call to Encoder turn should have the
+                // right angle
+                SetDrive(0, 0);
+                io->lcd->WriteLine("INSIDE LOOP");
+                io->lcd->WriteLine(error);
+                EncoderTurn(error, pivot);
+                return;
+            }
+
+            // TODO: Change this so that we KNOW that rps is good
+            curr_heading = io->rps_heading;
+
+            //continue;
+        }*/
 
         prev_heading = curr_heading;
 
@@ -344,7 +365,8 @@ void Drive::LineFollowPin()
         if(timer->IsTimeout())
         {
             SetDriveTime(-100, 0, 1.0);
-            TurnAngle(0, Drive::RIGHT, Drive::LEFT);
+            TurnAngle(160, Drive::RIGHT, Drive::LEFT);
+            TurnToLine();
             continue;
         }
         Sleep(IO::LOOP_TIMEOUT);
@@ -365,7 +387,7 @@ void Drive::LineFollowSkid()
         else
         {
             // Need to go left
-            SetDriveLR(30, 55);
+            SetDriveLR(30, 65);
         }
         if(timer->IsTimeout())
         {

@@ -20,6 +20,7 @@ void skid();
 void coord_pid_test();
 void encoderTest();
 void chiller();
+void drive_down_ramp();
 
 // Variable Declarations
 ButtonBoard *button_board;
@@ -70,7 +71,7 @@ int main(void)
     io = new IO(print_timer, button_board, lcd, rps, left_encoder, right_encoder, fl_switch, fr_switch, bl_switch, br_switch, arm_switch, optosensor, cds_cell);
     drive = new Drive(left, right, io);
 
-    num_scripts = 9;
+    num_scripts = 10;
     scripts = new char*[num_scripts];
     scripts[1] = "skid";
     scripts[0] = "comp";
@@ -80,7 +81,8 @@ int main(void)
     scripts[5] = "encoder test";
     scripts[6] = "coord pid test";
     scripts[7] = "chiller";
-    scripts[8] = "Toggle RPS"; //must be last script in array
+    scripts[8] = "drive down ramp";
+    scripts[9] = "Toggle RPS"; //must be last script in array
     script_position = 0;
     is_rps_enabled = true;
 
@@ -150,6 +152,7 @@ void RunScript(char *script)
     else if(script == "chiller"){ chiller(); }
     else if(script == "encoder test") { encoderTest(); }
     else if(script == "coord pid test") { coord_pid_test(); }
+    else if(script == "drive down ramp") { drive_down_ramp(); }
     else if(script == "Toggle RPS"){ is_rps_enabled = !is_rps_enabled; }
     else {lcd->Clear(FEHLCD::Gray); lcd->WriteLine("Invalid Script"); Sleep(10.0);}
 }
@@ -197,11 +200,12 @@ void comp()
     io->InitializeLineFollowingPin();
 
     // Drive to PIN
-    drive->DriveDist(-100, 2);
+    drive->DriveDist(-100, 3.0);
     Sleep(0.3);
     drive->TurnAngle(0, Drive::RIGHT, Drive::LEFT);
     Sleep(0.3);
-    drive->DriveDist(100, 3);
+    drive->DriveDist(100, 3.25);
+    drive->TurnToLine();
 
     // Sense the CHUTE
     arm->SetDegree(IO::ARM_SENSE_PIN);
@@ -240,13 +244,13 @@ void comp()
 
     // Drive down ramp
     drive->SquareToWallBackward();
-    drive->DriveDist(100, 7);
+    drive->DriveDist(100, 6.75);
     Sleep(0.3);
     drive->TurnAngle(0, Drive::LEFT, Drive::RIGHT);
     //drive->EncoderTurn(-90, Drive::RIGHT);
     Sleep(0.3);
     drive->SetDriveLR(-60, -40);
-    Sleep(1.0);
+    Sleep(1.2);
     //drive->DriveDist(100, 15.5);
     drive->DriveDist(100, 8);
     Sleep(0.3);
@@ -384,7 +388,7 @@ void coord_pid_test()
 {
     // Drive down ramp, holding angle
     // Use coord pid to drive the robot down ramp
-    /*while(true)
+    while(true)
     {
         if(!io->bl_switch->Value() || !io->br_switch->Value())
         {
@@ -402,17 +406,20 @@ void coord_pid_test()
             drive->SetDrive(-50, 0);
         }
         Sleep(IO::LOOP_TIMEOUT);
-    }*/
+    }
+}
 
+void drive_down_ramp()
+{
     // Drive down ramp
     drive->SquareToWallBackward();
-    drive->DriveDist(100, 7);
+    drive->DriveDist(100, 6.5);
     Sleep(0.3);
     //drive->TurnAngle(0, Drive::LEFT, Drive::RIGHT);
     drive->EncoderTurn(-90, Drive::RIGHT);
     Sleep(0.3);
     drive->SetDriveLR(-60, -40);
-    Sleep(1.0);
+    Sleep(1.2);
     //drive->DriveDist(100, 15.5);
     drive->DriveDist(100, 8);
     Sleep(0.3);
