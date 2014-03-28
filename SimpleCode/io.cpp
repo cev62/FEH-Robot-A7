@@ -116,10 +116,14 @@ void IO::InitializeScoopLight()
 void IO::ReadScoopLight()
 {
     cds_cell_scoop_light = cds_cell->Value();
-    if(cds_cell_shop_floor - IO::SCOOP_LIGHT_THRESHOLD > cds_cell_scoop_light)
+    if(cds_cell_shop_floor - IO::SCOOP_LIGHT_THRESHOLD > cds_cell_scoop_light || cds_cell_shop_floor - IO::SCOOP_LIGHT_THRESHOLD_RED_DEFAULT < cds_cell_scoop_light)
     {
         counter = IO::RIGHT_COUNTER;
         lcd->Clear(FEHLCD::Red);
+        if(cds_cell_shop_floor - IO::SCOOP_LIGHT_THRESHOLD_RED_DEFAULT < cds_cell_scoop_light)
+        {
+            lcd->Clear(FEHLCD::White);
+        }
         lcd->WriteLine("RIGHT COUNTER");
         lcd->WriteLine(cds_cell_shop_floor);
         lcd->WriteLine(cds_cell_scoop_light);

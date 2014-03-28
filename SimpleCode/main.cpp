@@ -192,7 +192,7 @@ void comp()
     }
 
     // Drive to Switch but do not flip
-    drive->DriveDist(-100, 15);
+    drive->DriveDist(-100, 16);
     Sleep(0.3);
     drive->TurnAngle(90, Drive::RIGHT, Drive::LEFT);
     Sleep(0.3);
@@ -200,15 +200,15 @@ void comp()
     io->InitializeLineFollowingPin();
 
     // Drive to PIN
-    drive->DriveDist(-100, 3.0);
+    drive->DriveDist(-100, 2.5);
     Sleep(0.3);
     drive->TurnAngle(0, Drive::RIGHT, Drive::LEFT);
+    arm->SetDegree(IO::ARM_SENSE_PIN);
     Sleep(0.3);
-    drive->DriveDist(100, 3.25);
+    drive->DriveDist(100, 1.5);
     drive->TurnToLine();
 
     // Sense the CHUTE
-    arm->SetDegree(IO::ARM_SENSE_PIN);
     drive->LineFollowPin();
     Sleep(0.5);
 
@@ -294,10 +294,9 @@ void comp()
     drive->DriveDist(100, 5);
     drive->SetDriveTime(-100, 100, 0.5);
     drive->SquareToWallBackward();
-    Sleep(1.0);
     arm->SetDegree(IO::ARM_STORE);
-    Sleep(1.0);
-    drive->SetDriveTime(100, 0, 1.75);
+    drive->SetDriveTime(100, 0, 1.25);
+    drive->EncoderTurn(-15, Drive::RIGHT);
     drive->SquareToWallBackward();
 
     // Drive to in shop
@@ -338,6 +337,8 @@ void comp()
     drive->DriveDist(100, 34);
 
     // Use coord pid to drive the robot directly in from of the  switch
+    timer->Reset();
+    timer->SetTimeout(5.0);
     while(true)
     {
         if(!io->fl_switch->Value() || !io->fr_switch->Value())
@@ -354,6 +355,12 @@ void comp()
         else
         {
             drive->SetDrive(50, 0);
+        }
+        if(timer->IsTimeout())
+        {
+            drive->SetDrive(0, 0);
+            drive->SquareToWallForward();
+            break;
         }
         Sleep(IO::LOOP_TIMEOUT);
     }

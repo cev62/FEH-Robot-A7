@@ -242,16 +242,38 @@ void Drive::TurnAngle(int degrees, Drive::Side direction, Drive::Side pivot) // 
         }
     }
 
+    Timer *twitch_detector = new Timer();
+    twitch_detector->Reset();
+    int retry_counts = 0;
+
     // If the amount to turn is less than 90 degrees, TurnAmount can handle it, so just call the function
     if(amount_to_turn <= 90 && amount_to_turn >= -90)
     {
-        TurnAmount(amount_to_turn, pivot);
+        while(twitch_detector->GetTime() < 0.25)
+        {
+            twitch_detector->Reset();
+            TurnAmount(amount_to_turn, pivot);
+            retry_counts++;
+            if(retry_counts >= 3)
+            {
+                break;
+            }
+        }
     }
     // If the amount to turn is more than 90 degrees, TurnAmount can NOT handle it, so split the turn into two turns back to back
     else
     {
-        TurnAmount(amount_to_turn / 2, pivot);
-        TurnAmount(amount_to_turn / 2, pivot);
+        while(twitch_detector->GetTime() < 0.25)
+        {
+            twitch_detector->Reset();
+            TurnAmount(amount_to_turn / 2, pivot);
+            TurnAmount(amount_to_turn / 2, pivot);
+            retry_counts++;
+            if(retry_counts >= 3)
+            {
+                break;
+            }
+        }
     }
 }
 
@@ -343,13 +365,16 @@ void Drive::DriveDist(int forward, float dist)
 void Drive::LineFollowPin()
 {
     timer->Reset();
-    timer->SetTimeout(6.0);
+    timer->SetTimeout(10.0);
+    Timer *left_timer = new Timer();
+    left_timer->SetTimeout(2.0);
     while(true)
     {
         if(io->IsOnLinePin())
         {
             // Need to go right
             SetDriveLR(65, 30);
+            left_timer->Reset();
         }
         else
         {
@@ -364,10 +389,17 @@ void Drive::LineFollowPin()
         }
         if(timer->IsTimeout())
         {
-            SetDriveTime(-100, 0, 1.0);
-            TurnAngle(160, Drive::RIGHT, Drive::LEFT);
+            SetDriveTime(-100, 0, 0.6);
+            EncoderTurn(30, Drive::LEFT);
             TurnToLine();
             continue;
+        }
+        if(left_timer->IsTimeout())
+        {
+            SetDriveLR(-65, -30);
+            Sleep(2.0);
+            EncoderTurn(40, Drive::LEFT);
+            TurnToLine();
         }
         Sleep(IO::LOOP_TIMEOUT);
     }
