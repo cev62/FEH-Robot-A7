@@ -197,22 +197,17 @@ void comp_norps()
 
     // Drive to Switch but do not flip
     drive->DriveDist(-100, 16);
-    Sleep(0.3);
     //drive->TurnAngle(90, Drive::RIGHT, Drive::LEFT);
     drive->EncoderTurn(90, Drive::LEFT);
-    Sleep(0.3);
     drive->SquareToWallForward();
     io->InitializeLineFollowingPin();
 
     // Drive to PIN
     drive->DriveDist(-100, 2.5);
-    Sleep(0.3);
     //drive->TurnAngle(0, Drive::RIGHT, Drive::LEFT);
-    drive->EncoderTurn(90, Drive::LEFT);
-    arm ->SetDegree(IO::ARM_SENSE_PIN);
-    Sleep(0.3);
+    drive->EncoderTurn(105, Drive::LEFT);
+    arm->SetDegree(IO::ARM_SENSE_PIN);
     drive->DriveDist(100, 3.5);
-    drive->EncoderTurn(30, Drive::LEFT);
     drive->TurnToLine();
 
     // Sense the CHUTE
@@ -223,17 +218,16 @@ void comp_norps()
     arm->SetDegree(IO::ARM_PULL_PIN);
     drive->DriveDist(-100, 6);
     arm->SetDegree(IO::ARM_APPROACH_SKID);
-    Sleep(1.0);
+    Sleep(0.3);
+    drive->SetDriveTime(0, 50, 0.3);
     arm->SetDegree(IO::ARM_SENSE_PIN);
 
     // Drive to skid
-    drive->SetDriveTime(0, 50, 0.3);
     drive->LineFollowPin();
     arm->SetDegree(IO::ARM_STORE);
-    Sleep(0.5);
+    Sleep(0.3);
     drive->SetDriveTime(100, -100, 0.5);
     drive->TurnToLine();
-    //drive->SetDriveTime(100, -100, 0.3);
     arm->SetDegree(IO::ARM_APPROACH_SKID);
     Sleep(1.0);
     drive->LineFollowSkid();
@@ -244,30 +238,21 @@ void comp_norps()
     drive->DriveDist(-100, 2);
     Sleep(1.5);
     drive->SetDriveTime(100, 0, 0.75);
-    Sleep(0.5);
-    drive->DriveDist(-100, 2);
-    drive->curr_angle = 90;
-    Sleep(0.5);
+    Sleep(0.3);
     //drive->SetDriveTime(0, 50, 0.5);
 
     // Drive down ramp
     drive->SquareToWallBackward();
     drive->DriveDist(100, 6.75);
-    Sleep(0.3);
-    //drive->TurnAngle(0, Drive::LEFT, Drive::RIGHT);
     drive->EncoderTurn(-90, Drive::RIGHT);
-    Sleep(0.3);
     drive->SetDriveLR(-60, -40);
     Sleep(1.2);
-    //drive->DriveDist(100, 15.5);
     drive->DriveDist(100, 8);
-    Sleep(0.3);
     drive->EncoderTurn(25, Drive::LEFT);
-    Sleep(0.3);
     drive->DriveDist(100, 8);
     Sleep(0.3);
+    drive->curr_angle = 160;
     drive->TurnAngle(90, Drive::RIGHT, Drive::LEFT);
-    //drive->EncoderTurn(90, Drive::LEFT);
     Sleep(0.3);
     drive->SquareToWallBackward();
     io->InitializeScoopLight();
@@ -307,7 +292,7 @@ void comp_norps()
     {
         // RIGHT Counter
         box->SetDegree(IO::BOX_DUMP);
-        Sleep(0.75);
+        Sleep(0.60);
         box->SetDegree(IO::BOX_STORE);
     }
 
@@ -335,7 +320,7 @@ void comp_norps()
         drive->EncoderTurn(90, Drive::LEFT);
         drive->SquareToWallBackward();
         box->SetDegree(IO::BOX_DUMP);
-        Sleep(0.75);
+        Sleep(0.60);
         box->SetDegree(IO::BOX_STORE);
         drive->DriveDist(100, 8);
         drive->EncoderTurn(-90, Drive::RIGHT);
@@ -348,7 +333,6 @@ void comp_norps()
     Sleep(0.3);
     //drive->TurnAngle(90, Drive::RIGHT, Drive::LEFT);
     drive->EncoderTurn(90, Drive::LEFT);
-    Sleep(0.3);
     drive->SquareToWallBackward();
 
     // Drive up Ramp
@@ -387,13 +371,9 @@ void comp_norps()
 
     // Bunch of small turns to flip switch
     drive->SetDriveTime(-100, -100, 0.25);
-    Sleep(0.3);
     drive->SetDriveTime(100, -100, 0.25);
-    Sleep(0.3);
     drive->SetDriveTime(-100, -100, 0.25);
-    Sleep(0.3);
     drive->SetDriveTime(100, -100, 0.25);
-    Sleep(0.3);
 
     //drive->TurnAngle(90, Drive::RIGHT, Drive::LEFT);
     drive->EncoderTurn(150, Drive::LEFT);

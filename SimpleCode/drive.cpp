@@ -41,7 +41,7 @@ void Drive::SetDriveTime(int forward, int turn, float time)
 void Drive::PushButton()
 {
     timer->Reset();
-    timer->SetTimeout(3.0);
+    timer->SetTimeout(2.0);
     SetDrive(50, 0);
     while(io->fr_switch->Value() == 1)
     {
@@ -288,7 +288,7 @@ void Drive::SquareToWallForward()
         }
     }
     SetDrive(0, 0);
-    Sleep(0.5);
+    Sleep(0.3);
     if(io->fl_switch->Value() || io->fr_switch->Value())
     {
         SquareToWallForward();
@@ -317,7 +317,7 @@ void Drive::SquareToWallBackward()
         Sleep(IO::LOOP_TIMEOUT);
     }
     SetDrive(0, 0);
-    Sleep(0.5);
+    Sleep(0.3);
     if(io->bl_switch->Value() || io->br_switch->Value())
     {
         SquareToWallBackward();
@@ -397,7 +397,7 @@ void Drive::LineFollowPin()
 void Drive::LineFollowSkid()
 {
     timer->Reset();
-    timer->SetTimeout(3.0);
+    timer->SetTimeout(2.5);
     while(true)
     {
         if(!io->IsOnLinePin())
@@ -454,7 +454,7 @@ void Drive::EncoderTurn(float angle, Drive::Side pivot)
     FEHEncoder *encoder;
     float motor_power = 0;
     float motor_direction = 1;
-    float correction_factor = 0.77 / 0.55;
+    float correction_factor = /*0.77*/0.77 / 0.55;
 
     if(angle < 0 && pivot == Drive::LEFT)
     {
@@ -488,7 +488,7 @@ void Drive::EncoderTurn(float angle, Drive::Side pivot)
     float target_counts = angle*IO::INCHES_PER_DEGREE*IO::COUNTS_PER_INCH * correction_factor;
     if(pivot == Drive::RIGHT)
     {
-        target_counts = target_counts * 0.9;
+        target_counts = target_counts * 1.0;//0.9;
     }
 
     while(true)
