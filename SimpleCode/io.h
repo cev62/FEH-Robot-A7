@@ -13,6 +13,7 @@ class IO
 public:
 
     static const float COUNTS_PER_INCH = (24.0 * 2) / (2.75 * 3.14); // 24.0*2 is because 48 ticks are registered per revolution
+    static const float INCHES_PER_DEGREE = 9.0 / 90.0;
     static const float START_LIGHT_THRESHOLD = -0.375;
     static const float SCOOP_LIGHT_THRESHOLD = 1.0;
     static const float SCOOP_LIGHT_THRESHOLD_RED_DEFAULT = 0.3;
@@ -62,6 +63,7 @@ public:
     float optosensor_factory_floor, optosensor_curr_value;
     int num_button_pushes_required;
     float rps_x, rps_y, rps_heading;
+    bool is_rps_enabled;
     Counter counter;
 
     FEHWONKA *rps;

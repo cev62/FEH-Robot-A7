@@ -8,7 +8,6 @@
 
 #include "io.h"
 #include "timer.h"
-#include "PIDController.h"
 
 class Drive
 {
@@ -20,10 +19,6 @@ public:
 
     static const float STRAIGHT_MIN_POWER = 60;
     static const float RAMP_DOWN_DIST = 6.0;
-
-    static const float COORD_PID_P = 100.0 / 5.0;
-    static const float COORD_PID_I = 0;
-    static const float COORD_PID_D = 0;
 
     typedef enum
     {
@@ -47,11 +42,11 @@ public:
     void EncoderTurn(float angle, Drive::Side pivot);
 
     float TURN_MIN_POWER;
+    float curr_angle;
 
     FEHMotor *left, *right;
     IO *io;
     Timer *timer;
-    PIDController *coord_pid;
 };
 
 #endif // DRIVE_H

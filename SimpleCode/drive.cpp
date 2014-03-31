@@ -7,7 +7,7 @@ Drive::Drive(FEHMotor *left_in, FEHMotor *right_in, IO *io_in)
     io = io_in;
     TURN_MIN_POWER = Drive::TURN_MIN_POWER_FACTORY;
     timer = new Timer();
-    coord_pid = new PIDController(Drive::COORD_PID_P, Drive::COORD_PID_I, Drive::COORD_PID_D);
+    curr_angle = 0.0;
 }
 
 void Drive::SetDrive(int forward, int turn)
@@ -61,11 +61,9 @@ void Drive::PushButton()
 void Drive::TurnAmount(int degrees, Drive::Side pivot) // degrees < 0 means right turn, degrees > 0 means left turn
 {
     // If we don't have RPS, dump it off to the encoder turn function
-    if(!io->IsRPSGood())
+    if(!io->is_rps_enabled || !io->IsRPSGood())
     {
         SetDrive(0, 0);
-        io->lcd->WriteLine("INIT");
-        io->lcd->WriteLine(degrees);
         EncoderTurn(-degrees, pivot);
         return;
     }
@@ -115,36 +113,6 @@ void Drive::TurnAmount(int degrees, Drive::Side pivot) // degrees < 0 means righ
 
         // TODO: Change this so that we KNOW that rps is good
         curr_heading = io->rps_heading;
-
-        /*Timer *t = new Timer();
-        t->SetTimeout(10);
-        while(((prev_heading - curr_heading) % 180) < -45 || (prev_heading - curr_heading) % 180 > 45)
-        {
-            if(t->IsTimeout()){ break; }
-            io->lcd->Clear(FEHLCD::White);
-            SetDrive(0, 0);
-            Sleep(1.0);
-            io->lcd->Clear(FEHLCD::Black);
-
-            // If we don't have RPS, dump it off to the encoder turn function
-            if(!io->IsRPSGood())
-            {
-                // Because of the place in the function, error will always have been set
-                // when the RPS was good, so this call to Encoder turn should have the
-                // right angle
-                SetDrive(0, 0);
-                io->lcd->WriteLine("INSIDE LOOP");
-                io->lcd->WriteLine(error);
-                EncoderTurn(error, pivot);
-                return;
-            }
-
-            // TODO: Change this so that we KNOW that rps is good
-            curr_heading = io->rps_heading;
-
-            //continue;
-        }*/
-
         prev_heading = curr_heading;
 
         // Get the current heading NOT on the [0,179] scale (ie. heading can be [-360,360])
@@ -177,7 +145,9 @@ void Drive::TurnAmount(int degrees, Drive::Side pivot) // degrees < 0 means righ
             if (moving_right) {} // Already going right. Continue
             if (moving_left) // Moving to the left. Need to stop and change directions to correct for overshoot
             {
-                SetDriveLR(0, 0);
+                //if(pivot == Drive::LEFT) {SetDriveLR(0, -TURN_MIN_POWER);}
+                //if(pivot == Drive::RIGHT) {SetDriveLR(TURN_MIN_POWER, 0);}
+                SetDrive(0, 0);
                 break;
             }
         }
@@ -186,7 +156,9 @@ void Drive::TurnAmount(int degrees, Drive::Side pivot) // degrees < 0 means righ
             if (moving_left) {} // Already going left. Continue
             if (moving_right) // Moving to the right. Need to stop and change directions to correct for overshoot
             {
-                SetDriveLR(0, 0);
+                //if(pivot == Drive::LEFT) {SetDriveLR(0, TURN_MIN_POWER);}
+                //if(pivot == Drive::RIGHT) {SetDriveLR(-TURN_MIN_POWER, 0);}
+                SetDrive(0, 0);
                 break;
             }
         }
@@ -198,22 +170,40 @@ void Drive::TurnAmount(int degrees, Drive::Side pivot) // degrees < 0 means righ
 
         Sleep(IO::LOOP_TIMEOUT);
     }
-
+    curr_angle = (int)(curr_angle + degrees + 180) % 180;
+    Sleep(0.25);
 }
 
 void Drive::TurnAngle(int degrees, Drive::Side direction, Drive::Side pivot) // degrees < 0 means right turn, degrees > 0 means left turn
 {
     timer->Reset();
-    timer->SetTimeout(20.0);
-    while(!io->IsRPSGood())
+    timer->SetTimeout(1.0);
+    int curr_heading;
+
+    if(io->is_rps_enabled)
     {
-        Sleep(0.100);
-        if(timer->IsTimeout())
+        if(!io->IsRPSGood())
         {
-            break;
+            Sleep(1.0);
+            if(!io->IsRPSGood())
+            {
+                curr_heading = curr_angle;
+            }
+            else
+            {
+                curr_heading = io->rps_heading;
+            }
+        }
+        else
+        {
+            curr_heading = io->rps_heading;
         }
     }
-    int curr_heading = io->rps_heading;
+    else
+    {
+        curr_heading = curr_angle;
+    }
+
     int amount_to_turn = 0;
     if(direction == LEFT)
     {
@@ -277,7 +267,6 @@ void Drive::TurnAngle(int degrees, Drive::Side direction, Drive::Side pivot) // 
     }
 }
 
-// TODO: add failure timeout
 void Drive::SquareToWallForward()
 {
     timer->Reset();
@@ -461,67 +450,65 @@ void Drive::TurnToLine()
 
 void Drive::EncoderTurn(float angle, Drive::Side pivot)
 {
-
-    float countsPerDegree = .777777777;
-    float inches_per_degree = 9.0 / 90;
-    float motorPower;
     io->ResetEncoders();
+    FEHEncoder *encoder;
+    float motor_power = 0;
+    float motor_direction = 1;
+    float correction_factor = 0.77 / 0.55;
 
-    if(pivot == Drive::LEFT)
+    if(angle < 0 && pivot == Drive::LEFT)
     {
-        if(angle < 0)
-        {
-            angle *= -1;
-            io->lcd->Write("Turn Left  ");
-            io->lcd->WriteLine(countsPerDegree*angle);
-            while(io->right_encoder->Counts() < (countsPerDegree*angle*0.9))
-            {
-                motorPower = -100 + ((io->right_encoder->Counts()/(countsPerDegree*angle*0.9))*40);
-                SetDriveLR(0, -motorPower);
-            }
-        }
-        else
-        {
-            io->lcd->Write("Turn Right ");
-            io->lcd->WriteLine(countsPerDegree*angle);
-            while(io->right_encoder->Counts() < (countsPerDegree*angle))
-            {
-                io->lcd->Clear();
-                io->lcd->WriteLine("Counts");
-                io->lcd->WriteLine(io->right_encoder->Counts());
-                motorPower = -100 + ((io->right_encoder->Counts()/(countsPerDegree*angle))*40);
-                SetDriveLR(0, motorPower);
-            }
-        }
-    }
-    else
-    {
-        if(angle < 0)
-        {
-            angle *= -1;
-            io->lcd->Write("Turn Left  ");
-            io->lcd->WriteLine(countsPerDegree*angle);
-            while(io->left_encoder->Counts() < (countsPerDegree*angle*0.9))
-            {
-                motorPower = -100 + ((io->left_encoder->Counts()/(countsPerDegree*angle*0.9))*40);
-                SetDriveLR(motorPower, 0);
-            }
-        }
-        else
-        {
-            io->lcd->Write("Turn Right ");
-            io->lcd->WriteLine(countsPerDegree*angle);
-            while(io->left_encoder->Counts() < (countsPerDegree*angle))
-            {
-                io->lcd->Clear();
-                io->lcd->WriteLine("Counts");
-                io->lcd->WriteLine(io->left_encoder->Counts());
-                motorPower = -100 + ((io->left_encoder->Counts()/(countsPerDegree*angle))*40);
-                SetDriveLR(-motorPower, 0);
-            }
-        }
+        // Left Turn about LEFT
+        encoder = io->right_encoder;
+        motor_direction = 1;
     }
 
-    io->lcd->Clear(FEHLCD::Black);
+    if(angle < 0 && pivot == Drive::RIGHT)
+    {
+        // Left Turn about RIGHT
+        encoder = io->left_encoder;
+        motor_direction = -1;
+    }
+
+    if(angle > 0 && pivot == Drive::LEFT)
+    {
+        // Right Turn about LEFT
+        encoder = io->right_encoder;
+        motor_direction = -1;
+    }
+
+    if(angle > 0 && pivot == Drive::RIGHT)
+    {
+        // Right Turn about RIGHT
+        encoder = io->left_encoder;
+        motor_direction = 1;
+    }
+
+    if(angle < 0){ angle = -angle; }
+    float target_counts = angle*IO::INCHES_PER_DEGREE*IO::COUNTS_PER_INCH * correction_factor;
+    if(pivot == Drive::RIGHT)
+    {
+        target_counts = target_counts * 0.9;
+    }
+
+    while(true)
+    {
+        motor_power = TURN_MIN_POWER + (target_counts - encoder->Counts()) * Drive::P_TURN;
+        if(pivot == Drive::LEFT)
+        {
+            SetDriveLR(0, motor_direction * motor_power);
+        }
+        if(pivot == Drive::RIGHT)
+        {
+            SetDriveLR(motor_direction * motor_power, 0);
+        }
+        Sleep(IO::LOOP_TIMEOUT);
+        if(encoder->Counts() > target_counts)
+        {
+            break;
+        }
+    }
     SetDrive(0, 0);
+
+    curr_angle = (int)(curr_angle - angle + 180) % 180;
 }

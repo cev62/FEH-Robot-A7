@@ -85,6 +85,8 @@ void IO::WaitForStartLight()
 {
     float curr_value = cds_cell->Value();
     float initial_value = curr_value;
+    Timer *timer = new Timer();
+    timer->SetTimeout(30.0);
     while(true)
     {
         curr_value = cds_cell->Value();
@@ -100,6 +102,11 @@ void IO::WaitForStartLight()
             return;
         }
         if(button_board->RightPressed())
+        {
+            lcd->Clear();
+            return;
+        }
+        if(timer->IsTimeout())
         {
             lcd->Clear();
             return;
