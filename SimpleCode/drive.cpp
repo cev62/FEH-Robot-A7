@@ -397,7 +397,7 @@ void Drive::LineFollowPin()
 void Drive::LineFollowSkid()
 {
     timer->Reset();
-    timer->SetTimeout(4.0);
+    timer->SetTimeout(3.0);
     while(true)
     {
         if(!io->IsOnLinePin())

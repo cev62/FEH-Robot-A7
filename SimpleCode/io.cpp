@@ -5,6 +5,7 @@ IO::IO(Timer *print_timer_in, ButtonBoard *button_board_in, FEHLCD *lcd_in, FEHW
     button_board_current_states = new bool[3];
     button_board_prev_states = new bool[3];
     num_button_pushes_required = 1;
+    read_scoop_light_correctly = false;
 
     IO::X_COORD_DRIVE_RAMP = 4.0;
 
@@ -123,6 +124,7 @@ void IO::InitializeScoopLight()
 void IO::ReadScoopLight()
 {
     cds_cell_scoop_light = cds_cell->Value();
+    read_scoop_light_correctly = true;
     if(cds_cell_shop_floor - IO::SCOOP_LIGHT_THRESHOLD > cds_cell_scoop_light || cds_cell_shop_floor - IO::SCOOP_LIGHT_THRESHOLD_RED_DEFAULT < cds_cell_scoop_light)
     {
         counter = IO::RIGHT_COUNTER;
@@ -130,6 +132,7 @@ void IO::ReadScoopLight()
         if(cds_cell_shop_floor - IO::SCOOP_LIGHT_THRESHOLD_RED_DEFAULT < cds_cell_scoop_light)
         {
             lcd->Clear(FEHLCD::White);
+            read_scoop_light_correctly = false;
         }
         lcd->WriteLine("RIGHT COUNTER");
         lcd->WriteLine(cds_cell_shop_floor);
@@ -143,7 +146,6 @@ void IO::ReadScoopLight()
         lcd->WriteLine(cds_cell_shop_floor);
         lcd->WriteLine(cds_cell_scoop_light);
     }
-
 }
 
 void IO::InitializeLineFollowingPin()

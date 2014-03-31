@@ -63,7 +63,7 @@ public:
     float optosensor_factory_floor, optosensor_curr_value;
     int num_button_pushes_required;
     float rps_x, rps_y, rps_heading;
-    bool is_rps_enabled;
+    bool is_rps_enabled, read_scoop_light_correctly;
     Counter counter;
 
     FEHWONKA *rps;
